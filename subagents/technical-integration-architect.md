@@ -102,9 +102,5 @@ Remember: You're not just finding where to add code—you're architecting soluti
 ### References
 
 - [Agents playbook folder](/.agents-playbook/)
-- [Instructions docs](/docs/instructions/)
-- [Agent development guide](/docs/instructions/how-to-develop-agents.md)
-- [Project structure](/docs/instructions/project-structure.md)
-- [How to theme](/docs/instructions/how-to-theme.md)
 - [CLAUDE guidelines](/CLAUDE.MD)
 - [Agents overview](/AGENTS.MD)
