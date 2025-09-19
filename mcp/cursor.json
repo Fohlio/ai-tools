@@ -1,0 +1,43 @@
+{
+  "mcpServers": {
+    "Sentry": {
+      "url": "https://mcp.sentry.dev/sse"
+    },
+    "GitHub": {
+      "command": "docker run -i --rm -e GITHUB_PERSONAL_ACCESS_TOKEN ghcr.io/github/github-mcp-server",
+      "env": {
+        "GITHUB_PERSONAL_ACCESS_TOKEN": "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"
+      }
+    },
+    "Figma": {
+      "url": "http://127.0.0.1:3845/sse"
+    },
+    "Playwright": {
+      "command": "npx @playwright/mcp@latest",
+      "env": {}
+    },
+    "context7": {
+      "url": "https://mcp.context7.com/mcp"
+    },
+    "agents-playbook": {
+      "url": "https://agents-playbook.vercel.app/api/mcp"
+    },
+    "Supabase": {
+      "command": "npx -y @supabase/mcp-server-postgrest@latest --apiUrl https://ptvchclhgyaymkznxsmn.supabase.co/rest/v1 --apiKey eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InB0dmNoY2xoZ3lheW1rem54c21uIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDc1MDMyMzAsImV4cCI6MjA2MzA3OTIzMH0.EP6Xi2WPtAOVExvrXnSI-19k1AbUU4XAM9mGynZwWIQ --schema public",
+      "env": {}
+    },
+    "fohlio": {
+      "url": "http://fohlio-mcp.vercel.app/api/mcp",
+      "env": {
+        "FOHLIO_TOKEN": "JDCnpxFLg2yZrBP1doqv6kTm"
+      }
+    },
+    "browser-tools": {
+      "command": "npx @agentdeskai/browser-tools-mcp@latest"
+    },
+    "Vercel": {
+      "url": "https://mcp.vercel.com",
+      "headers": {}
+    }
+  }
+}
