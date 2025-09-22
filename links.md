@@ -1,70 +1,100 @@
 # AI Links
 
-A curated list of AI-related links.
+Developer-oriented AI links.
 
-## AI Chat & Search
+## Core Providers & Chat
 
-*   [Gemini](https://gemini.google.com/app) - Google's AI chatbot.
-*   [Perplexity AI](https://www.perplexity.ai/) - An AI search engine/chatbot.
-*   [Claude](https://claude.ai) - Anthropic's AI chatbot.
-*   [ChatGPT](https://chat.openai.com/) - OpenAI's AI chatbot.
-*   [Poe](https://poe.com/) - Fast AI chat with multiple bots.
-*   [You.com](https://you.com/) - AI-powered search engine.
+*   [Gemini](https://gemini.google.com/app) — Google's AI chatbot
+*   [Claude](https://claude.ai) — Anthropic's AI assistant
+*   [ChatGPT](https://chat.openai.com/) — OpenAI's assistant
+*   [Perplexity AI](https://www.perplexity.ai/) — Research/search assistant
 
-## Generative AI (Media)
+## SDKs, Libraries & Platforms
+
+*   [OpenAI Platform](https://platform.openai.com/docs/overview) — API and docs
+*   [Hugging Face](https://www.huggingface.co/) — Models, datasets, Spaces
+*   [Azure AI](https://ai.azure.com/) — Azure AI Studio
+*   [OpenRouter](https://www.openrouter.ai/) — Unified LLM API
+*   [Replicate](https://replicate.com/) — Hosted model inference
+*   [LangChain](https://www.langchain.com/) — LLM app framework
+
+## Orchestration & MCP
+
+*   [Model Context Protocol (MCP)](https://github.com/mcp)
+*   [Awesome MCP Servers](https://github.com/punkpeye/awesome-mcp-servers) — Community list
+
+## Generative Media
 
 ### Image
-*   [Midjourney](https://www.midjourney.com/app/) - AI image generator.
-*   [Leonardo AI](https://leonardo.ai/) - AI image generation platform.
-*   [Stable Diffusion Online](https://stablediffusionweb.com/) - Free Stable Diffusion image generator.
-*   [Krea.ai](https://www.krea.ai/) - Real-time AI image generation.
+*   [Midjourney](https://www.midjourney.com/app/) — Image generation
+*   [Leonardo AI](https://leonardo.ai/) — Image generation platform
+*   [Stable Diffusion Online](https://stablediffusionweb.com/) — SD in browser
+*   [Krea.ai](https://www.krea.ai/) — Real-time generation
 
 ### Video
-*   [RunwayML](https://runwayml.com/) - AI video, image, etc. generator.
-*   [HeyGen](https://app.heygen.com/home) - AI video generator with avatars.
-*   [Pika](https://pika.art/) - AI video generation.
+*   [RunwayML](https://runwayml.com/) — Video, image, and more
+*   [HeyGen](https://app.heygen.com/home) — Avatars and video
+*   [Pika](https://pika.art/) — Video generation
 
 ### Audio & Music
-*   [Minimax](https://www.minimax.io/audio) - Audio generation tool.
-*   [Suno AI](https://suno.com/) - AI music generation.
+*   [Minimax](https://www.minimax.io/audio) — Audio generation
+*   [Suno AI](https://suno.com/) — Music generation
 
-### UI & Code
-*   [v0.dev](https://v0.dev/) - UI generator from text prompts by Vercel.
+## Dev Tools, Browsing & Automation
 
-## AI Development & Platforms
+*   [v0.dev](https://v0.dev/) — UI generation from prompts (Vercel)
+*   [BrowserBase](https://www.browserbase.com/) — Headless browser API
+*   [Stitch](https://stitch.withgoogle.com/) — Generative AI examples (Google)
 
-*   [OpenAI Platform](https://platform.openai.com/docs/overview) - OpenAI API for developers.
-*   [Hugging Face](https://www.huggingface.co/) - A platform for AI models, datasets, etc.
-*   [Azure AI](https://ai.azure.com/) - Microsoft Azure AI platform.
-*   [OpenRouter](https://www.openrouter.ai/) - A unified API for various LLMs.
-*   [Stitch](https://stitch.withgoogle.com/) - An experimental tool from Google for creating generative AI examples.
-*   [BrowserBase](https://www.browserbase.com/) - A headless browser API for web automation and scraping.
-*   [Replicate](https://replicate.com/) - Run AI models with a cloud API.
-*   [LangChain](https://www.langchain.com/) - Framework for developing applications powered by language models.
+## Code & Productivity Assistants
 
-## AI-Powered Tools
+*   [CodeRabbit](https://app.coderabbit.ai/dashboard) — AI code reviews
+*   [Phind](https://www.phind.com/) — Dev-focused AI search
+*   [Blackbox AI](https://www.blackbox.ai/) — Coding assistant
+*   [NotebookLM](https://notebooklm.google.com/) — Research assistant over your docs
+*   [Gamma.app](https://gamma.app/) — Slides and docs
+*   [QuillBot](https://quillbot.com/) — Writing assistant
+*   [Flowith](https://flowith.io/blank) — Presentations/mind maps
 
-*   [CodeRabbit](https://app.coderabbit.ai/dashboard) - AI-powered code reviews.
-*   [Flowith](https://flowith.io/blank) - AI for creating presentations/mind maps.
-*   [NotebookLM](https://notebooklm.google.com/) - Google's research assistant that uses your documents.
-*   [Gamma.app](https://gamma.app/) - Create presentations and documents with AI.
-*   [QuillBot](https://quillbot.com/) - AI-powered writing assistant.
-*   [Phind](https://www.phind.com/) - AI search engine for developers.
-*   [Blackbox AI](https://www.blackbox.ai/) - AI coding assistant.
+## Research & News
 
-## AI News & Research
+*   [ArXiv (cs.AI)](https://arxiv.org/list/cs.AI/new) — New papers
+*   [DeepMind Blog](https://deepmind.google/discover/blog/genie-3-a-new-frontier-for-world-models/) — Example: Genie 3
+*   [Hugging Face Blog](https://huggingface.co/blog)
+*   [OpenAI Blog](https://openai.com/blog)
+*   [Google AI Blog](https://ai.googleblog.com/)
 
-*   [DeepMind Blog](https://deepmind.google/discover/blog/genie-3-a-new-frontier-for-world-models/) - Post about Genie 3.
-*   [ArXiv (cs.AI)](https://arxiv.org/list/cs.AI/new) - The latest AI research papers.
-*   [Hugging Face Blog](https://huggingface.co/blog) - News and updates from Hugging Face.
-*   [OpenAI Blog](https://openai.com/blog) - News and research from OpenAI.
-*   [Google AI Blog](https://ai.googleblog.com/) - The latest from Google AI.
+## Directories & Communities
 
-## Resources & Communities
+## Agent Frameworks
+
+*   Vercel AI SDK — `https://sdk.vercel.ai`
+*   LangGraph — `https://python.langchain.com/docs/langgraph/`
+*   LlamaIndex — `https://docs.llamaindex.ai/`
+*   Guidance — `https://github.com/guidance-ai/guidance`
+
+## Evaluation & Observability
+
+*   LangSmith — `https://smith.langchain.com/`
+*   Phoenix (Arize) — `https://phoenix.arize.com/`
+*   Ragas — `https://docs.ragas.io/`
+*   DeepEval — `https://docs.confident-ai.com/`
+*   Langfuse — `https://langfuse.com/`
+
+## Vector Databases
+
+*   Pinecone — `https://www.pinecone.io/`
+*   Weaviate — `https://weaviate.io/`
+*   Qdrant — `https://qdrant.tech/`
+*   pgvector — `https://github.com/pgvector/pgvector`
+
+## Safety & Red Teaming
+
+*   Garak — `https://github.com/leondz/garak`
+*   Prompt Injection resources — `https://github.com/corca-ai/awesome-prompt-injection`
 
 *   [LLM Leaderboard (Vellum)](https://www.vellum.ai/llm-leaderboard)
-*   [Awesome MCP Servers](https://github.com/punkpeye/awesome-mcp-servers) - A list of MCP servers.
-*   [Cursor Directory](https://cursor.directory/) - A directory of AI agents for the Cursor editor.
-*   [Futurepedia](https://www.futurepedia.io/) - The largest AI tools directory.
-*   [There's An AI For That](https://theresanaiforthat.com/) - Another comprehensive AI tools database.
-*   [AI Alignment Forum](https://www.alignmentforum.org/) - Discussions on AI safety and alignment.
+*   [Cursor Directory](https://cursor.directory/) — Agents for Cursor
+*   [Futurepedia](https://www.futurepedia.io/) — AI tools directory
+*   [There's An AI For That](https://theresanaiforthat.com/) — Tools database
+*   [AI Alignment Forum](https://www.alignmentforum.org/) — Safety/alignment
