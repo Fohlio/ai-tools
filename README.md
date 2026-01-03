@@ -4,8 +4,6 @@ A lightweight, opinionated collection of agent specs, rules, and links for build
 
 ## What's inside
 
-- `AGENTS.md` — Overview of available agents with roles and links
-- `CLAUDE.md` — Guidelines for using Claude effectively in this repo
 - `links.md` — Curated developer-oriented AI links
 - `subagents/` — Individual agent personas/specs
 - `skills/` — Reusable Claude Code skills with scripts (copy to your project's `.claude/skills/`)
