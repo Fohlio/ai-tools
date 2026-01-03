@@ -26,11 +26,14 @@ A lightweight, opinionated collection of agent specs, rules, and links for build
 ├── rules/
 │   └── claude-rules.md
 ├── skills/
-│   └── create-game-assets/   # DALL-E 3 game asset generator
+│   ├── create-game-assets/   # DALL-E 3 game asset generator
+│   │   ├── SKILL.md
+│   │   ├── README.md
+│   │   ├── package.json
+│   │   └── src/
+│   └── remove-background/    # Remove image backgrounds (rembg)
 │       ├── SKILL.md
-│       ├── README.md
-│       ├── package.json
-│       └── src/
+│       └── README.md
 └── subagents/
     ├── ai-sdk-prompt-architect.md
     ├── code-reviewer.md
