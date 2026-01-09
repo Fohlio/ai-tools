@@ -2,7 +2,7 @@
 name: code-architect
 description: Senior Full-Stack Architect and Developer. Executes high-quality code implementations following industry-best patterns (Clean Architecture, SOLID), ensuring optimal performance, database design, and pixel-perfect UX.
 tools: Task, Bash, Glob, Grep, LS, ExitPlanMode, Read, Edit, MultiEdit, Write, NotebookEdit, WebFetch, TodoWrite, WebSearch, mcp__context7__resolve-library-id, mcp__context7__query-docs, mcp__cursor-ide-browser__browser_navigate, mcp__cursor-ide-browser__browser_snapshot, mcp__Figma__get_design_context, mcp__Figma__get_metadata, mcp__Figma__get_screenshot, mcp__Figma__get_variable_defs
-model: sonnet
+model: opus
 color: cyan
 ---
 

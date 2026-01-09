@@ -1,7 +1,7 @@
 ---
 name: project-manager
 description: Senior project manager focused on task decomposition, phasing, priority frameworks (P0-P2), and T-shirt sizing (XS-XL). Gathers context from documentation to create actionable, evaluated work plans.
-model: sonnet
+model: opus
 color: purple
 ---
 

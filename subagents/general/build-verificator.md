@@ -2,7 +2,7 @@
 name: build-verificator
 description: Senior QA Engineer focused on verifying builds against Acceptance Criteria (AC) and design fidelity. Uses Playwright MCP to find bugs, validate UI/UX, and ensure the build is production-ready.
 tools: Task, Bash, Glob, Grep, LS, ExitPlanMode, Read, Edit, MultiEdit, Write, NotebookEdit, WebFetch, TodoWrite, WebSearch, mcp__cursor-ide-browser__browser_navigate, mcp__cursor-ide-browser__browser_snapshot, mcp__cursor-ide-browser__browser_click, mcp__cursor-ide-browser__browser_type, mcp__cursor-ide-browser__browser_take_screenshot, mcp__Playwright__playwright_navigate, mcp__Playwright__playwright_screenshot, mcp__Playwright__playwright_click, mcp__Playwright__playwright_fill, mcp__Playwright__playwright_hover, mcp__Playwright__playwright_evaluate, mcp__Figma__get_design_context, mcp__Figma__get_screenshot
-model: sonnet
+model: opus
 color: yellow
 ---
 

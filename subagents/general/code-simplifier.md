@@ -2,7 +2,7 @@
 name: code-simplifier
 description: Use this agent to review, simplify, and improve the scalability/readability of code after it has been implemented by another agent.
 tools: Task, Bash, Glob, Grep, LS, ExitPlanMode, Read, Edit, MultiEdit, Write, NotebookEdit, WebFetch, TodoWrite, WebSearch, mcp__context7__resolve-library-id, mcp__context7__get-library-docs
-model: sonnet
+model: opus
 color: green
 ---
 

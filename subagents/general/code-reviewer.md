@@ -2,7 +2,7 @@
 name: code-reviewer
 description: Use this agent for a comprehensive code review across any programming language or framework. It conducts critical analysis of implementation, architecture, and design patterns to create an actionable improvement plan.
 tools: Task, Bash, Glob, Grep, LS, ExitPlanMode, Read, Edit, MultiEdit, Write, NotebookEdit, WebFetch, TodoWrite, WebSearch, mcp__context7__resolve-library-id, mcp__context7__get-library-docs
-model: sonnet
+model: opus
 color: red
 ---
 

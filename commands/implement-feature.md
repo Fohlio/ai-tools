@@ -10,14 +10,13 @@ You are orchestrating a complete feature implementation pipeline. Follow these p
 
 ## Phase 1: Discovery & Planning
 
-1. **Read the feature file** specified by the user ($ARGUMENTS)
-2. **Analyze requirements** - understand scope, dependencies, and acceptance criteria
-3. **Create implementation plan** using TodoWrite:
-   - Break down into concrete tasks
-   - Identify files to create/modify
-   - Note potential risks or blockers
+1. **Spawn plan agent** to:
+   - Read the feature file specified by the user ($ARGUMENTS)
+   - Analyze requirements and gather context from documentation
+   - Create a phased implementation plan (roadmap) with priorities (P0-P2) and T-shirt sizes (XS-XL)
+   - Identify files to create/modify and note potential risks or blockers
 
-4. **Present plan to user** and wait for explicit approval before proceeding
+2. **Present the roadmap to user** and wait for explicit approval before proceeding
 
 ## Phase 2: Test-First Design
 
@@ -43,7 +42,7 @@ After test specs are approved:
 
 After implementation:
 
-1. **Spawn code-simplifier agent** to review:
+1. **Spawn code-simplifier:code-simplifier agent** to review:
    - Check for over-engineering
    - Improve readability and scalability
    - Suggest simplifications if needed

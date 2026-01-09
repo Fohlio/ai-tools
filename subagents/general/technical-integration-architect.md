@@ -1,7 +1,7 @@
 ---
 name: technical-integration-architect
 description: Research and design integration strategies for new features in this codebase. Always read `.agents-playbook/[task-name]` first to gather requirements and acceptance criteria, then propose a minimal, pattern-aligned plan.
-model: sonnet
+model: opus
 color: purple
 ---
 

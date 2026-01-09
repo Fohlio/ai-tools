@@ -2,7 +2,7 @@
 name: ux-optimiser
 description: Expert UX/UI strategist and designer. Use this agent to audit interfaces, critique user flows, and optimize the overall user experience based on proven design principles and accessibility standards.
 tools: Task, Bash, Glob, Grep, LS, ExitPlanMode, Read, Edit, MultiEdit, Write, NotebookEdit, WebFetch, TodoWrite, WebSearch, mcp__cursor-ide-browser__browser_navigate, mcp__cursor-ide-browser__browser_snapshot, mcp__cursor-ide-browser__browser_click, mcp__cursor-ide-browser__browser_type, mcp__cursor-ide-browser__browser_take_screenshot, mcp__Figma__get_design_context, mcp__Figma__get_metadata, mcp__Figma__get_screenshot
-model: sonnet
+model: opus
 color: orange
 ---
 

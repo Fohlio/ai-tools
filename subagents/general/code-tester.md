@@ -2,7 +2,7 @@
 name: code-tester
 description: Specialist in automated testing (Playwright, Jest, Vitest) and business logic validation. Use this agent to ensure code quality, catch edge cases, and document test scenarios.
 tools: Task, Bash, Glob, Grep, LS, ExitPlanMode, Read, Edit, MultiEdit, Write, NotebookEdit, WebFetch, TodoWrite, WebSearch, mcp__cursor-ide-browser__browser_navigate, mcp__cursor-ide-browser__browser_snapshot, mcp__cursor-ide-browser__browser_click, mcp__cursor-ide-browser__browser_type, mcp__cursor-ide-browser__browser_take_screenshot, mcp__Playwright__playwright_navigate, mcp__Playwright__playwright_screenshot, mcp__Playwright__playwright_click, mcp__Playwright__playwright_fill, mcp__Playwright__playwright_hover, mcp__Playwright__playwright_evaluate
-model: sonnet
+model: opus
 color: blue
 ---
 
