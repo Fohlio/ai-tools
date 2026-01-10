@@ -19,27 +19,16 @@ You are orchestrating a complete feature implementation pipeline. Follow these p
 
 2. **Present the roadmap to user** and wait for explicit approval before proceeding
 
-## Phase 2: Test-First Design
+## Phase 2: Implementation
 
 Once user approves the plan:
-
-1. **Spawn code-tester agent** to create test cases:
-   - Acceptance tests based on requirements
-   - Edge cases and error scenarios
-   - Do NOT implement yet - just define test specifications
-
-2. **Review test specs with user** - ensure coverage is adequate
-
-## Phase 3: Implementation
-
-After test specs are approved:
 
 1. **Spawn code-architect agent** to implement the feature:
    - Follow the approved plan
    - Write clean, production-ready code
    - Adhere to existing patterns in the codebase
 
-## Phase 4: Code Quality
+## Phase 3: Code Quality
 
 After implementation:
 
@@ -49,16 +38,16 @@ After implementation:
    - Suggest simplifications if needed
    - Apply approved changes
 
-## Phase 5: Testing
+## Phase 4: Testing
 
 After code quality pass:
 
-1. **Spawn code-tester agent** again to:
-   - Implement the test specifications from Phase 2
+1. **Spawn code-tester agent** to:
+   - Write tests based on requirements
    - Add unit tests for new code
    - Run all tests and fix failures
 
-## Phase 6: UX Review (Conditional)
+## Phase 5: UX Review (Conditional)
 
 If the feature has UI/UX components:
 
@@ -70,7 +59,7 @@ If the feature has UI/UX components:
 
 Skip this phase if the feature is backend-only or has no user-facing elements.
 
-## Phase 7: Build Verification
+## Phase 6: Build Verification
 
 Final phase:
 
