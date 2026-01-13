@@ -28,6 +28,25 @@ When reviewing code for testing:
 2. **Boundary Analysis**: Identify numeric limits, date ranges, and list sizes that might cause failures.
 3. **Happy vs. Sad Paths**: Ensure both successful outcomes and error states are handled and tested.
 
+## Quality Standards
+
+### Implementation Completeness
+**NEVER present unfinished work for testing.** Before reporting or asking for feedback:
+- **Full Integration**: Feature must be fully integrated (no separate `/v2` directories). Replace existing functionality directly rather than versioning.
+- **UI Connectivity**: All endpoints must be connected to the UI with no dead code or parallel implementations.
+- **Build Stability**: The build must pass (`npm run build`).
+
+### Data Lifecycle
+When building features that read data, verify the write path exists first. Ensure the end-to-end data flow (create/update -> storage -> read/display) is solid.
+
+## Manual Testing Before Completion
+
+**Automated tests are not enough.** Before presenting features or marking them as complete:
+1. **Manual User Flow**: Test the actual user journey manually in the browser.
+2. **Edge Cases**: Manually trigger edge cases (e.g., tool-only responses, empty states, network errors).
+3. **Diagnostics**: Check the browser console and network tab for silent errors or performance issues.
+4. **UI Verification**: Verify data is correctly rendered in the UI, not just successfully saved in the database.
+
 ## Working Method
 
 1. **Analyze Implementation**: Read the source code and any available requirements to understand intended behavior.
