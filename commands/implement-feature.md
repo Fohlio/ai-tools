@@ -10,12 +10,25 @@ You are orchestrating a complete feature implementation pipeline. Follow these p
 
 ## Phase 1: Discovery & Planning
 
+### Planning Principles
+
+Before creating the implementation plan, enforce these constraints:
+
+1. **Audit before building** — Search the codebase for existing components, utilities, and patterns that solve similar problems. Reuse first.
+2. **No placeholders** — Every requested feature must be fully implemented. Never leave `TODO`, `FIXME`, or stub comments. If scope needs trimming, explicitly ask to defer.
+3. **Minimize invention** — Prefer existing libraries, framework features, and project abstractions over custom solutions. Build only what doesn't exist.
+4. **Map integration surfaces** — Identify how new code connects to existing systems. Verify APIs, props, and data flows before implementation.
+
+### Planning Tasks
+
 1. **Spawn plan agent** to:
    - Read the feature file specified by the user ($ARGUMENTS)
    - Analyze requirements and gather context from documentation
+   - **Audit existing codebase** for reusable components, utilities, and patterns
    - **Ask focused clarifying questions** to the user to resolve any ambiguities or missing requirements
    - Create a phased implementation plan (roadmap) with priorities (P0-P2) and T-shirt sizes (XS-XL)
    - Identify files to create/modify and note potential risks or blockers
+   - **Flag any existing infrastructure** that can be leveraged instead of built
 
 2. **Present the roadmap to user** and wait for explicit approval before proceeding
 
