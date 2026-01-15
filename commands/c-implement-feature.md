@@ -1,6 +1,6 @@
 ---
-name: implement-feature
-description: Full feature implementation workflow with planning, testing, coding, review, and verification
+name: c-implement-feature
+description: Full feature implementation workflow with planning, coding, testing, review, and verification
 allowed-tools: Task, Read, Glob, Grep, Edit, Write, Bash, AskUserQuestion, TodoWrite
 ---
 

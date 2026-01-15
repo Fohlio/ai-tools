@@ -29,11 +29,24 @@ color: color-name
 [Agent instructions in markdown]
 ```
 
+## Commands
+
+Custom slash commands in `commands/` for orchestrated workflows:
+
+| Command | Description |
+|---------|-------------|
+| `/c-implement-feature` | Full workflow: Plan → Implement → Test → Review → Verify |
+| `/c-implement-tdd-feature` | TDD workflow: Plan → **Test** → Implement → Refactor → Verify |
+| `/c-implement-s-feature` | Simple: Plan → Implement → Simplify |
+| `/c-implement-s-tdd-feature` | Simple TDD: Plan → **Test** → Implement → Simplify |
+
 ## Key Conventions
 
 1. **Planning mode**: Agents ask clarifying questions before implementation; require explicit approval at stage gates
-2. **Minimal changes**: Do not over-engineer; make precise fixes; avoid unnecessary files and console logs
-3. **Context7**: Use `mcp__context7__resolve-library-id` and `mcp__context7__query-docs` to fetch library documentation
+2. **Audit before building**: Search for existing components/patterns before creating new ones
+3. **No placeholders**: Implement fully or explicitly ask to defer — never leave TODO/FIXME comments
+4. **Minimal changes**: Do not over-engineer; make precise fixes; avoid unnecessary files and console logs
+5. **Context7**: Use `mcp__context7__resolve-library-id` and `mcp__context7__query-docs` to fetch library documentation
 
 ## Skills
 

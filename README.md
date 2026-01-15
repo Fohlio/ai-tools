@@ -168,7 +168,8 @@ Your workflow steps here...
 After adding, use in Claude Code:
 
 ```
-/implement-feature path/to/feature-spec.md
+/c-implement-feature path/to/feature-spec.md
+/c-implement-tdd-feature path/to/feature-spec.md
 ```
 
 ---
@@ -311,8 +312,10 @@ echo 'export GITHUB_PERSONAL_ACCESS_TOKEN="your-token"' >> ~/.zshrc
 .
 ├── CLAUDE.md
 ├── commands/            # Custom Claude Code orchestration workflows
-│   ├── implement-feature.md
-│   └── implement-s-feature.md
+│   ├── c-implement-feature.md      # Full workflow: Plan → Implement → Test → Review
+│   ├── c-implement-tdd-feature.md  # TDD workflow: Plan → Test → Implement → Refactor
+│   ├── c-implement-s-feature.md    # Simple: Plan → Implement → Simplify
+│   └── c-implement-s-tdd-feature.md # Simple TDD: Plan → Test → Implement → Simplify
 ├── links.md
 ├── mcp/
 │   └── cursor.json
