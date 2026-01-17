@@ -330,6 +330,9 @@ echo 'export GITHUB_PERSONAL_ACCESS_TOKEN="your-token"' >> ~/.zshrc
 │   │   ├── README.md
 │   │   ├── package.json
 │   │   └── src/
+│   ├── implement-tdd-feature/ # TDD workflow: tests first, then implementation
+│   │   ├── SKILL.md
+│   │   └── README.md
 │   ├── poc-hypothesis/       # Rapid POC for hypothesis validation
 │   │   ├── SKILL.md
 │   │   └── README.md
