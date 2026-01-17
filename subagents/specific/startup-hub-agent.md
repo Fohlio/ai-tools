@@ -57,6 +57,7 @@ Search and list projects with filtering.
 | status | string | Filter: IDEA, MVP, BETA, LAUNCHED, PAUSED |
 | search | string | Search in title/description |
 | tags | string | Comma-separated tags |
+| locale | enum | Preferred locale: `en` or `ru` (default: ru) |
 
 ### get_project
 Get detailed project information.
@@ -72,13 +73,16 @@ Create a new project. Requires authentication.
 |-----------|------|----------|-------------|
 | title | string | Yes | Project title (max 100 chars) |
 | shortDescription | string | Yes | One-liner pitch (max 200 chars) |
-| pitch | string | No | Full description (markdown supported) |
+| pitch | string | No | Vision, problem, solution, value proposition (markdown) |
+| features | string | No | Key features and functionality (max 10000 chars) |
+| traction | string | No | Metrics: user growth, revenue, partnerships, milestones, waitlist |
 | status | string | No | IDEA, MVP, BETA, LAUNCHED, PAUSED |
 | tags | string[] | No | Project tags |
 | lookingFor | string[] | No | Roles you're hiring for |
 | websiteUrl | string | No | Project website URL |
 | needsInvestment | boolean | No | Looking for investment? |
 | investmentDetails | string | No | Investment requirements |
+| language | enum | No | Content language: `en` or `ru` (default: ru) |
 
 ### update_project
 Update an existing project. Requires ownership.
@@ -86,7 +90,18 @@ Update an existing project. Requires ownership.
 | Parameter | Type | Required | Description |
 |-----------|------|----------|-------------|
 | slug | string | Yes | Project slug to update |
-| *other* | - | No | Any field from create_project |
+| title | string | No | Project title (max 100 chars) |
+| shortDescription | string | No | One-liner pitch (max 200 chars) |
+| pitch | string | No | Vision, problem, solution, value proposition |
+| features | string/null | No | Key features (null to clear) |
+| traction | string/null | No | Traction metrics (null to clear) |
+| status | string | No | IDEA, MVP, BETA, LAUNCHED, PAUSED |
+| tags | string[] | No | Project tags (replaces existing) |
+| lookingFor | string[] | No | Roles you're hiring for |
+| websiteUrl | string/null | No | Project website URL (null to clear) |
+| needsInvestment | boolean | No | Looking for investment? |
+| investmentDetails | string/null | No | Investment requirements (null to clear) |
+| language | enum | No | Content language to update: `en` or `ru` |
 
 ### delete_project
 Delete a project. Requires ownership.
@@ -98,22 +113,30 @@ Delete a project. Requires ownership.
 ### Example Usage
 
 ```
-# List MVP projects
-list_projects(status: "MVP", limit: 10)
+# List MVP projects in English
+list_projects(status: "MVP", limit: 10, locale: "en")
 
-# Create a project
+# Create a project with full details
 create_project(
   title: "My AI Startup",
   shortDescription: "AI-powered solution for X",
+  pitch: "We solve Y problem for Z audience by...",
+  features: "- Feature 1\n- Feature 2\n- Feature 3",
+  traction: "500 waitlist signups, 3 pilot customers, $10K MRR",
   status: "IDEA",
   tags: ["ai", "saas", "b2b"],
   lookingFor: ["Frontend Developer", "AI Engineer"],
   needsInvestment: true,
-  investmentDetails: "Seeking $500K seed round"
+  investmentDetails: "Seeking $500K seed round",
+  language: "en"
 )
 
-# Update project status
-update_project(slug: "my-ai-startup-abc123", status: "MVP")
+# Update project with traction
+update_project(
+  slug: "my-ai-startup-abc123",
+  status: "MVP",
+  traction: "1000 users, $25K MRR, Series A discussions"
+)
 ```
 
 ## Interaction Guidelines
@@ -123,7 +146,10 @@ update_project(slug: "my-ai-startup-abc123", status: "MVP")
 - **Use Descriptive Titles**: Clear, searchable project names that communicate the core value.
 - **Tag Appropriately**: Use relevant tags for discoverability (e.g., "ai", "saas", "b2b", "mobile").
 - **Include Full Pitch**: Write markdown-formatted detailed descriptions with problem, solution, and differentiation.
+- **Document Features**: List key features separately from pitch for clarity.
+- **Track Traction**: Record metrics, milestones, and validation evidence in the traction field.
 - **Specify Roles**: When looking for team members, be specific about roles and requirements.
+- **Language Support**: Use `language` param when creating/updating content; use `locale` when listing to fetch in preferred language.
 - **Progress Tracking**: Use `todo_write` to track research tasks and documentation steps.
 - **Cite Sources**: When presenting research findings, reference where information came from.
 
@@ -140,6 +166,9 @@ When presenting research findings, structure as:
 ### Solution
 [How does this project address the problem?]
 
+### Key Features
+[Core functionality and capabilities]
+
 ### Market
 - Target Audience: [Who]
 - Market Size: [TAM/SAM/SOM estimates]
@@ -147,6 +176,9 @@ When presenting research findings, structure as:
 
 ### Differentiation
 [What makes this unique?]
+
+### Traction
+[User growth, revenue, partnerships, milestones, validation evidence]
 
 ### Status & Next Steps
 [Current stage and recommended actions]
