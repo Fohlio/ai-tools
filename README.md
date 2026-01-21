@@ -30,7 +30,7 @@ ai-tools/
 ├── subagents/     → Специализированные агенты
 ├── skills/        → Исполняемые скиллы (скрипты)
 ├── mcp/           → Конфиг MCP серверов
-└── rules/         → Правила и гайдлайны
+└── links.md       → Полезные ссылки
 ```
 
 ---
@@ -69,6 +69,11 @@ ai-tools/
 | **Sentry** | Мониторинг ошибок |
 | **Vercel** | Деплой |
 | **Supabase** | База данных |
+| **Figma** | Дизайн и макеты |
+| **agents-playbook** | AI воркфлоу и промпты |
+| **deepwiki** | Документация по Wikipedia |
+| **browser-tools** | Браузерные инструменты |
+| **fohlio** | Интеграция с Fohlio |
 
 ### Ручная настройка MCP
 
@@ -101,23 +106,38 @@ claude mcp add context7 --url https://mcp.context7.com/mcp
 
 Специализированные агенты в `subagents/`:
 
-**Общие:**
-- `code-architect` — Full-stack разработка
-- `code-tester` — Написание тестов
-- `code-refactorer` — Рефакторинг
-- `ux-optimiser` — UX/UI аудит
-- `sales-marketer` — Маркетинг и продажи
-- `agent-browser` — Автоматизация браузера
-- `ai-prompter` — Промпт-инжиниринг
+### Общие (general/)
 
-**Специализированные:**
-- `game-design-architect` — Геймдев
-- `fsd-architecture-specialist` — Feature-Sliced Design
-- `dialogue-story-specialist` — Нарратив и диалоги
+| Агент | Описание |
+|-------|----------|
+| `meta-agent` | Главный оркестратор всех инструментов |
+| `code-architect` | Full-stack архитектура и разработка |
+| `code-tester` | Автоматизированное тестирование (Playwright, Jest, Vitest) |
+| `code-refactorer` | Рефакторинг и упрощение кода |
+| `ux-optimiser` | UX/UI аудит и оптимизация |
+| `sales-marketer` | Маркетинг и конверсия |
+| `agent-browser` | Автоматизация браузера |
+| `ai-prompter` | Промпт-инжиниринг и AI архитектура |
+| `build-verificator` | Финальная QA верификация и тестирование |
+| `mobile-architect` | Flutter и кросс-платформенная мобильная разработка |
+| `playbooker` | Интеграция MCP и оркестрация AI воркфлоу |
+| `project-manager` | Декомпозиция задач и планирование (P0-P2, T-shirt sizing) |
+
+### Специализированные (specific/)
+
+| Агент | Описание |
+|-------|----------|
+| `game-design-architect` | Геймдизайн и спецификации игр |
+| `fsd-architecture-specialist` | Feature-Sliced Design архитектура |
+| `dialogue-story-specialist` | Нарратив, диалоги и сторителлинг |
+| `app-replication-architect` | Анализ и стратегия репликации приложений |
+| `product-marketing-strategist` | Анализ фидбэка и позиционирование продукта |
+| `psychology-consultant` | Консультации по mental health фичам |
+| `startup-hub-agent` | Исследование стартапов и управление проектами |
 
 Использование в Claude Code:
 ```
-Используй агента code-architect из ~/projects/ai-tools/subagents/general/code-architect.md
+Используй агента meta-agent из ~/projects/ai-tools/subagents/general/meta-agent.md
 ```
 
 ---
@@ -130,10 +150,9 @@ claude mcp add context7 --url https://mcp.context7.com/mcp
 |-------|----------|
 | `feature-implementation` | Полный цикл разработки (Standard, TDD, BDD) |
 | `create-game-assets` | Генерация ассетов через DALL-E 3 |
-| `unity-assets` | Unity материалы, шейдеры, префабы |
 | `poc-hypothesis` | Быстрый POC для проверки гипотез |
-| `remove-background` | Удаление фона с изображений |
 | `agent-browser` | Автоматизация браузера |
+| `integrate-playbook-mcp` | Интеграция Agents Playbook MCP в AI фреймворки |
 
 Установка отдельного скилла:
 ```bash

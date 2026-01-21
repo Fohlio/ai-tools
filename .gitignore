@@ -6,3 +6,4 @@ node_modules/
 dist/
 /.claude/
 /.agents-playbook/
+.cursor/
