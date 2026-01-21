@@ -65,6 +65,25 @@ Use these status values:
 
 ### 4. Create/Update Project
 
+#### create_project Parameters
+
+| Parameter | Type | Required | Description |
+|-----------|------|----------|-------------|
+| title | string | Yes | Project title (max 100 chars) |
+| shortDescription | string | Yes | One-liner pitch (max 200 chars) |
+| pitch | string | No | Vision, problem, solution, value proposition (markdown) |
+| features | string | No | Key features and functionality (max 10000 chars) |
+| traction | string | No | Metrics: user growth, revenue, partnerships, milestones |
+| status | string | No | IDEA, MVP, BETA, LAUNCHED, PAUSED |
+| tags | string[] | No | Project tags |
+| lookingFor | string[] | No | Roles you're hiring for |
+| websiteUrl | string | No | Project website URL |
+| needsInvestment | boolean | No | Looking for investment? |
+| investmentDetails | string | No | Investment requirements |
+| language | enum | No | Content language: `en` or `ru` (default: ru) |
+
+#### Example
+
 ```
 create_project(
   title: "Project Name",
