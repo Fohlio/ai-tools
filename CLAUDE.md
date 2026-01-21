@@ -59,4 +59,6 @@ Each skill has a `SKILL.md` defining when/how Claude should use it, and a `READM
 
 ## MCP Configuration
 
-`mcp/cursor.json` contains example MCP server configs (Context7, Playwright, Figma, GitHub, Supabase, etc.). Tokens should be injected via environment variables—never commit credentials.
+`mcp/mcp.json` contains example MCP server configs (Context7, Playwright, Figma, GitHub, Supabase, Stitch, etc.). Tokens should be injected via environment variables—never commit credentials.
+
+Server-specific setup instructions are in `mcp/<server>/README.md` (e.g., `mcp/stitch/README.md` for Google Stitch).
