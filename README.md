@@ -110,7 +110,6 @@ Specialized agents in `subagents/`:
 
 | Agent | Description |
 |-------|-------------|
-| `meta-agent` | Master orchestrator of all tools |
 | `code-architect` | Full-stack architecture and development |
 | `code-tester` | Automated testing (Playwright, Jest, Vitest) |
 | `code-refactorer` | Code refactoring and simplification |
@@ -135,7 +134,7 @@ Specialized agents in `subagents/`:
 
 Usage in Claude Code:
 ```
-Use agent meta-agent from ~/projects/ai-tools/subagents/general/meta-agent.md
+Use agent code-architect from ~/projects/ai-tools/subagents/general/code-architect.md
 ```
 
 ---
@@ -152,7 +151,6 @@ Executable scripts in `skills/`:
 | `agent-browser` | Browser automation |
 | `integrate-playbook-mcp` | Integrate Agents Playbook MCP into AI frameworks |
 | `humanizer` | Remove AI-generated text markers, improve style |
-| `startup-hub` | Startup research and project management in Startup Hub |
 
 Installing a single skill:
 ```bash
