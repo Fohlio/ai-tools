@@ -22,7 +22,7 @@ You are orchestrating a comprehensive design review and optimization process. Yo
 
 ## Phase 2: UX Audit & Critique
 
-1. **Spawn ux-optimiser agent** to perform a deep audit using the 10-point checklist:
+1. **Spawn ux-designer agent** to perform a deep audit using the 10-point checklist:
    - **Context & Goals**: Is the primary task explicit?
    - **Users & Flows**: Is the happy path short and dead-end free?
    - **Navigation & IA**: Is information grouped logically?

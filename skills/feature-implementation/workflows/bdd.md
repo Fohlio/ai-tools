@@ -43,7 +43,7 @@ Before creating or executing any implementation plan, the following constraints 
 ## Phase 5: UX Review (Conditional)
 
 If the feature has UI components:
-1. **Spawn ux-optimiser agent** to validate user flows against Gherkin scenarios.
+1. **Spawn ux-designer agent** to validate user flows against Gherkin scenarios.
 
 ## Phase 6: Build Verification
 

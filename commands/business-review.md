@@ -27,7 +27,7 @@ You are orchestrating a deep-dive business review of a product, PRD, or specific
    - **Sales Gaps**: Where is "money left on the table"?
    - **Conversion & Messaging**: Are the hooks compelling? Is the copy benefit-driven?
 
-2. **Spawn ux-optimiser agent** (if UI/Product exists) to analyze:
+2. **Spawn ux-designer agent** (if UI/Product exists) to analyze:
    - **Product & User Experience**: Are the core scenarios intuitive?
    - **Time to Value**: How fast do users reach the "Aha!" moment?
    - **Barriers & Friction**: What's blocking the "Path to Purchase" or activation?

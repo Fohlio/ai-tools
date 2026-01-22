@@ -50,11 +50,8 @@ Developer-oriented AI links.
 ## Code & Productivity Assistants
 
 *   [CodeRabbit](https://app.coderabbit.ai/dashboard) — AI code reviews
-*   [Phind](https://www.phind.com/) — Dev-focused AI search
-*   [Blackbox AI](https://www.blackbox.ai/) — Coding assistant
 *   [NotebookLM](https://notebooklm.google.com/) — Research assistant over your docs
 *   [Gamma.app](https://gamma.app/) — Slides and docs
-*   [QuillBot](https://quillbot.com/) — Writing assistant
 *   [Flowith](https://flowith.io/blank) — Presentations/mind maps
 
 ## Research & News
@@ -65,37 +62,3 @@ Developer-oriented AI links.
 *   [OpenAI Blog](https://openai.com/blog)
 *   [Google AI Blog](https://ai.googleblog.com/)
 
-## Directories & Communities
-
-## Agent Frameworks
-
-*   Vercel AI SDK — `https://sdk.vercel.ai`
-*   LangGraph — `https://python.langchain.com/docs/langgraph/`
-*   LlamaIndex — `https://docs.llamaindex.ai/`
-*   Guidance — `https://github.com/guidance-ai/guidance`
-
-## Evaluation & Observability
-
-*   LangSmith — `https://smith.langchain.com/`
-*   Phoenix (Arize) — `https://phoenix.arize.com/`
-*   Ragas — `https://docs.ragas.io/`
-*   DeepEval — `https://docs.confident-ai.com/`
-*   Langfuse — `https://langfuse.com/`
-
-## Vector Databases
-
-*   Pinecone — `https://www.pinecone.io/`
-*   Weaviate — `https://weaviate.io/`
-*   Qdrant — `https://qdrant.tech/`
-*   pgvector — `https://github.com/pgvector/pgvector`
-
-## Safety & Red Teaming
-
-*   Garak — `https://github.com/leondz/garak`
-*   Prompt Injection resources — `https://github.com/corca-ai/awesome-prompt-injection`
-
-*   [LLM Leaderboard (Vellum)](https://www.vellum.ai/llm-leaderboard)
-*   [Cursor Directory](https://cursor.directory/) — Agents for Cursor
-*   [Futurepedia](https://www.futurepedia.io/) — AI tools directory
-*   [There's An AI For That](https://theresanaiforthat.com/) — Tools database
-*   [AI Alignment Forum](https://www.alignmentforum.org/) — Safety/alignment

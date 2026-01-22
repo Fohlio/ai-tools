@@ -21,7 +21,7 @@ You are orchestrating the creation or expansion of a Design System. Your goal is
 
 ## Phase 2: Foundations & Tokens (Layer 1)
 
-1. **Spawn ux-optimiser agent** to:
+1. **Spawn ux-designer agent** to:
    - Extract global tokens: Colors, Typography, Spacing, Radii, Shadows.
    - Design the **Token Hierarchy**: `Global` (raw values) → `Semantic` (usage-based, e.g., `brand.primary`) → `Component` (e.g., `button.bg`).
    - Propose a JSON/YAML structure for tokens.

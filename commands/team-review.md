@@ -18,7 +18,7 @@ You are moderating a multi-disciplinary review session. Your goal is to gather e
 2. **Team Assembly**:
    Based on the context, select the most relevant agents. By default, the core team is:
    - **Code Architect** (`code-architect`): For structure, patterns, and implementation strategy.
-   - **UX Designer** (`ux-optimiser`): For usability, layout, and user friction.
+   - **UX Designer** (`ux-designer`): For usability, layout, and user friction.
    - **Sales & Marketer** (`sales-marketer`): For market appeal, conversion, and business value.
    - **Project Manager** (`project-manager`): For scope, feasibility, and delivery risks.
    - **Lead Developer** (`code-refactorer`): For code simplicity, maintainability, and efficiency.

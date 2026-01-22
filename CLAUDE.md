@@ -15,7 +15,7 @@ A curated collection of AI agent personas, slash commands, and MCP configuration
 ## Commands
 Custom slash commands in `commands/` orchestrate multi-agent workflows:
 - `/implement-feature`: Plan → Implement → Test → Review → Verify.
-- `/design-review`: Audit → Critique → Optimize (based on `ux-optimiser`).
+- `/design-review`: Audit → Critique → Optimize (based on `ux-designer`).
 - `/team-review`: Multi-agent review (Architect, UX, Sales, PM, Refactorer).
 - `/refactor-code`: Simplify and improve readability.
 

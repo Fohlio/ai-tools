@@ -113,7 +113,7 @@ Specialized agents in `subagents/`:
 | `code-architect` | Full-stack architecture and development |
 | `code-tester` | Automated testing (Playwright, Jest, Vitest) |
 | `code-refactorer` | Code refactoring and simplification |
-| `ux-optimiser` | UX/UI audit and optimization |
+| `ux-designer` | Expert UX/UI Designer using Stitch and Figma |
 | `sales-marketer` | Marketing and conversion |
 | `agent-browser` | Browser automation |
 | `ai-prompter` | Prompt engineering and AI architecture |
