@@ -1,23 +1,32 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+Guidance for Claude Code when working in this repository.
 
 ## Repository Overview
+A curated collection of AI agent personas, slash commands, and MCP configurations for building advanced AI-assisted workflows.
 
-This is a collection of AI agent specifications, rules, and curated links for building AI-assisted workflows. No build system or tests—just markdown files organizing agent personas and integration configurations.
+## Key Conventions
+1. **Planning First**: Always ask clarifying questions and present a plan before implementation.
+2. **Audit & Reuse**: Search for existing components/patterns before creating new ones.
+3. **No Placeholders**: Fully implement features; never leave `TODO` or `FIXME` comments.
+4. **Minimalism**: Make precise, non-destructive changes. Avoid unnecessary files or logs.
+5. **Context7**: Use `mcp__context7__resolve-library-id` and `mcp__context7__query-docs` for up-to-date library documentation.
+
+## Commands
+Custom slash commands in `commands/` orchestrate multi-agent workflows:
+- `/implement-feature`: Plan → Implement → Test → Review → Verify.
+- `/design-review`: Audit → Critique → Optimize (based on `ux-optimiser`).
+- `/team-review`: Multi-agent review (Architect, UX, Sales, PM, Refactorer).
+- `/refactor-code`: Simplify and improve readability.
 
 ## Structure
+- `subagents/`: Agent personas with YAML frontmatter.
+- `commands/`: Markdown-based workflow orchestrations.
+- `skills/`: Executable Claude Code skills (TypeScript).
+- `mcp/`: MCP server configurations (Context7, Figma, Stitch, etc.).
 
-- `subagents/` — Agent specs with YAML frontmatter (name, description, model, color) and markdown body defining behavior, deliverables, and workflow
-- `skills/` — Reusable Claude Code skills with executable scripts
-- `rules/` — Shared guidelines (e.g., `claude-rules.md`)
-- `mcp/` — MCP server configurations for editor integrations
-- `links.md` — Curated AI/developer tool links
-
-## Agent Spec Format
-
-Each file in `subagents/` follows this pattern:
-
+## Agent Format
+Files in `subagents/` must include YAML frontmatter:
 ```markdown
 ---
 name: agent-name
@@ -25,42 +34,7 @@ description: One-line description
 model: sonnet|opus|haiku
 color: color-name
 ---
-
-[Agent instructions in markdown]
 ```
 
-## Commands
-
-Custom slash commands in `commands/` for orchestrated workflows:
-
-| Command | Description |
-|---------|-------------|
-| `/implement-feature` | Full workflow: Plan → Implement → Test → Review → Verify |
-| `/implement-tdd-feature` | TDD workflow: Plan → **Test** → Implement → Refactor → Verify |
-| `/implement-bdd-feature` | BDD workflow: Plan → **Gherkin + Unit tests** → Implement → Verify |
-| `/test-code` | Analyze code, write tests (Playwright/Jest/Vitest), validate logic |
-| `/refactor-code` | Simplify code for readability and scalability |
-
-## Key Conventions
-
-1. **Planning mode**: Agents ask clarifying questions before implementation; require explicit approval at stage gates
-2. **Audit before building**: Search for existing components/patterns before creating new ones
-3. **No placeholders**: Implement fully or explicitly ask to defer — never leave TODO/FIXME comments
-4. **Minimal changes**: Do not over-engineer; make precise fixes; avoid unnecessary files and console logs
-5. **Context7**: Use `mcp__context7__resolve-library-id` and `mcp__context7__query-docs` to fetch library documentation
-
-## Skills
-
-Skills in `skills/` are self-contained Claude Code skills with TypeScript scripts. To use a skill in another project:
-
-1. Copy the skill folder to your project's `.claude/skills/`
-2. Run `npm install` in the skill folder
-3. Set required environment variables (e.g., `OPENAI_API_KEY`)
-
-Each skill has a `SKILL.md` defining when/how Claude should use it, and a `README.md` with setup instructions.
-
-## MCP Configuration
-
-`mcp/mcp.json` contains example MCP server configs (Context7, Playwright, Figma, GitHub, Stitch, etc.). Tokens should be injected via environment variables—never commit credentials.
-
-Server-specific setup instructions are in `mcp/<server>/README.md` (e.g., `mcp/stitch/README.md` for Google Stitch).
+## MCP Setup
+`mcp/mcp.json` contains reference configs. Inject tokens via environment variables; never commit credentials.
