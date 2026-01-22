@@ -235,10 +235,6 @@ show_env_info() {
     echo -e "  ${CYAN}# OpenAI (для скиллов)${NC}"
     echo -e "  export OPENAI_API_KEY=\"sk-...\""
     echo ""
-    echo -e "  ${CYAN}# Supabase (опционально)${NC}"
-    echo -e "  export SUPABASE_API_URL=\"https://xxx.supabase.co/rest/v1\""
-    echo -e "  export SUPABASE_ANON_KEY=\"your-key\""
-    echo ""
 }
 
 # Финальное сообщение

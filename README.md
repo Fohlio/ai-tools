@@ -70,12 +70,9 @@ Installed servers:
 | **GitHub** | Repository operations |
 | **Sentry** | Error monitoring |
 | **Vercel** | Deployment |
-| **Supabase** | Database |
 | **Figma** | Design and mockups |
 | **agents-playbook** | AI workflows and prompts |
 | **deepwiki** | Wikipedia documentation |
-| **browser-tools** | Browser tools |
-| **fohlio** | Fohlio integration |
 | **stitch** | Google UI design tool with AI code generation |
 
 ### Manual MCP Setup
@@ -175,10 +172,6 @@ export GITHUB_PERSONAL_ACCESS_TOKEN="ghp_..."
 
 # OpenAI (for skills with generation)
 export OPENAI_API_KEY="sk-..."
-
-# Supabase (optional)
-export SUPABASE_API_URL="https://xxx.supabase.co/rest/v1"
-export SUPABASE_ANON_KEY="your-key"
 ```
 
 ---

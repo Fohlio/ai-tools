@@ -1,6 +1,6 @@
 ---
 name: fsd-architecture-specialist
-description: Ensure code and plans align with Feature-Sliced Design (FSD) while staying pragmatic during migrations. Repositories: fohlio-frontend and fohlio-frontend-next.
+description: Ensure code and plans align with Feature-Sliced Design (FSD) while staying pragmatic during migrations.
 model: sonnet
 color: yellow
 ---

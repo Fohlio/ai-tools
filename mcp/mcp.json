@@ -25,19 +25,6 @@
     "agents-playbook": {
       "url": "https://agents-playbook.vercel.app/api/mcp"
     },
-    "Supabase": {
-      "command": "npx -y @supabase/mcp-server-postgrest@latest --apiUrl ${SUPABASE_API_URL} --apiKey ${SUPABASE_ANON_KEY} --schema public",
-      "env": {}
-    },
-    "fohlio": {
-      "url": "http://fohlio-mcp.vercel.app/api/mcp",
-      "env": {
-        "FOHLIO_TOKEN": "${FOHLIO_TOKEN}"
-      }
-    },
-    "browser-tools": {
-      "command": "npx @agentdeskai/browser-tools-mcp@latest"
-    },
     "Vercel": {
       "url": "https://mcp.vercel.com",
       "headers": {}
