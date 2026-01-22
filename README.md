@@ -1,91 +1,92 @@
 # 🤖 AI Tools
 
-Коллекция агентов, команд и MCP-серверов для Claude Code и Cursor.
+A collection of agents, commands, and MCP servers for Claude Code and Cursor.
 
-## ⚡ Быстрый старт
+## ⚡ Quick Start
 
 ```bash
-# Клонируй репозиторий
+# Clone the repository
 git clone https://github.com/yourusername/ai-tools.git ~/projects/ai-tools
 
-# Запусти установку
+# Run the setup
 cd ~/projects/ai-tools
 ./setup.sh
 ```
 
-Скрипт установит:
-- ✅ MCP серверы (Context7, Playwright, GitHub...)
-- ✅ Команды для Claude Code
-- ✅ Скиллы (по выбору)
+The script will install:
+- ✅ MCP servers (Context7, Playwright, GitHub...)
+- ✅ Commands for Claude Code
+- ✅ Skills (optional)
 
-Для быстрой установки без вопросов: `./setup.sh --quick`
+For quick installation without prompts: `./setup.sh --quick`
 
 ---
 
-## 📦 Что внутри
+## 📦 What's Inside
 
 ```
 ai-tools/
-├── commands/      → Slash-команды для Claude Code
-├── subagents/     → Специализированные агенты
-├── skills/        → Исполняемые скиллы (скрипты)
-├── mcp/           → Конфиг MCP серверов
-└── links.md       → Полезные ссылки
+├── commands/      → Slash commands for Claude Code
+├── subagents/     → Specialized agents
+├── skills/        → Executable skills (scripts)
+├── mcp/           → MCP server configs
+└── links.md       → Useful links
 ```
 
 ---
 
-## 🚀 Команды
+## 🚀 Commands
 
-После установки в Claude Code доступны команды:
+After installation, the following commands are available in Claude Code:
 
-| Команда | Что делает |
-|---------|------------|
-| `/implement-feature` | Полный цикл: Plan → Implement → Test → Review |
+| Command | Description |
+|---------|-------------|
+| `/implement-feature` | Full cycle: Plan → Implement → Test → Review |
 | `/implement-tdd-feature` | TDD: Plan → **Test** → Implement → Refactor |
 | `/implement-bdd-feature` | BDD: Plan → **Gherkin** → Implement |
-| `/business-review` | Бизнес и маркетинг ревью: PRD → Анализ → Вердикт |
-| `/team-review` | Командное ревью: Code Architect + UX + Sales + PM + Refactorer |
-| `/design-system` | Создание и масштабирование дизайн-системы |
-| `/prd-creation` | Создание PRD для новой фичи с участием PM |
+| `/business-review` | Business & marketing review: PRD → Analysis → Verdict |
+| `/team-review` | Team review: Code Architect + UX + Sales + PM + Refactorer |
+| `/design-system` | Create and scale a design system |
+| `/prd-creation` | Create PRD for a new feature with PM involvement |
 
-**Использование:**
+**Usage:**
 ```
-/implement-feature описание фичи или путь к спеке
+/implement-feature feature description or path to spec
 ```
 
 ---
 
-## 🔌 MCP Серверы
+## 🔌 MCP Servers
 
-Установленные серверы:
+Installed servers:
 
-| Сервер | Для чего |
-|--------|----------|
-| **Context7** | Актуальная документация библиотек |
-| **Playwright** | Браузерное тестирование |
-| **GitHub** | Работа с репозиториями |
-| **Sentry** | Мониторинг ошибок |
-| **Vercel** | Деплой |
-| **Supabase** | База данных |
-| **Figma** | Дизайн и макеты |
-| **agents-playbook** | AI воркфлоу и промпты |
-| **deepwiki** | Документация по Wikipedia |
-| **browser-tools** | Браузерные инструменты |
-| **fohlio** | Интеграция с Fohlio |
+| Server | Purpose |
+|--------|---------|
+| **Context7** | Up-to-date library documentation |
+| **Playwright** | Browser testing |
+| **GitHub** | Repository operations |
+| **Sentry** | Error monitoring |
+| **Vercel** | Deployment |
+| **Supabase** | Database |
+| **Figma** | Design and mockups |
+| **agents-playbook** | AI workflows and prompts |
+| **deepwiki** | Wikipedia documentation |
+| **browser-tools** | Browser tools |
+| **fohlio** | Fohlio integration |
+| **stitch** | Google UI design tool with AI code generation |
 
-### Ручная настройка MCP
+### Manual MCP Setup
 
-Если нужно добавить сервер вручную:
+To add a server manually:
 
 ```bash
-# Через CLI
+# Via CLI
 claude mcp add context7 --url https://mcp.context7.com/mcp
 
-# Или редактируй ~/.claude/settings.json
+# Or edit ~/.claude/settings.json
 ```
 
-Формат `settings.json`:
+`settings.json` format:
 ```json
 {
   "mcpServers": {
@@ -101,59 +102,59 @@ claude mcp add context7 --url https://mcp.context7.com/mcp
 
 ---
 
-## 🤖 Агенты
+## 🤖 Agents
 
-Специализированные агенты в `subagents/`:
+Specialized agents in `subagents/`:
 
-### Общие (general/)
+### General (general/)
 
-| Агент | Описание |
-|-------|----------|
-| `meta-agent` | Главный оркестратор всех инструментов |
-| `code-architect` | Full-stack архитектура и разработка |
-| `code-tester` | Автоматизированное тестирование (Playwright, Jest, Vitest) |
-| `code-refactorer` | Рефакторинг и упрощение кода |
-| `ux-optimiser` | UX/UI аудит и оптимизация |
-| `sales-marketer` | Маркетинг и конверсия |
-| `agent-browser` | Автоматизация браузера |
-| `ai-prompter` | Промпт-инжиниринг и AI архитектура |
-| `build-verificator` | Финальная QA верификация и тестирование |
-| `mobile-architect` | Flutter и кросс-платформенная мобильная разработка |
-| `project-manager` | Декомпозиция задач и планирование (P0-P2, T-shirt sizing) |
+| Agent | Description |
+|-------|-------------|
+| `meta-agent` | Master orchestrator of all tools |
+| `code-architect` | Full-stack architecture and development |
+| `code-tester` | Automated testing (Playwright, Jest, Vitest) |
+| `code-refactorer` | Code refactoring and simplification |
+| `ux-optimiser` | UX/UI audit and optimization |
+| `sales-marketer` | Marketing and conversion |
+| `agent-browser` | Browser automation |
+| `ai-prompter` | Prompt engineering and AI architecture |
+| `build-verificator` | Final QA verification and testing |
+| `mobile-architect` | Flutter and cross-platform mobile development |
+| `project-manager` | Task decomposition and planning (P0-P2, T-shirt sizing) |
 
-### Специализированные (specific/)
+### Specialized (specific/)
 
-| Агент | Описание |
-|-------|----------|
-| `game-design-architect` | Геймдизайн и спецификации игр |
-| `fsd-architecture-specialist` | Feature-Sliced Design архитектура |
-| `dialogue-story-specialist` | Нарратив, диалоги и сторителлинг |
-| `app-replication-architect` | Анализ и стратегия репликации приложений |
-| `product-marketing-strategist` | Анализ фидбэка и позиционирование продукта |
-| `psychology-consultant` | Консультации по mental health фичам |
+| Agent | Description |
+|-------|-------------|
+| `game-design-architect` | Game design and game specifications |
+| `fsd-architecture-specialist` | Feature-Sliced Design architecture |
+| `dialogue-story-specialist` | Narrative, dialogue, and storytelling |
+| `app-replication-architect` | App analysis and replication strategy |
+| `product-marketing-strategist` | Feedback analysis and product positioning |
+| `psychology-consultant` | Mental health feature consulting |
 
-Использование в Claude Code:
+Usage in Claude Code:
 ```
-Используй агента meta-agent из ~/projects/ai-tools/subagents/general/meta-agent.md
+Use agent meta-agent from ~/projects/ai-tools/subagents/general/meta-agent.md
 ```
 
 ---
 
-## 🛠 Скиллы
+## 🛠 Skills
 
-Исполняемые скрипты в `skills/`:
+Executable scripts in `skills/`:
 
-| Скилл | Описание |
-|-------|----------|
-| `feature-implementation` | Полный цикл разработки (Standard, TDD, BDD) |
-| `create-game-assets` | Генерация ассетов через DALL-E 3 |
-| `poc-hypothesis` | Быстрый POC для проверки гипотез |
-| `agent-browser` | Автоматизация браузера |
-| `integrate-playbook-mcp` | Интеграция Agents Playbook MCP в AI фреймворки |
-| `humanizer` | Удаление признаков AI-текста, улучшение стиля |
-| `startup-hub` | Исследование стартапов и управление проектами в Startup Hub |
+| Skill | Description |
+|-------|-------------|
+| `feature-implementation` | Full development cycle (Standard, TDD, BDD) |
+| `create-game-assets` | Asset generation via DALL-E 3 |
+| `poc-hypothesis` | Quick POC for hypothesis validation |
+| `agent-browser` | Browser automation |
+| `integrate-playbook-mcp` | Integrate Agents Playbook MCP into AI frameworks |
+| `humanizer` | Remove AI-generated text markers, improve style |
+| `startup-hub` | Startup research and project management in Startup Hub |
 
-Установка отдельного скилла:
+Installing a single skill:
 ```bash
 cp -r skills/create-game-assets ~/.claude/skills/
 cd ~/.claude/skills/create-game-assets && npm install
@@ -161,52 +162,52 @@ cd ~/.claude/skills/create-game-assets && npm install
 
 ---
 
-## ⚙️ Переменные окружения
+## ⚙️ Environment Variables
 
-Добавь в `~/.zshrc`:
+Add to `~/.zshrc`:
 
 ```bash
-# GitHub MCP (обязательно для GitHub сервера)
+# GitHub MCP (required for GitHub server)
 export GITHUB_PERSONAL_ACCESS_TOKEN="ghp_..."
 
-# OpenAI (для скиллов с генерацией)
+# OpenAI (for skills with generation)
 export OPENAI_API_KEY="sk-..."
 
-# Supabase (опционально)
+# Supabase (optional)
 export SUPABASE_API_URL="https://xxx.supabase.co/rest/v1"
 export SUPABASE_ANON_KEY="your-key"
 ```
 
 ---
 
-## 📁 Структура конфигов
+## 📁 Config Structure
 
-| Путь | Назначение |
-|------|------------|
-| `~/.claude/settings.json` | MCP серверы (глобально) |
-| `~/.claude/commands/` | Slash-команды (глобально) |
-| `~/.claude/skills/` | Скиллы (глобально) |
-| `.claude/settings.json` | MCP серверы (проект) |
-| `.claude/commands/` | Команды (проект) |
+| Path | Purpose |
+|------|---------|
+| `~/.claude/settings.json` | MCP servers (global) |
+| `~/.claude/commands/` | Slash commands (global) |
+| `~/.claude/skills/` | Skills (global) |
+| `.claude/settings.json` | MCP servers (project) |
+| `.claude/commands/` | Commands (project) |
 
 ---
 
-## 🔧 Ручная установка
+## 🔧 Manual Installation
 
-Если не хочешь использовать скрипт:
+If you prefer not to use the script:
 
 ### MCP
 ```bash
 cp mcp/cursor.json ~/.claude/settings.json
 ```
 
-### Команды
+### Commands
 ```bash
 mkdir -p ~/.claude/commands
 cp commands/*.md ~/.claude/commands/
 ```
 
-### Скиллы
+### Skills
 ```bash
 mkdir -p ~/.claude/skills
 cp -r skills/create-game-assets ~/.claude/skills/
@@ -215,22 +216,22 @@ cd ~/.claude/skills/create-game-assets && npm install
 
 ---
 
-## 📝 Ключевые принципы
+## 📝 Key Principles
 
-1. **Планирование** — агенты задают вопросы перед реализацией
-2. **Аудит** — поиск существующих решений перед созданием новых
-3. **Без заглушек** — полная реализация или явный запрос на отсрочку
-4. **Минимальные изменения** — точные фиксы без over-engineering
-5. **Context7** — актуальная документация через MCP
+1. **Planning** — agents ask questions before implementation
+2. **Audit** — search for existing solutions before creating new ones
+3. **No placeholders** — full implementation or explicit request to defer
+4. **Minimal changes** — precise fixes without over-engineering
+5. **Context7** — up-to-date documentation via MCP
 
 ---
 
-## 📚 Полезные ссылки
+## 📚 Useful Links
 
-Смотри `links.md` для ссылок на документацию провайдеров, SDK и инструменты.
+See `links.md` for links to provider documentation, SDKs, and tools.
 
 ---
 
 ## License
 
-MIT — смотри `LICENSE`
+MIT — see `LICENSE`
