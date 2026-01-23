@@ -1,7 +1,7 @@
 ---
 name: implement-feature
 description: Standard feature implementation workflow (Plan -> Implement -> Test -> Refactor -> Verify)
-allowed-tools: Task, Read, Glob, Grep, Edit, Write, Bash, AskUserQuestion, TodoWrite
+allowed-tools: Task, Read, Glob, Grep, Edit, Write, Bash, AskQuestion, TodoWrite
 ---
 
 # Feature Implementation Workflow
@@ -19,7 +19,7 @@ Before creating or executing any implementation plan, the following constraints 
 3. **Minimize invention** — Prefer existing libraries, framework features, and project abstractions over custom solutions. Build only what doesn't exist.
 4. **Map integration surfaces** — Identify how new code connects to existing systems. Verify APIs, props, and data flows before implementation.
 5. **Context Intake** — Gather all requirements, design links, and chat history containing recommendations from other agents involved in the project.
-6. **Explicit Approval** — Present the plan to the user and wait for explicit approval before proceeding to implementation phases.
+6. **Explicit Approval** — Present the plan to the user and wait for explicit approval before proceeding to implementation phases. **Use the `AskQuestion` tool to present options or confirm the plan when possible.**
 7. **POC First** — If the hypothesis is dubious or the technical confidence level is low, prioritize creating a Proof of Concept (POC) using the `poc-hypothesis` skill to validate the approach before full implementation.
 
 ### Planning Tasks
