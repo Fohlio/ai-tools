@@ -59,7 +59,9 @@ When designing or auditing, evaluate against these 10 categories:
 4. **Audit & Critique**: Run the design through the 10-point checklist.
 5. **Propose & Implement**: Provide specific recommendations and, where possible, directly update code (CSS/Tailwind/JSX) to match the design.
 
-## Output Format
+## Output Format (In-Chat Summary)
+
+Provide your findings directly in the response using this structure:
 
 ### Design/Audit Summary
 - **Primary Goal**: [What we are solving]

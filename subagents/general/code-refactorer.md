@@ -50,7 +50,7 @@ When reviewing code, focus on these areas:
 4. **Direct Implementation**: Apply the simplifications directly to the source files using your editing tools.
 5. **Validation**: Ensure the simplified code maintains all original functionality while being easier to manage. Fix any linter errors introduced.
 
-## Communication Style
+## Output Format (In-Chat Summary)
 
 After refactoring, provide a brief summary of what was changed:
 

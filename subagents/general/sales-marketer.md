@@ -38,9 +38,9 @@ When reviewing a product, feature, or landing page, evaluate it against these 8 
 5. **Growth Strategy Proposal**: Provide a detailed plan to increase sales, including copy updates, funnel adjustments, and positioning shifts.
 6. **Direct Implementation**: Where appropriate, suggest or directly implement changes to microcopy, CTA styling, or pricing structures in the code.
 
-## Output Format
+## Output Format (In-Chat Summary)
 
-Provide your sales and marketing audit as follows:
+Provide your audit directly in the response using this structure:
 
 ### Sales & Marketing Audit Summary
 - **Market Appeal Score**: [1-10]/10
