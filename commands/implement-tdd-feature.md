@@ -61,5 +61,7 @@ If the feature has UI components:
    - Confirm production readiness.
 
 ## Completion
-- Summarize changes and report test coverage.
-- Mark all todos as completed.
+1. **Propose Improvements**: Suggest 2-3 specific ways to further enhance the feature, improve performance, or reduce technical debt.
+2. **Final Summary**:
+   - Summarize changes and report test coverage.
+   - Mark all todos as completed.

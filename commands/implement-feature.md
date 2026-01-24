@@ -68,7 +68,9 @@ Skip if backend-only.
    - **Agent Handoff Check**: Verify that all expert advice was either implemented, communicated, or logged.
 
 ## Completion
-- Summarize implementation and list modified files.
-- Report test results and metrics.
-- Note follow-up items or technical debt.
-- Mark all todos as completed.
+1. **Propose Improvements**: Suggest 2-3 specific ways to further enhance the feature, improve performance, or reduce technical debt.
+2. **Final Summary**:
+   - Summarize implementation and list modified files.
+   - Report test results and metrics.
+   - Note follow-up items or technical debt.
+   - Mark all todos as completed.
