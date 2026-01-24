@@ -714,6 +714,282 @@ Respond in [target language]:
 
 ---
 
+## Agent-Specific Techniques
+
+### Agent Loop Prompting
+
+**Description:** Structure prompts for multi-turn agent interactions with tool calling.
+
+**When to use:**
+- Building software agents
+- Long-running tasks with multiple steps
+- Tool calling workflows
+- Autonomous operations
+
+**Template:**
+```
+system: [Static model instructions]
+developer: [Framework-level config - sandbox, permissions]
+user: [Project context - AGENTS.md, skills]
+user: [Environment - cwd, shell]
+user: [User request]
+```
+
+**Best practices:**
+- Static content first (for prompt caching)
+- Dynamic content last
+- Use XML tags for structure
+- Preserve cache on updates (append vs modify)
+
+**Research:** Based on OpenAI Codex CLI production architecture (2025)
+
+**References:**
+- [Codex Agent Loop](https://openai.com/index/unrolling-the-codex-agent-loop/)
+
+---
+
+### Prompt Caching Optimization
+
+**Description:** Structure prompts to maximize cache hits in multi-turn conversations.
+
+**When to use:**
+- Agent loops with multiple iterations
+- Long conversations
+- Repeated tool calls
+- Cost optimization critical
+
+**Template:**
+```
+[STATIC SECTION - rarely changes]
+- Model instructions
+- Tool definitions (sorted consistently)
+- Project documentation
+- Sandbox configuration
+
+[DYNAMIC SECTION - changes per request]  
+- Current environment (cwd, timestamp)
+- User message
+- Tool call results
+```
+
+**Critical rules:**
+- Old prompt must be exact prefix of new prompt
+- Never modify early messages (breaks cache)
+- Append new messages instead
+- Sort tool lists consistently
+
+**Research:** Cache hits enable linear vs quadratic cost scaling
+
+---
+
+### Context Window Management
+
+**Description:** Strategies to prevent context exhaustion in long agent sessions.
+
+**When to use:**
+- Conversations approaching context limit
+- Many tool calls in single turn
+- Long-running agent tasks
+- Preserving conversation continuity
+
+**Techniques:**
+
+1. **Automatic Compaction**
+```
+When tokens > threshold (e.g., 60% of limit):
+1. Call compaction endpoint
+2. Get compressed representation
+3. Replace input with compact version
+4. Continue with freed space
+```
+
+2. **Strategic Summarization**
+- Summarize tool call sequences
+- Preserve critical decisions
+- Include compressed reasoning
+
+3. **Sliding Window**
+- Keep recent N turns
+- Summarize older turns
+- Maintain conversation coherence
+
+**Research:** Agent loops are quadratic - active management required
+
+---
+
+### Tool Schema Design
+
+**Description:** Best practices for defining tools in agent workflows.
+
+**When to use:**
+- Implementing function calling
+- Building MCP servers
+- Designing agent capabilities
+- API integration
+
+**Template:**
+```json
+{
+  "type": "function",
+  "name": "tool_name",
+  "description": "Clear, specific description of what tool does and when to use it",
+  "strict": true,
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "param1": {
+        "type": "string",
+        "description": "Detailed explanation including format, constraints, examples"
+      },
+      "param2": {
+        "type": "number",
+        "description": "Include units, valid ranges, default values"
+      }
+    },
+    "required": ["param1"]
+  }
+}
+```
+
+**Best practices:**
+- Clear, action-oriented names
+- Detailed descriptions (when AND how to use)
+- Explicit parameter requirements
+- Include constraints and examples
+- Use `strict: true` for validation
+
+---
+
+### Self-Correction Pattern
+
+**Description:** Enable agents to verify and fix their own work.
+
+**When to use:**
+- High-accuracy requirements
+- Complex multi-step operations
+- Error-prone tasks
+- Autonomous agents
+
+**Template:**
+```
+1. Attempt task
+2. Verify result (via tool call)
+3. If error detected:
+   - Analyze what went wrong
+   - Determine fix strategy
+   - Retry with correction
+4. Repeat until success or max attempts (3-5)
+5. If still failing: Report to user
+```
+
+**Example instruction:**
+```xml
+<self_correction>
+After making changes:
+1. Use verification tool to check result
+2. If issues found, analyze the error
+3. Apply fixes and verify again
+4. Maximum 3 retry attempts
+5. Report final status
+</self_correction>
+```
+
+**Research:** Significantly improves agent reliability in production
+
+---
+
+### Planning Tool Pattern
+
+**Description:** Explicit tool for agents to track and update their task plan.
+
+**When to use:**
+- Complex multi-step tasks
+- Long-running operations
+- Need visibility into agent thinking
+- Debugging agent behavior
+
+**Tool definition:**
+```json
+{
+  "type": "function",
+  "name": "update_plan",
+  "description": "Updates the task plan to track progress and next steps",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "plan": {
+        "type": "string",
+        "description": "Updated breakdown of remaining tasks"
+      },
+      "completed": {
+        "type": "array",
+        "items": {"type": "string"},
+        "description": "Steps completed so far"
+      },
+      "explanation": {
+        "type": "string",
+        "description": "Why the plan changed"
+      }
+    },
+    "required": ["plan"]
+  }
+}
+```
+
+**Benefits:**
+- Visibility into agent reasoning
+- Track progress in long tasks
+- Detect when agent is stuck
+- Better debugging
+
+---
+
+### Approval Gate Pattern
+
+**Description:** Require user approval before sensitive operations.
+
+**When to use:**
+- Destructive operations (delete, overwrite)
+- External API calls
+- System modifications
+- Security-critical tasks
+
+**Template:**
+```xml
+<permissions>
+For operations marked [REQUIRES_APPROVAL]:
+1. First call ask_user_permission(operation, reason)
+2. Wait for user response
+3. Only proceed if approved
+4. If denied, explain and suggest alternative
+
+Operations requiring approval:
+- Deleting files
+- Making network requests
+- Installing packages
+- Modifying system config
+</permissions>
+```
+
+**Tool definition:**
+```json
+{
+  "type": "function",
+  "name": "ask_user_permission",
+  "description": "Request user approval before sensitive operations",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "operation": {"type": "string", "description": "What will be done"},
+      "reason": {"type": "string", "description": "Why it's needed"},
+      "risk_level": {"type": "string", "enum": ["low", "medium", "high"]}
+    }
+  }
+}
+```
+
+---
+
 ## Technique Combinations
 
 ### Powerful Combinations
@@ -743,6 +1019,12 @@ Respond in [target language]:
    - Reason through each
    - Best for research and analysis
 
+6. **Agent Loop + Planning Tool + Self-Correction** ⭐ NEW
+   - Structured multi-turn workflow
+   - Explicit progress tracking
+   - Automatic error recovery
+   - Best for autonomous software agents
+
 ---
 
 ## Technique Selection Guide
@@ -759,6 +1041,9 @@ Respond in [target language]:
 | Translation | Cross-Lingual, Verification | High |
 | Q&A | ReAct, Verification, Context | High |
 | Classification | Few-Shot, Contrastive | High |
+| **Software Agents** | **Agent Loop, Planning Tool, Self-Correction** | **High** |
+| **Multi-Turn Workflows** | **Prompt Caching, Context Management** | **High** |
+| **Tool Calling** | **Tool Schema Design, Approval Gates** | **High** |
 
 ---
 

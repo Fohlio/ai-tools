@@ -7,8 +7,9 @@ A comprehensive, research-backed skill for creating, editing, reviewing, and enh
 This skill provides:
 
 - **Model-specific optimization** for Claude 4.5, GPT-5.2, Gemini 3.0, and DeepSeek R1
-- **58+ prompting techniques** from systematic research review
+- **65+ prompting techniques** from systematic research review (including agent-specific patterns)
 - **Prompt library integration** - Search and adapt from major prompt collections
+- **Agent workflows** - Multi-agent orchestration, memory systems, security patterns, cost optimization
 - **Cost optimization** - Including ultra-low-cost DeepSeek R1 (10x cheaper)
 - **Open-source option** - DeepSeek R1 with full open weights
 - **Use case guidance** for when to use each technique
@@ -50,6 +51,11 @@ Access to 1000+ proven prompts from:
 - CTCO Framework (GPT-5.2)
 - Extended Thinking (Claude 4.5)
 - Dynamic Thinking (Gemini 3)
+- **Agent Loop Prompting** (OpenAI Codex patterns)
+- **Prompt Caching Optimization**
+- **Context Window Management**
+- **Tool Schema Design**
+- **Self-Correction & Planning Patterns**
 - And 50+ more...
 
 ### Practical Tools
@@ -70,6 +76,9 @@ Access to 1000+ proven prompts from:
 - Reducing costs (DeepSeek R1 = 85% savings)
 - Reducing hallucination or improving accuracy
 - Structuring complex multi-step prompts
+- **Building software agents with tool calling**
+- **Optimizing agent loops and context management**
+- **Multi-turn conversations with prompt caching**
 - Open-source / self-hosting requirements
 
 ## Research Foundation
@@ -79,9 +88,19 @@ This skill synthesizes knowledge from:
 - **The Prompt Report** - Systematic survey of 1,565 papers
 - **Anthropic Documentation** - Claude 4.5-specific best practices (Nov 2025)
 - **OpenAI Documentation** - GPT-5.2 guidelines and CTCO framework (Dec 2025)
+- **OpenAI Codex Architecture** - Production agent loop patterns (Jan 2025)
 - **Google Documentation** - Gemini 3 prompt strategies (Nov 2025)
 - **Academic Research** - ReAct, CoT, and other foundational papers
 - **Prompt Libraries** - 1000+ curated prompts from major collections
+- **2026 Agent Research** - Multi-agent orchestration, memory systems, security, evaluation, cost optimization
+  - Agentic workflows best practices
+  - Tool calling optimization (ToolGen, parallel function calling)
+  - Memory systems (CMA, EverMemOS, Mem0)
+  - Security & guardrails (OWASP)
+  - Evaluation frameworks (HB-Eval, Agent-Pex, HAL)
+  - MCP integration patterns
+  - LangSmith debugging strategies
+  - Framework comparison (LangGraph, CrewAI, AutoGen)
 
 ## Quick Start
 
@@ -95,8 +114,9 @@ The skill will guide you through:
 1. Understanding your goal
 2. Selecting appropriate techniques
 3. Structuring for your target model
-4. Testing and validation
-5. Documentation and iteration
+4. Optimizing for agents (if applicable)
+5. Testing and validation
+6. Documentation and iteration
 
 ## References
 
@@ -108,10 +128,12 @@ The skill will guide you through:
 
 ## Files Included
 
-- **SKILL.md** - Main skill with model-specific best practices
-- **techniques-catalog.md** - 58+ prompting techniques with examples
+- **SKILL.md** - Main skill with model-specific best practices, techniques, and agent patterns
+- **techniques-catalog.md** - 65+ prompting techniques with examples (including agent-specific patterns)
 - **model-comparison.md** - Side-by-side model comparison and adaptation guide
 - **prompt-libraries.md** - Comprehensive prompt library resources and discovery
+- **agent-research-2026.md** - ⭐ NEW: Comprehensive research summary on production-ready agentic systems (12 sections, ~15K words)
+- **agent-quick-reference.md** - ⭐ NEW: Fast lookup guide for agent development (checklists, decision trees, metrics)
 
 ## Integration
 
