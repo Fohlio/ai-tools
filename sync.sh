@@ -185,8 +185,8 @@ sync_agents() {
     
     local count=0
     
-    if [ -d "$REPO_DIR/subagents/general" ]; then
-        for agent_file in "$REPO_DIR/subagents/general"/*.md; do
+    if [ -d "$REPO_DIR/agents" ]; then
+        for agent_file in "$REPO_DIR/agents"/*.md; do
             if [ -f "$agent_file" ]; then
                 local filename=$(basename "$agent_file")
                 
@@ -206,7 +206,7 @@ sync_agents() {
             print_info "Синхронизировано агентов: $count"
         fi
     else
-        print_info "Директория subagents/general/ не найдена в репозитории"
+        print_info "Директория agents/ не найдена в репозитории"
     fi
 }
 
@@ -216,7 +216,7 @@ interactive_select() {
     echo ""
     echo -e "    ${CYAN}1${NC}) Команды (commands/)"
     echo -e "    ${CYAN}2${NC}) Скиллы (skills/)"
-    echo -e "    ${CYAN}3${NC}) Агенты (subagents/general/)"
+    echo -e "    ${CYAN}3${NC}) Агенты (agents/)"
     echo -e "    ${CYAN}a${NC}) Всё"
     echo ""
     read -p "  Выбор (номера через пробел или 'a'): " selection
