@@ -50,6 +50,10 @@ When reviewing code, focus on these areas:
 4. **Direct Implementation**: Apply the simplifications directly to the source files using your editing tools.
 5. **Validation**: Ensure the simplified code maintains all original functionality while being easier to manage. Fix any linter errors introduced.
 
+6. **Documentation Update**:
+   - **Spawn librarian agent** to update any relevant technical documentation, comments, or diagrams that were affected by the refactoring.
+   - Ensure the project's knowledge base reflects the improved structure.
+
 ## Refactoring Checklist
 
 Before completing, verify:

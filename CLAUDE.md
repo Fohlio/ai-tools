@@ -58,6 +58,7 @@ Files in `agents/` define specialized AI personas:
 | `mobile-architect` | Flutter/cross-platform development |
 | `ai-prompter` | Prompt engineering and LLM orchestration |
 | `agent-browser` | Browser automation and testing |
+| `librarian` | Project documentation and knowledge management |
 
 ## Skills
 

@@ -21,6 +21,7 @@ You are moderating a multi-disciplinary review session. Your goal is to gather e
    - **UX Designer** (`ux-designer`): For usability, layout, and user friction.
    - **Sales & Marketer** (`sales-marketer`): For market appeal, conversion, and business value.
    - **Project Manager** (`project-manager`): For scope, feasibility, and delivery risks.
+   - **Librarian** (`librarian`): For documentation quality, knowledge indexing, and best practices.
    - **Lead Developer** (`code-refactorer`): For code simplicity, maintainability, and efficiency.
 
 ## Phase 2: Parallel Expert Review
@@ -71,6 +72,10 @@ Synthesize the findings into a "Team Verdict":
 ### 📅 Project Management (Project Manager)
 - **Verdict**: [Green/Yellow/Red]
 - **Key Points**: [Top insights on scope, risks, and phasing]
+
+### 📚 Documentation & Knowledge (Librarian)
+- **Verdict**: [Green/Yellow/Red]
+- **Key Points**: [Insights on documentation clarity, indexing, and best practices]
 
 ### 💻 Refactoring & Quality (Lead Developer)
 - **Verdict**: [Green/Yellow/Red]

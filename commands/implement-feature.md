@@ -67,6 +67,14 @@ Skip if backend-only.
    - **Technical Validation**: Run full test suite and check for runtime issues.
    - **Agent Handoff Check**: Verify that all expert advice was either implemented, communicated, or logged.
 
+## Phase 7: Documentation & Archiving
+
+1. **Spawn librarian agent** to:
+   - Update project documentation (README, API docs, etc.) to reflect changes.
+   - Log the implementation in the project's knowledge base.
+   - Archive or delete any documentation that is now obsolete.
+   - Ensure best practices for IT documentation are followed.
+
 ## Completion
 1. **Propose Improvements**: Suggest 2-3 specific ways to further enhance the feature, improve performance, or reduce technical debt.
 2. **Final Summary**:

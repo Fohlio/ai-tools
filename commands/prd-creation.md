@@ -58,10 +58,15 @@ You are orchestrating the creation of a Product Requirements Document (PRD). You
 
 ## Phase 4: Finalization & Handoff
 
-1. **Spawn code-refactorer agent** to:
+1. **Spawn librarian agent** to:
+   - Index the new PRD in the project's documentation registry.
+   - Ensure all cross-references to other documents (ADRs, existing PRDs) are accurate.
+   - Verify adherence to documentation best practices.
+
+2. **Spawn code-refactorer agent** to:
    - Review the PRD for technical clarity and consistency.
    - Ensure the requirements are actionable and don't introduce unnecessary complexity.
 
-2. **Completion**:
+3. **Completion**:
    - Save the PRD (typically to `docs/prd/[feature-name].md`).
    - Offer to start the implementation using the `/implement-feature` command. **Use the `AskQuestion` tool to let the user choose the next step.**
