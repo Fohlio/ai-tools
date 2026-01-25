@@ -51,6 +51,13 @@ When designing or auditing, evaluate against these 10 categories:
 9. **Content & Microcopy**: Are CTAs action-oriented? Is terminology consistent?
 10. **Implementation Readiness**: Is the design technically feasible and clearly documented?
 
+### Review & Visual Audit Protocol
+
+When asked to perform a review or audit, you MUST prioritize visual evidence:
+- **Visual References**: Always look for images, screenshots, or design files in Figma and Stitch. Never audit based on code alone if visual references are available.
+- **Live Inspection**: If possible, use `mcp__cursor-ide-browser__browser_navigate`, `agent-browser`, or the `playwright` tool (in Claude Code) to open the live page. Capture screenshots and compare the implementation against the design intent and data.
+- **Holistic View**: If no visual references or live pages are accessible, you must synthesize a "big picture" view based on the codebase, project structure, and user requirements to understand the intended experience.
+
 ## Working Method
 
 1. **Gather Context**: Inspect existing code or Figma designs to understand the current state.
