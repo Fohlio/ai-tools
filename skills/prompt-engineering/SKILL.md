@@ -201,6 +201,227 @@ Code:
 
 ---
 
+### Qwen 3 (Alibaba Cloud)
+
+**Release:** April 28, 2025 (Apache 2.0 license)
+
+**Architecture:**
+- **Dense models**: 0.6B, 1.7B, 4B, 8B, 14B, 32B parameters
+- **MoE models**: 30B-A3B (~3.3B active), 235B-A22B (~22B active)
+- Native 32K context, extendable to 128K with YaRN
+- Trained on 36 trillion tokens
+- Supports 119 languages
+
+**Key Characteristics:**
+- **Hybrid thinking mode** - Switches between deep thinking (complex) and fast response (simple)
+- **Unified tokenizer** across all model sizes for easy deployment
+- **10x faster throughput** (MoE vs dense) on long-context tasks
+- **Multilingual excellence** - 119 languages supported
+- **Apache 2.0 license** - Fully commercial-friendly
+
+**Best Practices:**
+
+**1. Use Recommended Generation Parameters**
+
+```
+temperature: 0.7
+top_p: 0.8
+top_k: 20
+presence_penalty: 0-2 (adjust to reduce repetitions)
+```
+
+**2. Leverage Automatic Chain-of-Thought**
+
+```
+Qwen 3 uses CoT automatically for complex reasoning.
+No need to explicitly prompt "think step by step"
+
+Good:
+Design a distributed system architecture for real-time analytics...
+
+Model automatically engages deep thinking mode.
+```
+
+**3. Choose Mode Based on Task Complexity**
+
+```
+Complex (deep thinking mode):
+✅ "Analyze this algorithm and optimize its time complexity"
+✅ "Design a fault-tolerant distributed consensus protocol"
+
+Simple (fast response mode):
+✅ "What is the capital of France?"
+✅ "Format this JSON: [data]"
+```
+
+**4. Follow Standard Prompting Best Practices**
+
+```
+✅ Instructions at the beginning
+✅ Use separators (### or """) for context
+✅ Be specific about desired format
+✅ Show examples when needed (few-shot works well)
+```
+
+**5. Optimize for Multilingual Tasks**
+
+```
+✅ "Translate this English document to Chinese, preserving technical terms"
+✅ "Generate product descriptions in Spanish, French, and German"
+```
+
+**6. Use Long Context Effectively (128K with YaRN)**
+
+```
+✅ "Analyze this entire codebase and identify architectural issues"
+✅ "Summarize key decisions from these 50 meeting transcripts"
+```
+
+**Performance Highlights:**
+- **92.3% accuracy** on complex math tasks
+- **69.6 on Tau2-Bench** (agentic capabilities)
+- **Leads on CodeForces ELO** among open-source models
+- **Strong on BFCL and LiveCodeBench v5**
+
+**When to Use:**
+- **Multilingual applications** (119 languages)
+- **Cost-sensitive production** deployments
+- **Self-hosting requirements**
+- **Flexible model sizes** needed (0.6B-235B)
+- **Edge devices** (smaller variants)
+- **Long-context tasks** (128K)
+
+**Deployment Options:**
+- **Local**: llama.cpp, Ollama (`ollama run qwen3`)
+- **Cloud**: DashScope, Alibaba Cloud Model Studio
+- **Servers**: vLLM, SGLang
+- **Docker**: Containerized deployment
+
+**References:**
+- [Qwen 3 GitHub](https://github.com/QwenLM/Qwen3)
+- [Qwen 3 Documentation](https://qwen.readthedocs.io/)
+- [Technical Overview](https://deepwiki.com/QwenLM/Qwen3)
+
+---
+
+### Qwen 3 Coder (Alibaba Cloud)
+
+**Release:** April 2025 (480B variant: August 13, 2025), Apache 2.0 license
+
+**Architecture:**
+- **Complete series**: 0.6B, 1.7B, 4B, 8B, 14B, 32B (dense) + 30B-A3B, 235B-A22B, 480B (MoE)
+- **Native 256K context**, extendable to 1M tokens
+- **Trained on 36T tokens** (70% code ratio, 7.5T pretraining)
+- **119 programming languages** and dialects
+
+**Key Characteristics:**
+- **Hybrid thinking mode** - Deep thinking (complex algorithms) vs fast response (simple code)
+- **Built-in MCP protocol** for intelligent coding agents
+- **Execution-driven RL** - Trained for high code execution success rates
+- **Repository-scale understanding** (256K-1M context)
+- **SWE-Bench oriented** - Advanced software engineering capabilities
+
+**Best Practices:**
+
+**1. Leverage Hybrid Thinking Mode Automatically**
+
+```
+Complex algorithm (triggers deep thinking):
+✅ "Implement a lock-free concurrent B-tree with optimistic concurrency control"
+✅ "Design a query optimizer for distributed SQL engine"
+
+Simple task (triggers fast response):
+✅ "Add type hints to this Python function"
+✅ "Fix this linting error: [error]"
+```
+
+**2. Use Repository-Scale Context (256K-1M)**
+
+```
+✅ "Analyze this entire codebase and suggest refactoring to improve modularity"
+✅ "Find all API v1 calls across the repository and migrate to v2"
+✅ "Generate comprehensive documentation from code comments and structure"
+```
+
+**3. Specify Programming Language Explicitly**
+
+```
+✅ "Write a Python function using type hints that..."
+✅ "Refactor this TypeScript React component to use hooks..."
+✅ "Implement this algorithm in Rust with zero-cost abstractions..."
+```
+
+**4. Encourage Test-Driven Development**
+
+```
+✅ "Write unit tests first, then implement the function to pass all tests"
+✅ "Generate comprehensive test cases covering edge cases for..."
+✅ "Add integration tests for this API endpoint"
+```
+
+**5. Use for SWE-Bench Style Tasks**
+
+```
+✅ "Fix this bug in the codebase: [GitHub issue description]"
+✅ "Implement this feature request following SOLID principles: [requirements]"
+✅ "Refactor this module to improve maintainability and testability"
+```
+
+**6. Build Coding Agents with MCP Protocol**
+
+```
+✅ Create intelligent agents with tool calling
+✅ Automate software engineering workflows
+✅ Build custom development assistants
+```
+
+**7. Leverage Execution-Driven Training**
+
+```
+Model is trained to generate executable, correct code.
+Ask for working examples:
+
+✅ "Write a working implementation with example usage"
+✅ "Generate code that runs without modifications"
+```
+
+**Performance Highlights:**
+- **Strong on LiveCodeBench v5**
+- **Repository-scale code understanding**
+- **High code execution success rates**
+- **Advanced agentic capabilities** (SWE-Bench oriented)
+
+**When to Use:**
+- **Code generation** across 119 languages
+- **Code review** and refactoring at scale
+- **Bug fixing** (SWE-Bench style issues)
+- **Repository-scale analysis** (256K-1M context)
+- **Coding agents** and automation (MCP support)
+- **Self-hosted coding assistants**
+- **Cost-sensitive coding projects**
+
+**Limitations:**
+- Thinking mode selection is **automatic** (cannot force)
+- Best performance on **coding tasks**, not general chat
+
+**Cost Advantage:**
+- **Open-source** (Apache 2.0)
+- **Self-hostable** on own infrastructure
+- **Smaller variants** (0.6B-14B) run on consumer hardware (M1/M2 Macs, RTX 3090)
+
+**Deployment:**
+- **Ollama**: `ollama run qwen3-coder`
+- **Google Cloud Vertex AI**: Managed hosting
+- **Local**: llama.cpp, vLLM
+- **GitHub**: Full model weights available
+
+**References:**
+- [Qwen 3 Coder Official Site](https://www.qwen3coder.com/)
+- [Qwen 3 Coder GitHub](https://github.com/QwenLM/Qwen3-Coder)
+- [Google Cloud Docs](https://docs.cloud.google.com/vertex-ai/generative-ai/docs/maas/qwen/qwen3-coder)
+
+---
+
 ### Claude 4.5 (Anthropic)
 
 **Current Models:** Claude Sonnet 4.5, Claude Opus 4.5, Claude Haiku 4.5
@@ -1007,7 +1228,104 @@ User request: Refactor the Button component to use TypeScript
 6. **Monitor token usage** - Track growth, prevent runaway loops
 7. **Preserve cache on updates** - Append new messages vs modifying old ones
 
-**Reference:** [OpenAI Codex Agent Loop Architecture](https://openai.com/index/unrolling-the-codex-agent-loop/)
+**References:**
+- [OpenAI Codex Agent Loop Architecture](https://openai.com/index/unrolling-the-codex-agent-loop/)
+- [Anthropic Claude Code: How It Works](https://code.claude.com/docs/how-claude-code-works)
+- [Claude Code: Extension Architecture](https://code.claude.com/docs/features-overview)
+
+### Anthropic Claude Code: Extension-Based Architecture
+
+**Alternative approach:** While Codex uses prompt-centric design, Claude Code uses extension layering.
+
+**Extension types:**
+
+1. **CLAUDE.md** - Always-on context (loaded every session)
+   ```markdown
+   # Project Conventions
+   - Use pnpm, not npm
+   - Run tests before committing
+   - Follow patterns in /docs/api-guide.md
+   ```
+
+2. **Skills** - On-demand knowledge and workflows
+   - **Reference skills**: Knowledge loaded when needed (API docs, patterns)
+   - **Action skills**: Workflows triggered with `/<name>` (`/deploy`, `/review`)
+   - Load strategy: Descriptions at start (~few hundred tokens), full content on invocation
+   - User-only skills: `disable-model-invocation: true` (zero cost until invoked)
+
+3. **MCP Servers** - External service connections
+   - Load: All tool definitions at session start
+   - Cost: Every request (use Tool Search to defer some)
+   - Check cost: `/mcp` command
+
+4. **Subagents** - Isolated context workers
+   - Fresh context with specified skills
+   - Don't inherit conversation history
+   - Return only summary to main session
+   - Use for: Context isolation, parallel work, specialized tasks
+
+5. **Hooks** - External automation
+   - Zero context cost (run outside loop)
+   - Triggered on events (after-edit, before-commit, etc.)
+
+**Context loading comparison:**
+
+```
+OpenAI Codex (Prompt-Centric):
+system: [Model instructions]
+developer: [Framework config]
+user: [Project docs]
+user: [Environment]
+user: [User message]
+→ Static first, dynamic last (caching)
+
+Anthropic Claude Code (Extension-Centric):
+Session start: CLAUDE.md (full) + MCP (all tools) + Skills (descriptions)
+On demand: Skills (full content when invoked)
+Isolated: Subagents (separate context)
+External: Hooks (no context cost)
+→ Layered loading + isolation
+```
+
+**Best practices (Claude Code):**
+
+**Working style:**
+- **It's a conversation** - Iterate, don't expect perfect first try
+- **Be specific upfront** - Reference files, constraints, examples
+- **Give something to verify** - Tests, screenshots, expected output
+- **Explore before implementing** - Plan mode first, then execute
+- **Delegate, don't dictate** - Trust agent to figure out details
+- **Interrupt and steer** - Can stop and redirect anytime
+
+**Context optimization:**
+- Keep CLAUDE.md <500 lines (move reference to skills)
+- Use `disable-model-invocation: true` for user-only skills
+- Disconnect unused MCP servers (check with `/mcp`)
+- Spawn subagents for isolation
+- Skills load on-demand vs CLAUDE.md always-on
+
+**Safety mechanisms:**
+- **Permission modes**: Default (ask), Auto-accept edits, Plan mode (read-only)
+- **Checkpoints**: Every file edit snapshots (reversible), press Esc twice to rewind
+- **Allowlists**: Trusted commands in settings.json (no asking)
+
+**Extension combination patterns:**
+
+| Pattern | How | Example |
+|---------|-----|---------|
+| **Skill + MCP** | MCP connects, skill documents usage | DB connection + schema documentation |
+| **Skill + Subagent** | Skill spawns isolated workers | `/review` kicks off security, perf, style agents |
+| **CLAUDE.md + Skills** | Always-on rules + on-demand reference | Conventions in CLAUDE.md, full guide as skill |
+| **Hook + MCP** | Hook triggers external actions | Post-edit hook sends Slack notification |
+
+**Key philosophical difference:**
+
+**Codex (OpenAI):** Prompt structure, role hierarchy, stateless requests
+**Claude Code (Anthropic):** Extension ecosystem, layered loading, context isolation
+
+Both converge on: agentic loop, tool calling, prompt caching, context management.
+
+---
 
 ### Advanced Agent Topics (2026)
 
@@ -1471,8 +1789,8 @@ For each dimension, provide:
 ### Agent Research & Production Insights (2026)
 
 **Comprehensive Research Summary:**
-- [Agent Research 2026](./agent-research-2026.md) - 12 sections covering agentic workflows, multi-agent orchestration, tool calling optimization, memory systems, security, evaluation, debugging, cost optimization (~15K words)
-- [Agent Quick Reference](./agent-quick-reference.md) - Fast lookup guide with checklists, decision trees, metrics, and production readiness checklist
+- [Agent Research 2026](./agent-research-2026.md) - 13 sections covering agentic workflows, multi-agent orchestration, tool calling optimization, memory systems, security, evaluation, debugging, cost optimization, production architectures (~18K words)
+- [Agent Quick Reference](./agent-quick-reference.md) - Fast lookup guide with checklists, decision trees, metrics, architecture comparison, and production best practices
 
 **Key Papers & Frameworks:**
 - [Practical Guide for Agentic AI Workflows](https://www.emergentmind.com/papers/2512.08769) - 9 core best practices

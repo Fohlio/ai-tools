@@ -60,6 +60,28 @@ Fast lookup guide for production agent development. For detailed information, se
 
 ---
 
+## Open-Source Models for Self-Hosting (2026)
+
+| Model | Sizes | License | Context | Best For |
+|-------|-------|---------|---------|----------|
+| **Qwen 3** | 0.6B-235B | Apache 2.0 | 32K (128K) | Multilingual (119 langs), general tasks |
+| **Qwen 3 Coder** | 0.6B-480B | Apache 2.0 | 256K (1M) | Coding (119 langs), SWE-Bench, agents |
+| **DeepSeek R1** | 671B MoE (~37B active) | MIT | 64K | Reasoning, math, logic (o1-comparable) |
+
+**Deployment:**
+- **Ollama**: `ollama run qwen3`, `ollama run qwen3-coder`, `ollama run deepseek-r1`
+- **llama.cpp**: Local deployment on consumer hardware
+- **vLLM**: Production server deployment
+- **Cloud**: Google Vertex AI (Qwen 3 Coder), DashScope (Qwen 3)
+
+**Hardware Requirements:**
+- **0.6B-4B**: Consumer laptops (M1/M2 Macs, 16GB RAM)
+- **8B-14B**: Gaming PCs (RTX 3090/4090, 24GB VRAM)
+- **30B-32B**: High-end workstations (dual GPUs, 48GB+ VRAM)
+- **235B+**: Multi-GPU servers or cloud
+
+---
+
 ## Cost Optimization Levers
 
 ### Context Management (Primary Lever)
@@ -242,6 +264,17 @@ Need temporal continuity? → CMA
 Need self-organizing? → EverMemOS
 ```
 
+### Model Selection for Agents (2026)
+```
+Commercial, best quality? → Claude 4.5 Sonnet/Opus
+Budget + cloud? → GPT-5.2 Instant, Gemini 3 Flash
+Reasoning-heavy? → GPT-5.2 Thinking, DeepSeek R1
+Self-hosted + multilingual? → Qwen 3 (0.6B-235B)
+Self-hosted + coding? → Qwen 3 Coder (0.6B-480B)
+Ultra-budget + reasoning? → DeepSeek R1 (85% cheaper)
+Edge devices? → Qwen 3-0.6B/1.7B/4B
+```
+
 ### Orchestration Pattern Selection
 ```
 Compliance-heavy? → Hub-and-Spoke
@@ -312,12 +345,238 @@ Scale-out critical? → Mesh
 
 ---
 
+## Agent Architecture Comparison (2026)
+
+### OpenAI Codex vs Anthropic Claude Code
+
+| Aspect | Codex (OpenAI) | Claude Code (Anthropic) |
+|--------|----------------|------------------------|
+| **Philosophy** | Prompt-centric | Extension ecosystem |
+| **Context Strategy** | Role hierarchy, compaction | Layered loading, subagents |
+| **Memory** | Stateless (optional previous_response_id) | Ephemeral sessions + CLAUDE.md |
+| **Extensions** | Tools in flat list | CLAUDE.md, Skills, MCP, Subagents, Hooks |
+| **Caching** | Static first, dynamic last | Extension layering |
+| **Permissions** | Sandbox + approval gates | Modes + allowlists + checkpoints |
+
+**Key insight:** Both converge on same core patterns (agentic loop, tool calling, caching), but differ in extension philosophy.
+
+---
+
+## Context Loading: Two Approaches
+
+### OpenAI Codex: Prompt Structure
+```
+system: [Model instructions - static]
+developer: [Framework config - static]
+developer: [Developer instructions - static]
+user: [Project docs - static]
+user: [Environment - dynamic]
+user: [User message - dynamic]
+```
+
+**Optimization:** Static first (cacheable), dynamic last (changes per request)
+
+### Anthropic Claude Code: Extension Layering
+```
+Session Start:
+  ✅ CLAUDE.md (full content, every request)
+  ✅ MCP servers (all tool definitions, every request)
+  ✅ Skills (descriptions only, ~few hundred tokens)
+
+On Demand:
+  ✅ Skills (full content when invoked)
+  ✅ Subagents (isolated context, don't bloat main)
+
+External:
+  ✅ Hooks (zero context cost)
+```
+
+**Optimization:** On-demand loading + context isolation
+
+---
+
+## Best Practices: Production Insights
+
+### From OpenAI Codex
+
+**Prompt Construction:**
+- ✅ Role hierarchy: system > developer > user
+- ✅ XML tags for structure
+- ✅ Tool definitions with clear descriptions
+- ✅ Old prompt = exact prefix of new (caching)
+
+**Context Management:**
+- ✅ Compact at ~60% of limit
+- ✅ Append new messages (don't modify old)
+- ✅ Sort tool lists consistently
+
+**Agent Patterns:**
+- ✅ Planning tool for progress tracking
+- ✅ Self-correction (verify → fix → retry)
+- ✅ Approval gates for sensitive ops
+
+### From Anthropic Claude Code
+
+**Working Style:**
+- ✅ It's a conversation (iterate, don't expect perfect first try)
+- ✅ Be specific upfront (reference files, constraints, examples)
+- ✅ Give something to verify against (tests, screenshots, output)
+- ✅ Explore before implementing (plan mode first)
+- ✅ Delegate, don't dictate (trust agent to figure out details)
+- ✅ Interrupt and steer (can stop and redirect anytime)
+
+**Context Optimization:**
+- ✅ Keep CLAUDE.md <500 lines
+- ✅ Use `disable-model-invocation: true` for user-only skills
+- ✅ Disconnect unused MCP servers
+- ✅ Spawn subagents for isolation
+- ✅ Move reference material from CLAUDE.md to skills
+
+**Extension Patterns:**
+- ✅ CLAUDE.md = always-on rules
+- ✅ Skills = on-demand knowledge/workflows
+- ✅ MCP = external connections
+- ✅ Subagents = isolated work
+- ✅ Hooks = external automation
+
+---
+
+## Extension Decision Tree (Anthropic)
+
+```
+Need persistent rules? → CLAUDE.md
+Need reference material? → Skill (reference)
+Need workflow trigger? → Skill (action) with /<name>
+Need external service? → MCP server
+Need context isolation? → Subagent
+Need parallel work? → Subagents
+Need automation? → Hook
+Need to package/distribute? → Plugin
+```
+
+---
+
+## Context Cost Comparison
+
+### OpenAI Codex (Token-Centric)
+
+```
+Cost = Base prompt + Tool definitions + History + Tool results
+
+Optimization levers:
+1. Prompt caching (45-80% reduction)
+2. Compaction (when > threshold)
+3. Tool list management (consistent ordering)
+```
+
+### Anthropic Claude Code (Extension-Centric)
+
+```
+Per Request Cost:
+  High: CLAUDE.md (full) + MCP (all tools)
+  Medium: Skills (descriptions only)
+  Low: Skills (full, when invoked)
+  Zero: User-only skills, Subagents, Hooks
+
+Optimization levers:
+1. Keep CLAUDE.md <500 lines
+2. Use disable-model-invocation: true
+3. Disconnect unused MCP
+4. Subagents for isolation
+```
+
+---
+
+## Safety Patterns Comparison
+
+### OpenAI Codex
+
+**Sandbox:**
+- File permissions (writable paths)
+- Network access controls
+- Approval modes (on_request, etc.)
+
+**Tools:**
+- ask_user_permission before sensitive ops
+- Explicit approval gates
+
+### Anthropic Claude Code
+
+**Permission Modes:**
+- Default: Ask before edits and commands
+- Auto-accept edits: Edits without asking
+- Plan mode: Read-only, create plan first
+
+**Checkpoints:**
+- Every file edit snapshots contents
+- Reversible within session
+- Press Esc twice to rewind
+
+**Allowlists:**
+- Trusted commands in settings.json
+- No asking for approved commands
+
+---
+
+## Hybrid Best Practices (Combined Insights)
+
+### Prompt Structure (Both)
+```
+1. Static content first (caching)
+   - Model instructions
+   - Tool definitions (sorted!)
+   - Project conventions (CLAUDE.md)
+   
+2. Dynamic content last
+   - Environment (cwd, timestamp)
+   - User message
+   - Tool results
+```
+
+### Context Management (Both)
+```
+1. Automatic mechanisms
+   - Compaction (Codex)
+   - On-demand loading (Claude Code)
+   
+2. Manual optimization
+   - Move reference to skills
+   - Use subagents for isolation
+   - Track context usage
+```
+
+### Agent Patterns (Both)
+```
+1. Planning & Tracking
+   - Planning tool (Codex)
+   - Plan mode (Claude Code)
+   
+2. Verification
+   - Self-correction patterns
+   - Test-driven workflows
+   
+3. Safety
+   - Approval gates (Codex)
+   - Permission modes (Claude Code)
+```
+
+---
+
 ## Further Reading
 
-- **Full research:** `agent-research-2026.md` (12 sections, comprehensive)
+- **Full research:** `agent-research-2026.md` (13 sections, comprehensive)
+  - Section 1: OpenAI Codex architecture
+  - Section 13: Anthropic Claude Code architecture
 - **Techniques:** `techniques-catalog.md` (65+ techniques)
 - **Models:** `model-comparison.md` (side-by-side comparison)
 - **Prompts:** `prompt-libraries.md` (curated collections)
 - **Main guide:** `SKILL.md` (complete skill documentation)
+
+**Production architectures covered:**
+- OpenAI Codex CLI (prompt-centric)
+- Anthropic Claude Code (extension-centric)
+- Microsoft Agent-Pex (evaluation)
+- Google frameworks (multi-agent)
+- LangSmith (observability)
 
 **Last Updated:** January 24, 2026

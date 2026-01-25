@@ -4,20 +4,21 @@ A comprehensive side-by-side comparison of prompting strategies for Claude 4.5, 
 
 ## Quick Reference Matrix
 
-| Feature | Claude 4.5 (Sonnet/Opus) | GPT-5.2 (Thinking) | Gemini 3 (Pro/Flash) | DeepSeek R1 |
-|---------|--------------------------|-------------------|---------------------|------------|
-| **Release Date** | Sep-Nov 2025 | Dec 2025 | Nov 2025 | Jan 2025 |
-| **Best For** | Autonomous agents, coding | Professional work | Research, multimodal | Reasoning, budget projects |
-| **Context Length** | 200K (1M beta) | 128K tokens | 1M tokens | 64K tokens |
-| **Prompting Style** | XML structure, context-aware | CTCO framework | Simplified, conversational | Zero-shot, no system prompts |
-| **Key Innovation** | Context awareness | Adaptive reasoning | Dynamic thinking | Open-source o1-level reasoning |
-| **CoT Approach** | Explicit `<thinking>` tags | Automatic adaptive | Dynamic thinking_level | Built-in (automatic) |
-| **Few-Shot Sweet Spot** | 2-4 examples | 1-3 examples | 2-5 examples | 0 (avoid few-shot!) |
-| **Output Format** | XML preferred | JSON preferred | JSON/structured | Any (reasoning + answer) |
-| **Tool Use** | Programmatic, tool search | Function calling | Function + Search grounding | None (base model) |
-| **Best Temperature** | 1.0 (default) | 0.7 (default) | 1.0 (CRITICAL) | 0.6 (params ignored) |
-| **Pricing (Input/Output)** | $3/$15 (Sonnet) | Varies | $0.50/$3 (Flash) | **$0.55/$2.19** 🔥 |
-| **Open Source** | ❌ Proprietary | ❌ Proprietary | ❌ Proprietary | ✅ **Open weights** |
+| Feature | Claude 4.5 (Sonnet/Opus) | GPT-5.2 (Thinking) | Gemini 3 (Pro/Flash) | DeepSeek R1 | Qwen 3 (235B) | Qwen 3 Coder (235B) |
+|---------|--------------------------|-------------------|---------------------|------------|---------------|---------------------|
+| **Release Date** | Sep-Nov 2025 | Dec 2025 | Nov 2025 | Jan 2025 | Apr 2025 | Apr 2025 |
+| **Best For** | Autonomous agents, coding | Professional work | Research, multimodal | Reasoning, budget projects | Multilingual, self-hosted | Coding, SWE-Bench, agents |
+| **Context Length** | 200K (1M beta) | 128K tokens | 1M tokens | 64K tokens | 32K (128K YaRN) | 256K (1M) |
+| **Prompting Style** | XML structure, context-aware | CTCO framework | Simplified, conversational | Zero-shot, no system prompts | Standard, few-shot OK | Standard, repo-scale |
+| **Key Innovation** | Context awareness | Adaptive reasoning | Dynamic thinking | Open-source o1-level reasoning | Hybrid thinking mode | MCP protocol + execution-driven RL |
+| **CoT Approach** | Explicit `<thinking>` tags | Automatic adaptive | Dynamic thinking_level | Built-in (automatic) | Automatic hybrid | Automatic hybrid |
+| **Few-Shot Sweet Spot** | 2-4 examples | 1-3 examples | 2-5 examples | 0 (avoid few-shot!) | 2-4 examples | 2-3 examples |
+| **Output Format** | XML preferred | JSON preferred | JSON/structured | Any (reasoning + answer) | Markdown, JSON | Code + Markdown |
+| **Tool Use** | Programmatic, tool search | Function calling | Function + Search grounding | None (base model) | Function calling | MCP protocol |
+| **Best Temperature** | 1.0 (default) | 0.7 (default) | 1.0 (CRITICAL) | 0.6 (params ignored) | 0.7 | 0.7 |
+| **Pricing (Input/Output)** | $3/$15 (Sonnet) | Varies | $0.50/$3 (Flash) | **$0.55/$2.19** 🔥 | Self-host (Apache 2.0) | Self-host (Apache 2.0) |
+| **Open Source** | ❌ Proprietary | ❌ Proprietary | ❌ Proprietary | ✅ **Open weights** | ✅ **Open weights** | ✅ **Open weights** |
+| **Languages** | English-primary | English-primary | 100+ | English-primary | **119 languages** | **119 prog. languages** |
 
 ---
 
@@ -470,6 +471,206 @@ Requirements:
 - [Gemini 3 Prompting Playbook](https://promptbuilder.cc/blog/gemini-3-prompting-playbook-november-2025/)
 - [Gemini 3 Prompting Guide (Cloud)](https://docs.cloud.google.com/vertex-ai/generative-ai/docs/start/gemini-3-prompting-guide)
 
+---
+
+### Qwen 3 (Alibaba Cloud) - April 2025
+
+**Available Models:**
+- **Dense**: Qwen3-0.6B to Qwen3-32B
+- **MoE**: Qwen3-30B-A3B (~3.3B active), Qwen3-235B-A22B (~22B active)
+
+#### Architecture Strengths
+
+**Hybrid Thinking Mode:**
+- Automatically switches between deep thinking (complex tasks) and fast response (simple tasks)
+- No manual mode selection needed
+- Balances quality and efficiency
+
+**Multilingual Excellence:**
+- 119 languages supported
+- Trained on 36 trillion tokens
+- Strong cross-lingual capabilities
+
+**Flexible Deployment:**
+- Apache 2.0 license (fully commercial-friendly)
+- Complete size range (0.6B-235B) for different use cases
+- Unified tokenizer across all sizes
+
+#### New Capabilities
+
+1. **Automatic CoT** - Chain-of-thought reasoning happens automatically for complex problems
+2. **10x Faster Throughput** - MoE models (30B-A3B, 235B-A22B) vs dense predecessors
+3. **Long Context** - 32K native, 128K with YaRN extrapolation
+4. **Agentic Capabilities** - 69.6 on Tau2-Bench for agent tasks
+
+#### Best Practices
+
+**Use Recommended Parameters:**
+```
+temperature: 0.7
+top_p: 0.8
+top_k: 20
+presence_penalty: 0-2 (adjust for repetitions)
+```
+
+**Leverage Automatic CoT:**
+```
+✅ Good (automatic CoT):
+Design a distributed system architecture for...
+
+❌ Don't over-prompt:
+Think step by step carefully about...
+(model already does this automatically)
+```
+
+**Few-Shot Works Well:**
+```
+✅ Example 1: [input] → [output]
+✅ Example 2: [input] → [output]
+Now solve: [problem]
+
+(Unlike DeepSeek R1, few-shot improves Qwen 3 performance)
+```
+
+**Multilingual Tasks:**
+```
+✅ "Translate this technical document to Chinese, preserving terminology"
+✅ "Generate product descriptions in Spanish, French, German, and Japanese"
+```
+
+**Long Context (128K):**
+```
+✅ "Analyze this entire codebase (50K lines) and identify architectural issues"
+✅ "Summarize key decisions from these 30 meeting transcripts"
+```
+
+#### Performance Highlights
+
+- **92.3% accuracy** on complex math tasks
+- **Leads CodeForces ELO** among open-source models
+- **Strong on BFCL and LiveCodeBench v5**
+- **69.6 on Tau2-Bench** (agentic capabilities)
+
+#### Common Mistakes
+
+- ❌ Not adjusting presence_penalty (can cause repetitions or language mixing)
+- ❌ Forcing explicit "think step by step" (automatic CoT is better)
+- ❌ Using system prompts designed for other models without adaptation
+- ❌ Not leveraging multilingual capabilities
+
+**References:**
+- [Qwen 3 GitHub](https://github.com/QwenLM/Qwen3)
+- [Qwen 3 Documentation](https://qwen.readthedocs.io/)
+- [Technical Overview](https://deepwiki.com/QwenLM/Qwen3)
+
+---
+
+### Qwen 3 Coder (Alibaba Cloud) - April 2025
+
+**Available Models:**
+- **Dense**: 0.6B, 1.7B, 4B, 8B, 14B, 32B
+- **MoE**: 30B-A3B, 235B-A22B, 480B (August 2025)
+
+#### Architecture Strengths
+
+**Hybrid Thinking for Code:**
+- **Deep thinking mode** - Complex algorithms, system design
+- **Fast response mode** - Simple code fixes, formatting
+- Model selects mode automatically based on task complexity
+
+**Repository-Scale Understanding:**
+- **256K native context**, 1M with extrapolation
+- Trained on 36T tokens (70% code ratio)
+- Handles entire codebases in context
+
+**Execution-Driven Training:**
+- Reinforcement learning on code execution success
+- Higher likelihood of generating working code
+- Trained on SWE-Bench for software engineering tasks
+
+#### New Capabilities
+
+1. **MCP Protocol Support** - Built-in for intelligent coding agents
+2. **119 Programming Languages** - From Python to esoteric languages
+3. **SWE-Bench Oriented** - Trained for real-world software engineering
+4. **Advanced Agentic Capabilities** - Tool calling, multi-step workflows
+
+#### Best Practices
+
+**Let Hybrid Mode Work:**
+```
+Complex (triggers deep thinking):
+✅ "Implement a lock-free concurrent B-tree with optimistic concurrency control"
+
+Simple (triggers fast response):
+✅ "Add type hints to this Python function"
+
+(Model automatically selects appropriate mode)
+```
+
+**Use Repository-Scale Context:**
+```
+✅ "Analyze this entire codebase (100K lines) and suggest architectural improvements"
+✅ "Find all occurrences of deprecated API v1 and migrate to v2"
+✅ "Generate comprehensive documentation from code structure"
+```
+
+**Specify Language Explicitly:**
+```
+✅ "Write a Python function using type hints that..."
+✅ "Refactor this TypeScript React component to use React 19 hooks..."
+✅ "Implement this algorithm in Rust with zero-cost abstractions..."
+```
+
+**Encourage Testing:**
+```
+✅ "Write unit tests first, then implement the function"
+✅ "Generate comprehensive test cases covering edge cases"
+✅ "Add integration tests for this API endpoint"
+```
+
+**SWE-Bench Style Tasks:**
+```
+✅ "Fix this bug: [GitHub issue description with context]"
+✅ "Implement this feature following SOLID principles: [requirements]"
+✅ "Refactor this module to improve testability and maintainability"
+```
+
+**Build Coding Agents:**
+```
+✅ Use MCP protocol for tool calling
+✅ Create automated code review agents
+✅ Build custom development assistants
+```
+
+#### Performance Highlights
+
+- **Strong on LiveCodeBench v5**
+- **High code execution success rates**
+- **Repository-scale code understanding**
+- **Advanced agentic capabilities**
+
+#### When to Use Qwen 3 Coder
+
+- **Code generation** across 119 languages
+- **Large codebase analysis** (256K-1M context)
+- **Bug fixing** (SWE-Bench style)
+- **Coding agents** with MCP protocol
+- **Self-hosted coding assistants**
+- **Cost-sensitive projects** (open-source, self-hostable)
+
+#### Common Mistakes
+
+- ❌ Trying to force thinking mode (it's automatic)
+- ❌ Using for general chat (optimized for code)
+- ❌ Not leveraging repository-scale context
+- ❌ Forgetting to specify programming language
+- ❌ Not utilizing MCP protocol for agent workflows
+
+**References:**
+- [Qwen 3 Coder Official Site](https://www.qwen3coder.com/)
+- [Qwen 3 Coder GitHub](https://github.com/QwenLM/Qwen3-Coder)
+- [Google Cloud Docs](https://docs.cloud.google.com/vertex-ai/generative-ai/docs/maas/qwen/qwen3-coder)
 
 ---
 

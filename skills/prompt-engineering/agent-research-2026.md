@@ -795,6 +795,401 @@ When choosing a framework:
 
 ---
 
+---
+
+## 13. Claude Code: Anthropic's Production Architecture
+
+Anthropic's Claude Code provides another production perspective on agentic systems, complementing OpenAI's Codex architecture.
+
+### The Agentic Loop (Anthropic's Model)
+
+**Three-phase cycle:**
+```
+1. Gather Context (search files, read code)
+2. Take Action (edit files, run commands)
+3. Verify Results (run tests, check output)
+→ Repeat until task complete
+```
+
+**Key insight:** Phases blend together. Claude uses tools throughout, not in strict sequence.
+
+**User participation:** You can interrupt at any point to steer, provide context, or change direction.
+
+### Models vs Tools: Clear Separation
+
+**Anthropic's architecture separates two concerns:**
+
+1. **Models** - Reasoning layer
+   - Understand code in any language
+   - Figure out what needs to change
+   - Break work into steps
+   - Adjust based on learning
+
+2. **Tools** - Action layer
+   - File operations (read, edit, create, rename)
+   - Search (find files, search content, explore)
+   - Execution (shell commands, tests, git)
+   - Web (search, fetch docs, error lookup)
+   - Code intelligence (type errors, definitions, references)
+
+**Agentic Harness:** Claude Code is the harness around the model - provides tools, context management, execution environment that turn LLM into capable agent.
+
+### Context Management: Loading Strategies
+
+**Key difference from OpenAI Codex:** Anthropic uses extension layering.
+
+#### Extension Layer
+
+| Feature | Loads | Context Cost | Use Case |
+|---------|-------|--------------|----------|
+| **CLAUDE.md** | Session start | Every request | Always-on rules, conventions |
+| **Skills** | Descriptions at start, content on-demand | Low until used | Reference material, workflows |
+| **MCP servers** | Session start | Every request | External service connections |
+| **Subagents** | On spawn | Isolated context | Parallel work, context isolation |
+| **Hooks** | On trigger | Zero (external) | Automation, side effects |
+
+**Loading optimization:**
+- Skills load descriptions first (~few hundred tokens), full content only when invoked
+- User-only skills (`disable-model-invocation: true`) have zero cost until invoked
+- Subagents get fresh context, don't inherit conversation history
+- Hooks run externally, don't consume context
+
+#### Context Filling Strategy
+
+**When context approaches limit:**
+1. Clear older tool outputs first
+2. Summarize conversation if needed
+3. Preserve: user requests, key code snippets
+4. May lose: detailed instructions from early conversation
+
+**Anthropic's recommendation:** Put persistent rules in CLAUDE.md, not conversation history.
+
+**Compaction control:**
+- Add "Compact Instructions" section to CLAUDE.md
+- Use `/compact focus on [topic]` to specify what to preserve
+
+### Sessions: Ephemeral by Design
+
+**Critical insight:** Claude Code has **no persistent memory between sessions**.
+
+**Each new session starts fresh:**
+- No learning preferences over time
+- Doesn't remember last week's work
+- To persist knowledge: put in CLAUDE.md
+
+**Session-specific features:**
+- Checkpoints (undo file changes within session)
+- Resume (`--continue`) - same session ID
+- Fork (`--fork-session`) - new session ID with history
+
+**Sessions tied to directories**, not git branches:
+- Switch branches → same conversation, different files
+- Use git worktrees for parallel sessions in different directories
+
+### Safety Mechanisms
+
+**Two layers:**
+
+1. **Checkpoints** - Every file edit snapshots current contents
+   - Reversible within session
+   - Separate from git
+   - Only cover file changes (not external actions)
+
+2. **Permission Modes** (Shift+Tab to cycle)
+   - **Default**: Ask before edits and commands
+   - **Auto-accept edits**: Edits without asking, still asks for commands
+   - **Plan mode**: Read-only tools, create plan before execution
+
+**Allowlists:** Specify trusted commands in `.claude/settings.json` (e.g., `npm test`, `git status`)
+
+### Extension Layering: Production Patterns
+
+**How features combine:**
+
+| Pattern | Implementation | Example |
+|---------|---------------|---------|
+| **Skill + MCP** | MCP provides connection, skill teaches usage | MCP connects DB, skill documents schema |
+| **Skill + Subagent** | Skill spawns isolated workers | `/review` kicks off security, perf, style subagents |
+| **CLAUDE.md + Skills** | CLAUDE.md = always-on, Skills = on-demand | CLAUDE.md says "follow conventions", skill has full guide |
+| **Hook + MCP** | Hook triggers external actions via MCP | Post-edit hook sends Slack notification |
+
+**Feature precedence when same name exists:**
+- **CLAUDE.md**: Additive (all levels contribute)
+- **Skills/Subagents**: Override by priority (managed > user > project)
+- **MCP servers**: Override by scope (local > project > user)
+- **Hooks**: Merge (all fire for matching events)
+
+### Context Cost Optimization
+
+**Cost by feature (per request):**
+
+```
+High cost (every request):
+- CLAUDE.md: Full content
+- MCP servers: All tool definitions
+
+Medium cost (descriptions only):
+- Skills: Descriptions at start, full content on invocation
+
+Zero cost (until used):
+- Skills with disable-model-invocation: true
+- Subagents (isolated context)
+- Hooks (run externally)
+```
+
+**Optimization strategies:**
+
+1. **Keep CLAUDE.md under ~500 lines**
+   - Move reference material to skills
+   - Skills load on-demand
+
+2. **Use disable-model-invocation: true**
+   - For skills you invoke manually
+   - Saves context, ensures only you trigger
+
+3. **Disconnect unused MCP servers**
+   - Check cost: `/mcp`
+   - Each server adds tool definitions
+
+4. **Use subagents for isolation**
+   - Work doesn't bloat main session
+   - Returns only summary
+
+5. **MCP Tool Search (default enabled)**
+   - Loads MCP tools up to 10% of context
+   - Defers rest until needed
+
+### Best Practices (Anthropic's Recommendations)
+
+**1. It's a conversation**
+```
+❌ Don't expect perfect prompts first try
+
+✅ Start, then refine:
+"Fix the login bug"
+[Claude investigates]
+"That's not quite right. The issue is in session handling."
+[Claude adjusts]
+```
+
+**2. Be specific upfront**
+```
+❌ Vague: "fix the login bug"
+
+✅ Specific:
+"The checkout flow is broken for users with expired cards.
+Check src/payments/ for the issue, especially token refresh.
+Write a failing test first, then fix it."
+```
+
+**3. Give Claude something to verify against**
+```
+✅ "Implement validateEmail. Test cases:
+- 'user@example.com' → true
+- 'invalid' → false
+- 'user@.com' → false
+Run tests after."
+```
+
+**4. Explore before implementing**
+```
+Use plan mode (Shift+Tab twice):
+
+"Read src/auth/ and understand how we handle sessions.
+Then create a plan for adding OAuth support."
+
+[Review plan, refine through conversation]
+[Then let Claude implement]
+```
+
+**5. Delegate, don't dictate**
+```
+❌ "Read src/auth/session.js, then read src/auth/token.js, then..."
+
+✅ "The checkout flow is broken for users with expired cards.
+The relevant code is in src/payments/. Can you investigate and fix it?"
+```
+
+**6. Interrupt and steer**
+- Can interrupt at any point
+- Type correction and press Enter
+- Claude stops and adjusts
+- No need to wait or start over
+
+### Skills: Reference vs Action
+
+**Two skill types:**
+
+1. **Reference skills** - Knowledge Claude uses throughout session
+   ```markdown
+   # API Style Guide
+   
+   Endpoint patterns:
+   - GET /api/{version}/{resource}
+   - POST /api/{version}/{resource}
+   ...
+   ```
+
+2. **Action skills** - Workflows triggered with `/<name>`
+   ```markdown
+   ---
+   name: deploy
+   description: Deploy to production
+   ---
+   
+   1. Run tests
+   2. Build artifacts
+   3. Push to registry
+   4. Update k8s deployment
+   ```
+
+**Skills in subagents:**
+- Skills passed to subagent are **fully preloaded** at launch
+- Different from main session's on-demand loading
+- Subagents don't inherit skills - must specify explicitly
+
+### Subagents: Context Isolation
+
+**When subagent spawns, it gets:**
+- System prompt (shared with parent for cache efficiency)
+- Full content of skills listed in `skills:` field
+- CLAUDE.md and git status (inherited)
+- Context passed in prompt
+
+**Doesn't inherit:**
+- Conversation history
+- Invoked skills from parent
+- Session-scoped permissions
+
+**Use cases:**
+- Tasks that read many files (only summary returns)
+- Parallel work
+- Context window near full
+- Specialized workers with specific skills
+
+### Comparison: Anthropic vs OpenAI Approaches
+
+| Aspect | Claude Code (Anthropic) | Codex CLI (OpenAI) |
+|--------|------------------------|-------------------|
+| **Extension Model** | Layered (CLAUDE.md, Skills, MCP, Subagents, Hooks) | Prompt-centric with tools |
+| **Context Strategy** | On-demand loading (Skills), isolated workers (Subagents) | Stateless requests, compaction |
+| **Memory Persistence** | Ephemeral sessions, CLAUDE.md for persistence | Previous_response_id optional, ZDR compatible |
+| **Safety Model** | Checkpoints + permission modes | Sandbox configuration + approval gates |
+| **Tool Organization** | Extension layer on top of core loop | Flat tool list in JSON |
+| **Caching Approach** | Extension layering optimizes cache hits | Static first, dynamic last |
+
+**Key philosophical differences:**
+
+**Anthropic (Claude Code):**
+- Emphasizes extension ecosystem
+- Clear separation: always-on (CLAUDE.md) vs on-demand (Skills)
+- Context isolation via subagents
+- Rich permission model (modes + allowlists)
+
+**OpenAI (Codex):**
+- Emphasizes prompt structure
+- Role hierarchy (system > developer > user > assistant)
+- Context management via compaction
+- Sandbox-based permissions
+
+**Both converge on:**
+- Agentic loop architecture
+- Tool calling as core capability
+- Prompt caching critical for performance
+- Stateless execution preferred
+- Context window management essential
+
+### Production Patterns from Claude Code
+
+**1. CLAUDE.md Structure**
+```markdown
+# Project: My App
+
+## Conventions
+- Use pnpm, not npm
+- Run tests before committing
+- Follow API patterns in /docs/api-guide.md
+
+## Build Commands
+- Dev: pnpm dev
+- Test: pnpm test
+- Build: pnpm build
+
+## "Always Do" Rules
+- Add JSDoc for public APIs
+- Update tests when changing behavior
+- Never modify generated files in /dist
+```
+
+**2. Skill Organization**
+```
+.claude/
+  skills/
+    reference/        # Knowledge (API docs, patterns)
+      api-guide.md
+      data-model.md
+    workflows/        # Invocable actions
+      deploy.md       # Trigger with /deploy
+      review.md       # Trigger with /review
+      release.md      # Trigger with /release
+```
+
+**3. MCP Integration Pattern**
+```
+1. MCP server provides connection (e.g., database)
+2. Skill documents how to use it:
+   - Schema
+   - Query patterns
+   - Common operations
+3. CLAUDE.md references both:
+   "Use /db:query for database access. Follow patterns in data-model skill."
+```
+
+**4. Subagent Delegation**
+```
+Main session: Coordinate high-level work
+  ↓
+Spawn subagents for:
+  - Codebase analysis (reads 100+ files, returns summary)
+  - Parallel implementations (feature A, B, C independently)
+  - Specialized tasks (security review with security-focused skills)
+```
+
+**5. Hook Automation**
+```json
+{
+  "hooks": {
+    "after-edit": "npx eslint --fix {file}",
+    "before-commit": "pnpm test",
+    "after-session-start": "./scripts/check-env.sh"
+  }
+}
+```
+
+### Key Metrics to Track
+
+**From Claude Code production:**
+
+| Metric | Target | Indicates |
+|--------|--------|-----------|
+| **CLAUDE.md size** | <500 lines | Context efficiency |
+| **Skills loaded** | <5 active | Context optimization |
+| **MCP servers** | <3 connected | Tool definition cost |
+| **Session length** | <50 turns | Before compaction needed |
+| **Context usage** | <60% of limit | Headroom for work |
+
+**Red flags:**
+- CLAUDE.md >1000 lines (move to skills)
+- >5 MCP servers connected (disconnect unused)
+- >80% context usage (spawn subagent or compact)
+- Skills not triggering (improve descriptions)
+
+**Sources:**
+- [Claude Code: How It Works](https://code.claude.com/docs/how-claude-code-works)
+- [Claude Code: Extend Features](https://code.claude.com/docs/features-overview)
+
+---
+
 ## Last Updated
 
 January 24, 2026
