@@ -718,7 +718,7 @@ Respond in [target language]:
 
 ### Agent Loop Prompting
 
-**Description:** Structure prompts for multi-turn agent interactions with tool calling.
+**Description:** Structure prompts for multi-turn agent interactions with tool calling. (Note: For advanced agent architecture, multi-agent orchestration, and production-ready agent systems, use the `agentic-systems` skill).
 
 **When to use:**
 - Building software agents
@@ -1020,7 +1020,7 @@ Operations requiring approval:
    - Best for research and analysis
 
 6. **Agent Loop + Planning Tool + Self-Correction** ⭐ NEW
-   - Structured multi-turn workflow
+   - Structured multi-turn workflow. (Note: For advanced agent architecture, use the `agentic-systems` skill).
    - Explicit progress tracking
    - Automatic error recovery
    - Best for autonomous software agents
@@ -1029,21 +1029,21 @@ Operations requiring approval:
 
 ## Technique Selection Guide
 
-| Task Type | Recommended Techniques | Priority |
-|-----------|----------------------|----------|
-| Math/Logic | CoT, Self-Consistency | High |
-| Creative Writing | Few-Shot, Role, Emotion | Medium |
-| Data Extraction | Format, Few-Shot, Constraint | High |
-| Analysis | CoT, Perspective-Taking, Verification | Medium |
-| Code Generation | Few-Shot, Multi-Step, Self-Critique | High |
-| Research | ReAct, Question Decomposition, Verification | High |
-| Summarization | Length Control, Format | Medium |
-| Translation | Cross-Lingual, Verification | High |
-| Q&A | ReAct, Verification, Context | High |
-| Classification | Few-Shot, Contrastive | High |
-| **Software Agents** | **Agent Loop, Planning Tool, Self-Correction** | **High** |
-| **Multi-Turn Workflows** | **Prompt Caching, Context Management** | **High** |
-| **Tool Calling** | **Tool Schema Design, Approval Gates** | **High** |
+| Task Type | Recommended Techniques | Priority | Note |
+|-----------|----------------------|----------|------|
+| Math/Logic | CoT, Self-Consistency | High | |
+| Creative Writing | Few-Shot, Role, Emotion | Medium | |
+| Data Extraction | Format, Few-Shot, Constraint | High | |
+| Analysis | CoT, Perspective-Taking, Verification | Medium | |
+| Code Generation | Few-Shot, Multi-Step, Self-Critique | High | |
+| Research | ReAct, Question Decomposition, Verification | High | |
+| Summarization | Length Control, Format | Medium | |
+| Translation | Cross-Lingual, Verification | High | |
+| Q&A | ReAct, Verification, Context | High | |
+| Classification | Few-Shot, Contrastive | High | |
+| **Software Agents** | **Agent Loop, Planning Tool, Self-Correction** | **High** | (See `agentic-systems` skill) |
+| **Multi-Turn Workflows** | **Prompt Caching, Context Management** | **High** | |
+| **Tool Calling** | **Tool Schema Design, Approval Gates** | **High** | |
 
 ---
 
