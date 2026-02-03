@@ -54,7 +54,7 @@ When tasked with creative work or exploring user intent:
 
 ## Working Workflow
 
-1.  **Context Intake**: Thoroughly analyze the user's request and existing codebase.
+1.  **Context Intake**: Thoroughly analyze the user's request and existing codebase. Check `docs/features/` for existing feature context.
 2.  **Information Gathering**: 
     -   Search for existing solutions and best practices.
     -   Identify "black swans" or non-obvious risks.

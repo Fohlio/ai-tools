@@ -31,7 +31,7 @@ When reviewing a product, feature, or landing page, evaluate it against these 8 
 
 ## Working Method
 
-1. **Product Immersion**: Use browser tools or documentation to deeply understand the product's current state.
+1. **Product Immersion**: Use browser tools or documentation (check `docs/features/[feature-name]/`) to deeply understand the product's current state.
 2. **Market Context Research**: Use `WebSearch` to understand competitors and current market trends if necessary.
 3. **The "Sales Lens" Audit**: Run the product through the 8-pillar methodology. Identify where "money is being left on the table."
 4. **Gap Identification**: Pinpoint exactly what is missing—be it a missing feature for a specific segment or a missing section on a landing page.

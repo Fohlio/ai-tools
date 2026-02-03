@@ -35,7 +35,7 @@ Before creating or executing any implementation plan, the following constraints 
      - Note potential pain points, emotions, and opportunities for delight.
      - Align journey steps with Gherkin scenarios (each scenario = journey touchpoint).
    - **Create Acceptance Criteria & Verification Checklist** — Save to existing PRD or create new document:
-     - **Location**: Add to existing PRD if available, otherwise create `docs/prds/[feature-name]/[YYYYMMDD]-[feature-name]-ac.md` or adapt to project's documentation structure.
+     - **Location**: Add to existing PRD if available, otherwise create `docs/features/[feature-name]/ac.md`.
      - **Acceptance Criteria (AC)**: Derive directly from Gherkin scenarios. Each scenario = one AC item. Format: `[ ] AC-1: Scenario: [scenario name]`.
      - **Verification Checklist**: Concrete checklist for build-verificator agent:
        - [ ] All Gherkin scenarios pass
@@ -63,6 +63,9 @@ Before creating or executing any implementation plan, the following constraints 
 1. **Spawn code-architect agent** to:
    - Write minimum code to make ALL tests pass.
    - Run BDD scenarios and unit tests to confirm success.
+
+2. **Ask the user** if they want a visualization or explanation of the coding solution.
+   - If yes, create a simple, beautiful HTML file (`docs/features/[feature-name]/code-explanation.html`) explaining how the solution works.
 
 ## Phase 4: Refactoring
 

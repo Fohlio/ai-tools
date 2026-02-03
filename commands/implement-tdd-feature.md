@@ -35,7 +35,7 @@ Before creating or executing any implementation plan, the following constraints 
      - Note potential pain points, emotions, and opportunities for delight.
      - Derive test cases from journey steps (each step = testable behavior).
    - **Create Acceptance Criteria & Verification Checklist** — Save to existing PRD or create new document:
-     - **Location**: Add to existing PRD if available, otherwise create `docs/prds/[feature-name]/[YYYYMMDD]-[feature-name]-ac.md` or adapt to project's documentation structure.
+     - **Location**: Add to existing PRD if available, otherwise create `docs/features/[feature-name]/ac.md`.
      - **Acceptance Criteria (AC)**: List testable conditions derived from User Journey. Format: `[ ] AC-1: [Given/When/Then or clear condition]`.
      - **Test Case Mapping**: Each AC item should map to one or more test cases. Format: `AC-1 → test_feature_behavior()`.
      - **Verification Checklist**: Concrete checklist for build-verificator agent:
@@ -63,6 +63,9 @@ Before creating or executing any implementation plan, the following constraints 
    - Write **minimum code necessary** to make tests pass.
    - Adhere to existing patterns.
    - **Run tests to confirm they pass.**
+
+2. **Ask the user** if they want a visualization or explanation of the coding solution.
+   - If yes, create a simple, beautiful HTML file (`docs/features/[feature-name]/code-explanation.html`) explaining how the solution works.
 
 ## Phase 4: Refactoring (Refactor Phase)
 

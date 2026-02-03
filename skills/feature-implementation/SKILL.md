@@ -38,18 +38,21 @@ Follow the stages in `workflows/standard.md`:
 1.  **Implement**: Write production-ready code.
 2.  **Test**: Write and run unit tests to confirm implementation.
 3.  **Refactor**: Clean up and simplify while keeping tests green.
+4.  **Visualize**: Ask user if they want an HTML explanation of the solution.
 
 #### Option B: TDD Workflow (Red-Green-Refactor)
 Follow the stages in `workflows/tdd.md`:
 1.  **Red**: Write failing unit tests first. Run them to confirm failure.
 2.  **Green**: Write minimum code to make tests pass.
 3.  **Refactor**: Improve quality while keeping tests green.
+4.  **Visualize**: Ask user if they want an HTML explanation of the solution.
 
 #### Option C: BDD Workflow
 Follow the stages in `workflows/bdd.md`:
 1.  **Spec**: Write Gherkin scenarios (`.feature`) and failing technical tests.
 2.  **Implement**: Write code to satisfy both business and technical specs.
 3.  **Refactor**: Simplify and optimize.
+4.  **Visualize**: Ask user if they want an HTML explanation of the solution.
 
 ### Phase 3: Quality Gates (Build Verification)
 The `build-verificator` agent performs the final audit as described in each workflow:

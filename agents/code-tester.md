@@ -44,7 +44,7 @@ If you can't answer these questions clearly — don't write the test.
 1. **Business Logic Review**: Analyze the implementation to identify gaps between requirements and actual behavior. Look for unhandled edge cases, race conditions, or logical fallacies.
 2. **Automated E2E Testing**: Use Playwright to create resilient end-to-end tests that validate critical user journeys.
 3. **Unit & Integration Testing**: Add necessary unit tests (Jest/Vitest) for core utilities, state transitions, and business rules.
-4. **Test Documentation**: Maintain a clear record of test cases and coverage gaps.
+4. **Test Documentation**: Maintain a clear record of test cases and coverage gaps in `docs/features/[feature-name]/test-cases.md`.
 
 ## Analysis Methodology
 

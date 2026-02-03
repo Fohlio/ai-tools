@@ -36,7 +36,7 @@ Before creating or executing any implementation plan, the following constraints 
      - Note potential pain points, emotions, and opportunities for delight.
      - Highlight touchpoints with existing systems (auth, notifications, etc.).
    - **Create Acceptance Criteria & Verification Checklist** — Save to existing PRD or create new document:
-     - **Location**: Add to existing PRD if available, otherwise create `docs/prds/[feature-name]/[YYYYMMDD]-[feature-name]-ac.md` or adapt to project's documentation structure.
+     - **Location**: Add to existing PRD if available, otherwise create `docs/features/[feature-name]/ac.md`.
      - **Acceptance Criteria (AC)**: List testable conditions that must be true for the feature to be considered complete. Use format: `[ ] AC-1: [Given/When/Then or clear condition]`.
      - **Verification Checklist**: Concrete checklist for build-verificator agent:
        - [ ] All AC items pass manual/automated testing
@@ -58,6 +58,9 @@ Before creating or executing any implementation plan, the following constraints 
    - Follow the approved plan.
    - Write clean, production-ready code.
    - Adhere to existing patterns in the codebase.
+
+2. **Ask the user** if they want a visualization or explanation of the coding solution.
+   - If yes, create a simple, beautiful HTML file (`docs/features/[feature-name]/code-explanation.html`) explaining how the solution works.
 
 ## Phase 3: Testing
 

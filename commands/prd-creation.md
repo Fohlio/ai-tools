@@ -68,5 +68,5 @@ You are orchestrating the creation of a Product Requirements Document (PRD). You
    - Ensure the requirements are actionable and don't introduce unnecessary complexity.
 
 3. **Completion**:
-   - Save the PRD (typically to `docs/prd/[feature-name].md`).
+   - Save the PRD (typically to `docs/features/[feature-name]/prd.md`).
    - Offer to start the implementation using the `/implement-feature` command. **Use the `AskQuestion` tool to let the user choose the next step.**

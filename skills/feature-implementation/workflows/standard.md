@@ -15,12 +15,17 @@ Before creating or executing any implementation plan, the following constraints 
 5. **Context Intake** — Gather all requirements, design links, and chat history containing recommendations from other agents involved in the project.
 6. **Explicit Approval** — Present the plan to the user and wait for explicit approval before proceeding to implementation phases.
 7. **POC First** — If the hypothesis is dubious or the technical confidence level is low, prioritize creating a Proof of Concept (POC) using the `poc-hypothesis` skill to validate the approach before full implementation.
+8. **Confidence Check** — For each planning point, explicitly state the confidence level (High/Medium/Low). If the confidence level is not "High", add a step to use the **brainstorming agent** (Researcher with Brainstorming Protocol) to find solutions and propose alternatives before finalizing the plan.
 
 ### Planning Tasks
 1. **Spawn plan agent** to:
    - Read requirements and gather context.
    - Audit existing codebase for reusable components and patterns.
    - Ask clarifying questions to the user.
+   - **Create Acceptance Criteria & Verification Checklist** — Save to existing PRD or create new document:
+     - **Location**: Add to existing PRD if available, otherwise create `docs/features/[feature-name]/ac.md`.
+     - **Acceptance Criteria (AC)**: List testable conditions.
+     - **Verification Checklist**: Concrete checklist for build-verificator agent.
    - Create a phased roadmap with priorities (P0-P2) and T-shirt sizes.
    - Identify files to create/modify and potential risks.
 
@@ -32,6 +37,9 @@ Before creating or executing any implementation plan, the following constraints 
    - Follow the approved plan.
    - Write clean, production-ready code.
    - Adhere to existing patterns in the codebase.
+
+2. **Ask the user** if they want a visualization or explanation of the coding solution.
+   - If yes, create a simple, beautiful HTML file (`docs/features/[feature-name]/code-explanation.html`) explaining how the solution works.
 
 ## Phase 3: Testing
 

@@ -51,38 +51,20 @@ When building features that read data, verify the write path exists first. Ensur
 
 1. **Analyze Implementation**: Read the source code and any available requirements to understand intended behavior.
 2. **Document Testing Process**: Create two specific deliverables in the folder where feature documentation is or where other related docs are located:
-   - **`[feature-name]-report.md`**: Summarizes the overall testing outcome, identified gaps, results, and recommendations.
-   - **`[feature-name]-test-cases.md`**: Lists all specific test cases, their types, priorities, and implementation status.
+   - **`docs/features/[feature-name]/test-cases.md`**: Lists all specific test cases, their types, priorities, and implementation status.
 3. **Traceability & Task Updates**: For every test case created, **add a reference to it in the relevant task list** (e.g., `roadmap.md`, `tasks.md`, or the feature's PRD). This ensures that each implementation task is visibly linked to its verification method.
 4. **Environment Setup**: Check for existing test configurations (playwright.config.ts, jest.config.js, vitest.config.ts).
 5. **Implementation**:
    - **Mandatory Unit Testing**: Automatically identify and write Unit tests (Jest/Vitest) for pure logic, utility functions, and complex business rules.
    - **Automated E2E Testing**: Write Playwright scripts for UI-heavy features and critical user journeys.
-   - **Fix Discovery**: Fix bugs discovered during testing if they are straightforward; otherwise, report them in the report.
+   - **Fix Discovery**: Fix bugs discovered during testing if they are straightforward; otherwise, report them to the main agent.
 6. **Validation**: Run the tests and ensure they pass in the current environment.
 
 ## Output Format
 
-Save these files in the directory containing the feature's documentation or related context.
+Save these files in the directory `docs/features/[feature-name]/`.
 
-### 1. [feature-name]-report.md
-Summarize the testing results and findings:
-
-#### Testing Summary
-- **Overall Status**: [Pass/Fail/Partial]
-- **Coverage Estimate**: [%]
-- **Primary Risks**: [Top 2-3 risks identified]
-
-#### Logic Gap Analysis
-- **Gap 1**: [Description of missing logic or requirement discrepancy] -> **Status**: [Fixed/Reported]
-- **Gap 2**: [Description]
-
-#### Test Results & Recommendations
-- **Successes**: [What worked as expected]
-- **Failures/Issues**: [What failed and why]
-- **Recommendations**: [Actionable steps to improve robustness or performance]
-
-### 2. [feature-name]-test-cases.md
+### 1. test-cases.md
 Define the specific test scenarios:
 
 #### Test Cases

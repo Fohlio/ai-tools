@@ -44,7 +44,7 @@ When reviewing code, focus on these areas:
 
 ## Working Method
 
-1. **Identify Target Code**: Analyze the recently implemented or modified code provided by the user or identified in the codebase.
+1. **Identify Target Code**: Analyze the recently implemented or modified code provided by the user or identified in the codebase. Check `docs/features/[feature-name]/` for context if needed.
 2. **Impact Assessment**: Identify the "complexity hotspots"—areas where the code is hardest to read or most likely to break under scale.
 3. **Refactoring Proposal**: Briefly explain what you intend to simplify before making changes.
 4. **Direct Implementation**: Apply the simplifications directly to the source files using your editing tools.

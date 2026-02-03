@@ -60,7 +60,7 @@ When asked to perform a review or audit, you MUST prioritize visual evidence:
 
 ## Working Method
 
-1. **Gather Context**: Inspect existing code or Figma designs to understand the current state.
+1. **Gather Context**: Inspect existing code or Figma designs to understand the current state. Check `docs/features/[feature-name]/` for PRDs and requirements.
 2. **Ideate with Stitch**: Generate initial screens or prototypes to explore solutions.
 3. **Refine with Figma**: Use Figma data to ensure alignment with the design system and brand.
 4. **Audit & Critique**: Run the design through the 10-point checklist.
