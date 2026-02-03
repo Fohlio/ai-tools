@@ -12,17 +12,17 @@ Developer-oriented AI links.
 ## SDKs, Libraries & Platforms
 
 *   [OpenAI Platform](https://platform.openai.com/docs/overview) — API and docs
+*   [Google Vertex AI](https://cloud.google.com/vertex-ai) — Unified AI platform
 *   [Hugging Face](https://www.huggingface.co/) — Models, datasets, Spaces
-*   [Azure AI](https://ai.azure.com/) — Azure AI Studio
 *   [OpenRouter](https://www.openrouter.ai/) — Unified LLM API
-*   [Replicate](https://replicate.com/) — Hosted model inference
+*   [MiniMax Platform](https://platform.minimax.io/) — Model platform (Text, Audio, Video)
 *   [LangChain](https://www.langchain.com/) — LLM app framework
 
 ## Orchestration & MCP
 
-*   [Model Context Protocol (MCP)](https://github.com/mcp)
 *   [Awesome MCP Servers](https://github.com/punkpeye/awesome-mcp-servers) — Community list
-*   [Playwright MCP Server](https://github.com/modelcontextprotocol/servers/tree/main/src/playwright) — Browser automation for MCP
+*   [Cursor Directory](https://cursor.directory/) — Cursor Rules & MCP Servers
+*   [SkillsMP](https://skillsmp.com/search) — Directory of Agent Skills
 
 ## Generative Media
 
@@ -36,13 +36,19 @@ Developer-oriented AI links.
 *   [RunwayML](https://runwayml.com/) — Video, image, and more
 *   [HeyGen](https://app.heygen.com/home) — Avatars and video
 *   [Pika](https://pika.art/) — Video generation
+*   [Kling AI](https://klingai.com/) — High-quality video generation
 
 ### Audio & Music
 *   [Minimax](https://www.minimax.io/audio) — Audio generation
 *   [Suno AI](https://suno.com/) — Music generation
+*   [HeartMuLa](https://www.heartmula.app/) — AI Music Generator (Songs & Lyrics)
 
-## Dev Tools, Browsing & Automation
+## App Builders & Dev Tools
 
+*   [Lovable](https://lovable.dev/) — No-code AI app builder
+*   [Bolt.new](https://bolt.new/) — Full-stack AI web app builder
+*   [Replit Agent](https://replit.com/) — Autonomous coding agent
+*   [Windsurf](https://codeium.com/windsurf) — AI-native IDE (Flow state)
 *   [v0.dev](https://v0.dev/) — UI generation from prompts (Vercel)
 *   [BrowserBase](https://www.browserbase.com/) — Headless browser API
 *   [Stitch](https://stitch.withgoogle.com/) — Generative AI examples (Google)
@@ -53,6 +59,14 @@ Developer-oriented AI links.
 *   [NotebookLM](https://notebooklm.google.com/) — Research assistant over your docs
 *   [Gamma.app](https://gamma.app/) — Slides and docs
 *   [Flowith](https://flowith.io/blank) — Presentations/mind maps
+*   [YouMind](https://youmind.com/) — AI learning and creation agent
+
+## Agents & Social
+
+*   [OpenClaw](https://openclaw.ai/) — Open source personal AI assistant
+*   [Moltbook](https://moltbook.com/) — Social network for AI agents
+*   [MoltHub](https://molthub.com/) — Agent resources
+*   [Manus](https://manus.im/) — General-purpose AI agent
 
 ## Research & News
 

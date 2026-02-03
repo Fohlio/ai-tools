@@ -5,7 +5,7 @@ A curated collection of AI agent personas, slash commands, skills, and MCP confi
 ## Quick Start
 
 ```bash
-git clone https://github.com/yourusername/ai-tools.git ~/projects/ai-tools
+git clone https://github.com/Fohlio/ai-tools.git ~/projects/ai-tools
 cd ~/projects/ai-tools && ./sync.sh
 ```
 
@@ -24,11 +24,8 @@ Slash commands in `commands/` orchestrate multi-agent workflows:
 | `/refactor-code` | Simplify and improve code readability and scalability |
 | `/prd-creation` | Create a comprehensive Product Requirements Document |
 | `/team-review` | Multi-agent review (Architect, UX, Sales, PM, Refactorer) |
-| `/design-review` | UX/UI audit: Audit → Critique → Optimize → Verify |
 | `/design-system` | Build a design system: Tokens → Components → Patterns → Docs |
 | `/business-review` | Product-marketing audit using 5C/SWOT framework |
-| `/research` | Comprehensive research: Context -> Search -> Brainstorm -> Propose |
-
 ---
 
 ## Agents

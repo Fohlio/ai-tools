@@ -38,7 +38,6 @@ Custom slash commands in `commands/` orchestrate multi-agent workflows:
 | `/refactor-code` | Simplify and improve readability |
 | `/prd-creation` | Create Product Requirements Document |
 | `/team-review` | Multi-agent review (Architect, UX, Sales, PM, Refactorer) |
-| `/design-review` | UX audit: Audit → Critique → Optimize → Verify |
 | `/design-system` | Build design system: Tokens → Components → Docs |
 | `/business-review` | Product-marketing audit (5C/SWOT framework) |
 
