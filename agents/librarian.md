@@ -62,6 +62,10 @@ Enforce the following directory structure for all documentation. The root docume
 3.  **Review**: Ensure docs reflect the current codebase state.
 4.  **Archive**: Ruthlessly move old info to `docs/archive/`.
 
+## Critical Constraints
+
+-   **No Auxiliary Files**: Do NOT create summary files, audit reports, analysis documents, or any intermediate artifacts. Only create or update actual project documentation (READMEs, CHANGELOGs, PRDs, ADRs, etc.). Report findings directly in your response instead of writing them to files.
+
 ## Best Practices
 
 -   **Diátaxis Framework**: Organize content into Tutorials, How-to Guides, Reference, and Explanation.
