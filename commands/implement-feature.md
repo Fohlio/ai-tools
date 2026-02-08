@@ -47,8 +47,9 @@ You are orchestrating a complete feature implementation pipeline. This workflow 
 
 Before creating or executing any implementation plan, the following constraints must be enforced:
 
-1. **Audit before building** — Search the codebase for existing components, utilities, and patterns that solve similar problems. Reuse first.
-2. **Technical Constraints & Edge Cases** — Identify technical limitations (performance, security, API limits) and plan for edge cases (error states, empty data, network failures) from the start.
+1. **Clarify before planning** — If the task is ambiguous, incomplete, or open to interpretation, ask the user clarifying questions BEFORE creating a plan. Use `AskQuestion`. Key questions: What exactly should happen? What edge cases matter? What's in scope vs. deferred? Are there existing constraints or preferences? **Planning with wrong assumptions wastes more time than asking 3 questions upfront.**
+2. **Audit before building** — Search the codebase for existing components, utilities, and patterns that solve similar problems. Reuse first.
+3. **Technical Constraints & Edge Cases** — Identify technical limitations (performance, security, API limits) and plan for edge cases (error states, empty data, network failures) from the start.
 3. **No placeholders** — Every requested feature must be fully implemented. Never leave `TODO`, `FIXME`, or stub comments. If scope needs trimming, explicitly ask to defer.
 4. **Minimize invention** — Prefer existing libraries, framework features, and project abstractions over custom solutions. Build only what doesn't exist.
 4. **Map integration surfaces** — Identify how new code connects to existing systems. Verify APIs, props, and data flows before implementation.
@@ -61,7 +62,7 @@ Before creating or executing any implementation plan, the following constraints 
 1. **Spawn plan agent** to:
    - Read requirements and gather context.
    - Audit existing codebase for reusable components and patterns.
-   - Ask clarifying questions to the user.
+   - **Ask clarifying questions** — Use `AskQuestion` to identify gaps in requirements. Confirm: expected behavior, scope boundaries, edge cases, and priorities. Do NOT skip this even if the task seems clear — there are always assumptions worth validating.
    - **Create User Journey Map** — Visualize the user's path through the feature:
      - Define user persona and entry point.
      - Map each step/screen the user interacts with.

@@ -41,8 +41,9 @@ You are orchestrating a Test-Driven Development pipeline. **Tests are written BE
 
 Before creating or executing any implementation plan, the following constraints must be enforced:
 
-1. **Audit before building** — Search the codebase for existing components, utilities, and patterns that solve similar problems. Reuse first.
-2. **No placeholders** — Every requested feature must be fully implemented. Never leave `TODO`, `FIXME`, or stub comments. If scope needs trimming, explicitly ask to defer.
+1. **Clarify before planning** — If the task is ambiguous, incomplete, or open to interpretation, ask the user clarifying questions BEFORE creating a plan. Use `AskQuestion`. Key questions: What exactly should happen? What edge cases matter? What's in scope vs. deferred? Are there existing constraints or preferences? **Planning with wrong assumptions wastes more time than asking 3 questions upfront.**
+2. **Audit before building** — Search the codebase for existing components, utilities, and patterns that solve similar problems. Reuse first.
+3. **No placeholders** — Every requested feature must be fully implemented. Never leave `TODO`, `FIXME`, or stub comments. If scope needs trimming, explicitly ask to defer.
 3. **Minimize invention** — Prefer existing libraries, framework features, and project abstractions over custom solutions. Build only what doesn't exist.
 4. **Map integration surfaces** — Identify how new code connects to existing systems. Verify APIs, props, and data flows before implementation.
 5. **Context Intake** — Gather all requirements, design links, and chat history containing recommendations from other agents involved in the project.
@@ -54,6 +55,7 @@ Before creating or executing any implementation plan, the following constraints 
 1. **Spawn plan agent** to:
    - Read requirements and gather context.
    - Audit existing codebase for reusable components.
+   - **Ask clarifying questions** — Use `AskQuestion` to identify gaps in requirements. Confirm: expected behavior, scope boundaries, edge cases, and priorities. Do NOT skip this even if the task seems clear — there are always assumptions worth validating.
    - **Create Acceptance Criteria & Verification Checklist** — Save to existing PRD or create new document:
      - **Location**: Add to existing PRD if available, otherwise create `docs/features/[feature-name]/ac.md`.
      - **Acceptance Criteria (AC)**: List testable conditions derived from User Journey.
