@@ -61,15 +61,25 @@ The `build-verificator` agent performs the final audit as described in each work
 3.  **Requirement Audit**: Maps implementation back to the original plan.
 4.  **Recommendation Audit**: Verifies that all expert feedback from the conversation was either implemented, communicated, or roadmaped.
 
-## Important Rules
+### Phase 4: Documentation & Archiving
+**Spawn librarian agent** to update all project documentation, CHANGELOG, and knowledge base. This phase is **MANDATORY** — the workflow is NOT complete without it.
 
-| Rule | Description |
-| :--- | :--- |
-| **No Placeholders** | Never leave `TODO` or `FIXME`. Implementation must be complete. |
-| **Verification Gate** | Never mark a task as "Done" without a successful Build Verification Report. |
-| **Sequential Phases** | Complete each phase fully before moving to the next. |
-| **Audit First** | Always check for existing code to reuse before writing new logic. |
-| **POC First** | If hypothesis is dubious or confidence is low, prioritize creating a POC first. |
+## MANDATORY EXECUTION RULES
+
+> **Every phase in the selected workflow is MANDATORY. The orchestrator MUST execute ALL phases sequentially, spawning the named agent for each.**
+
+| # | Rule | Detail |
+|---|------|--------|
+| 1 | **Track phases** | Review Phase Gates table before starting. Report deliverables to user after each phase. Use `TodoWrite` for implementation tasks, not phase tracking. |
+| 2 | **Spawn agents** | Each phase names a specific agent. Use the `Task` tool. **Never self-perform.** |
+| 3 | **No skipping** | Only UX Review may be skipped (zero-UI features, stated to user). All other phases are mandatory — including Refactoring, Build Verification, and Documentation. |
+| 4 | **Phase gates** | After each phase, report deliverables to the user before proceeding. |
+| 5 | **Complete ALL phases** | Workflow ends after Documentation (Phase 7), not before. |
+| 6 | **No placeholders** | Never leave `TODO` or `FIXME`. |
+| 7 | **Verification gate** | Never mark "Done" without Build Verification Report from `build-verificator`. |
+| 8 | **Audit first** | Check for existing code to reuse before writing new logic. |
+| 9 | **POC first** | If confidence is low, create a POC before full implementation. |
+| 10 | **Phase compliance check** | Before writing the final summary, verify ALL phases were executed per the Phase Gates table. If any were not, go back and execute them. |
 
 ## Examples
 

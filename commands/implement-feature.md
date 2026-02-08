@@ -8,6 +8,39 @@ allowed-tools: Task, Read, Glob, Grep, Edit, Write, Bash, AskQuestion, TodoWrite
 
 You are orchestrating a complete feature implementation pipeline. This workflow is suitable for general features where rapid development is prioritized while maintaining quality.
 
+---
+
+## MANDATORY EXECUTION PROTOCOL
+
+> **Every phase below is MANDATORY. Skipping, combining, or self-performing phases is a WORKFLOW VIOLATION.**
+
+**Before starting Phase 1:**
+- Review the Phase Gates table below. Each gate is a checkpoint you MUST pass.
+
+**Between every phase:**
+- Report deliverables to the user. Only then proceed to the next phase.
+- Use `TodoWrite` for tracking implementation tasks within phases — not for phases themselves.
+
+**Hard rules:**
+- **NEVER skip a phase.** Only Phase 5 (UX Review) may be skipped for zero-UI features — state this to the user first.
+- **NEVER do a phase's work yourself.** Spawn the named agent via `Task` tool.
+- **NEVER mark workflow complete** before Phase 7 (Documentation) is done.
+- **If unsure, ask the user.** Do not assume any phase is unnecessary.
+
+### Phase Gates
+
+| Gate | Agent to spawn | Confirm before proceeding |
+|------|---------------|--------------------------|
+| Phase 1: Planning | `plan` | User Journey Map, AC document, roadmap created. **User approved.** |
+| Phase 2: Implementation | `code-architect` | Implementation complete. User asked about visualization. |
+| Phase 3: Testing | `code-tester` | Tests written per AC. All pass. AC doc updated. |
+| Phase 4: Refactoring | `code-refactorer` | Code reviewed and improved. Tests still green. |
+| Phase 5: UX Review | `ux-designer` | User flows validated, UI consistency checked — or skipped (zero-UI, stated to user). |
+| Phase 6: Verification | `build-verificator` | AC verified. Full suite passes. |
+| Phase 7: Documentation | `librarian` | Docs, CHANGELOG updated. |
+
+---
+
 ## Phase 1: Discovery & Planning
 
 ### Planning Principles
@@ -81,7 +114,11 @@ Before creating or executing any implementation plan, the following constraints 
 ## Phase 5: UX Review (Conditional)
 
 If the feature has UI components:
-1. **Spawn ux-designer agent** to audit UI, accessibility, and user flows.
+1. **Spawn ux-designer agent** to:
+   - **Validate user flows** — Walk through the User Journey Map from Phase 1. Verify each step works as intended, transitions are smooth, and the user can complete their goal without confusion.
+   - **Check UI consistency** — Ensure components match design system and existing patterns.
+   - **Review error states** — Confirm error messages are clear and recovery paths exist.
+   - Accessibility is secondary to flow correctness — focus on user experience first.
 Skip if backend-only.
 
 ## Phase 6: Build Verification
@@ -106,12 +143,20 @@ Skip if backend-only.
    - Ensure best practices for IT documentation are followed.
 
 ## Completion
-1. **Session Analysis**: Perform a brief retrospective of the session:
+1. **Phase Compliance Self-Check** — Before writing the summary, verify ALL 7 phases were executed by reviewing the Phase Gates table. If any phase was not executed, **STOP and go execute it now.** Specifically confirm:
+   - [ ] Phase 1: Plan agent spawned, User Journey Map + AC doc created, user approved
+   - [ ] Phase 2: Code-architect spawned, implementation complete
+   - [ ] Phase 3: Code-tester spawned, tests written and passing
+   - [ ] Phase 4: Code-refactorer spawned, code reviewed
+   - [ ] Phase 5: UX-designer spawned (or explicitly skipped for backend-only)
+   - [ ] Phase 6: Build-verificator spawned, AC verified
+   - [ ] Phase 7: Librarian spawned, docs updated
+2. **Session Analysis**: Perform a brief retrospective of the session:
    - What worked well (tools, communication, logic)?
    - What were the friction points or failures?
    - How can the workflow or instructions be improved for next time?
-2. **Propose Improvements**: Suggest 2-3 specific ways to further enhance the feature, improve performance, or reduce technical debt.
-3. **Final Summary**:
+3. **Propose Improvements**: Suggest 2-3 specific ways to further enhance the feature, improve performance, or reduce technical debt.
+4. **Final Summary**:
    - Summarize implementation and list modified files.
    - Report test results and metrics.
    - Note follow-up items or technical debt.

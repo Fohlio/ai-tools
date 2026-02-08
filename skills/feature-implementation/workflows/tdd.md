@@ -2,6 +2,39 @@
 
 You are orchestrating a Test-Driven Development pipeline. **Tests are written BEFORE implementation.**
 
+---
+
+## MANDATORY EXECUTION PROTOCOL
+
+> **Every phase below is MANDATORY. Skipping, combining, or self-performing phases is a WORKFLOW VIOLATION.**
+
+**Before starting Phase 1:**
+- Review the Phase Gates table below. Each gate is a checkpoint you MUST pass.
+
+**Between every phase:**
+- Report deliverables to the user. Only then proceed to the next phase.
+- Use `TodoWrite` for tracking implementation tasks within phases — not for phases themselves.
+
+**Hard rules:**
+- **NEVER skip a phase.** Only Phase 5 (UX Review) may be skipped for zero-UI features — state this to the user first.
+- **NEVER do a phase's work yourself.** Spawn the named agent via `Task` tool.
+- **NEVER mark workflow complete** before Phase 7 (Documentation) is done.
+- **If unsure, ask the user.** Do not assume any phase is unnecessary.
+
+### Phase Gates
+
+| Gate | Agent to spawn | Confirm before proceeding |
+|------|---------------|--------------------------|
+| Phase 1: Planning | `plan` | User Journey Map, AC with test mapping, roadmap created. **User approved.** |
+| Phase 2: Red (Tests) | `code-tester` | Failing tests written. **Confirmed to fail.** |
+| Phase 3: Green (Impl) | `code-architect` | Minimum code written. **All tests pass.** |
+| Phase 4: Refactor | `code-refactorer` | Code improved. Tests still green. |
+| Phase 5: UX Review | `ux-designer` | User flows validated, UI consistency checked — or skipped (zero-UI, stated to user). |
+| Phase 6: Verification | `build-verificator` | AC verified. Full suite passes. |
+| Phase 7: Documentation | `librarian` | Docs, CHANGELOG updated. |
+
+---
+
 ## Phase 1: Discovery & Planning
 
 ### Planning Principles
@@ -53,7 +86,11 @@ Before creating or executing any implementation plan, the following constraints 
 ## Phase 5: UX Review (Conditional)
 
 If the feature has UI components:
-1. **Spawn ux-designer agent** to audit UI, accessibility, and user flows.
+1. **Spawn ux-designer agent** to:
+   - **Validate user flows** — Walk through the User Journey Map. Verify each step works as intended and transitions are smooth.
+   - **Check UI consistency** — Ensure components match design system and existing patterns.
+   - **Review error states** — Confirm error messages are clear and recovery paths exist.
+   - Accessibility is secondary to flow correctness — focus on user experience first.
 
 ## Phase 6: Build Verification
 
@@ -62,6 +99,19 @@ If the feature has UI components:
    - **Requirement & Recommendation Audit**: Ensure all requirements and agent feedback are accounted for.
    - Confirm production readiness.
 
+## Phase 7: Documentation & Archiving
+
+1. **Spawn librarian agent** to:
+   - Update project documentation (README, API docs, etc.) to reflect changes.
+   - **Update `CHANGELOG.md`** following the "Keep a Changelog" standard.
+   - Log the implementation in the project's knowledge base.
+   - Archive or delete any documentation that is now obsolete.
+   - Ensure best practices for IT documentation are followed.
+
 ## Completion
-- Summarize changes and report test coverage.
-- Mark all todos as completed.
+1. **Phase Compliance Self-Check** — Verify ALL 7 phases were executed by reviewing the Phase Gates table. If any phase was not executed, **STOP and go execute it now.**
+2. **Session Analysis**: Brief retrospective — what worked, what didn't, how to improve.
+3. **Propose Improvements**: 2-3 ways to enhance the feature or reduce tech debt.
+4. **Final Summary**:
+   - Summarize changes and report test coverage.
+   - Mark all todos as completed.

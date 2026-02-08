@@ -2,6 +2,39 @@
 
 You are orchestrating a Behavior-Driven Development pipeline. **Both business scenarios (Gherkin) and unit tests are written BEFORE implementation.**
 
+---
+
+## MANDATORY EXECUTION PROTOCOL
+
+> **Every phase below is MANDATORY. Skipping, combining, or self-performing phases is a WORKFLOW VIOLATION.**
+
+**Before starting Phase 1:**
+- Review the Phase Gates table below. Each gate is a checkpoint you MUST pass.
+
+**Between every phase:**
+- Report deliverables to the user. Only then proceed to the next phase.
+- Use `TodoWrite` for tracking implementation tasks within phases — not for phases themselves.
+
+**Hard rules:**
+- **NEVER skip a phase.** Only Phase 5 (UX Review) may be skipped for zero-UI features — state this to the user first.
+- **NEVER do a phase's work yourself.** Spawn the named agent via `Task` tool.
+- **NEVER mark workflow complete** before Phase 7 (Documentation) is done.
+- **If unsure, ask the user.** Do not assume any phase is unnecessary.
+
+### Phase Gates
+
+| Gate | Agent to spawn | Confirm before proceeding |
+|------|---------------|--------------------------|
+| Phase 1: Planning | `plan` | User Journey Map, AC with Gherkin, roadmap created. **User approved.** |
+| Phase 2: Red (Specs) | `code-tester` | .feature files + step defs written. **Confirmed to fail.** |
+| Phase 3: Green (Impl) | `code-architect` | All BDD scenarios + unit tests pass. |
+| Phase 4: Refactor | `code-refactorer` | Code improved. Tests still green. |
+| Phase 5: UX Review | `ux-designer` | User flows validated against Gherkin — or skipped (zero-UI, stated to user). |
+| Phase 6: Verification | `build-verificator` | AC verified against Gherkin. Full suite passes. |
+| Phase 7: Documentation | `librarian` | Docs, CHANGELOG updated. |
+
+---
+
 ## Phase 1: Discovery & Planning
 
 ### Planning Principles
@@ -51,7 +84,11 @@ Before creating or executing any implementation plan, the following constraints 
 ## Phase 5: UX Review (Conditional)
 
 If the feature has UI components:
-1. **Spawn ux-designer agent** to validate user flows against Gherkin scenarios.
+1. **Spawn ux-designer agent** to:
+   - **Validate user flows against Gherkin scenarios** — Walk through each scenario as a user journey. Verify the UI supports every step naturally.
+   - **Check UI consistency** — Ensure components match design system and existing patterns.
+   - **Review error states** — Confirm error messages are clear and recovery paths exist.
+   - Accessibility is secondary to flow correctness — focus on user experience first.
 
 ## Phase 6: Build Verification
 
@@ -60,6 +97,19 @@ If the feature has UI components:
    - **Requirement Audit**: Cross-check implemented features against Gherkin scenarios and requirements.
    - **Recommendation Tracking**: Ensure all agent feedback is implemented or logged.
 
+## Phase 7: Documentation & Archiving
+
+1. **Spawn librarian agent** to:
+   - Update project documentation (README, API docs, etc.) to reflect changes.
+   - **Update `CHANGELOG.md`** following the "Keep a Changelog" standard.
+   - Log the implementation in the project's knowledge base.
+   - Archive or delete any documentation that is now obsolete.
+   - Ensure best practices for IT documentation are followed.
+
 ## Completion
-- Summarize implementation and report test metrics.
-- Mark all todos as completed.
+1. **Phase Compliance Self-Check** — Verify ALL 7 phases were executed by reviewing the Phase Gates table. If any phase was not executed, **STOP and go execute it now.**
+2. **Session Analysis**: Brief retrospective — what worked, what didn't, how to improve.
+3. **Propose Improvements**: 2-3 ways to enhance the feature or reduce tech debt.
+4. **Final Summary**:
+   - Summarize implementation and report test metrics.
+   - Mark all todos as completed.
