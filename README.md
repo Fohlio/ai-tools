@@ -53,7 +53,9 @@ Executable skills in `skills/` for specialized tasks:
 |-------|-------------|
 | `feature-implementation` | Orchestrates Standard, TDD, or BDD workflows with quality gates |
 | `prompt-engineering` | Research-backed prompt optimization for Claude, GPT, Gemini, etc. |
-| `poc-hypothesis` | Quick technical validation before full implementation |
+| `poc-hypothesis` | Quick technical validation with multiple hypotheses and self-testable BE endpoints |
+| `bug-tracing` | Hypothesis-driven debugging with instrumented logging and user-assisted reproduction |
+| `analyze-architecture` | Systematic 13-section architecture audit with scorecard output |
 | `humanizer` | Remove AI writing patterns to sound more natural |
 | `agent-browser` | Browser automation CLI for testing and interaction |
 | `create-design-system` | Guides creation of design systems (goals, foundations, components) |

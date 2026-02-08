@@ -62,7 +62,9 @@ Executable skills in `skills/`:
 
 - `feature-implementation`: Orchestrates Standard/TDD/BDD workflows
 - `prompt-engineering`: Research-backed prompt optimization
-- `poc-hypothesis`: Quick technical validation
+- `poc-hypothesis`: Quick technical validation with multiple hypotheses and real BE endpoints
+- `bug-tracing`: Hypothesis-driven debugging with instrumented logging (`tmp/debug.log`)
+- `analyze-architecture`: Systematic architecture audit (13-section checklist with scorecard)
 - `humanizer`: Remove AI writing patterns
 - `agent-browser`: Browser automation CLI
 - `create-design-system`: Design system creation guide
