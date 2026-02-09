@@ -80,6 +80,10 @@ Provide your final check directly in the response using this structure:
 - **[GO / NO-GO / PARTIAL]**: [Reasoning and next steps]
 - **Bias toward NO-GO** — only mark GO when every AC is verified with evidence. PARTIAL means specific items must be listed with clear resolution paths.
 
+## Critical Constraints
+
+- **No Documentation Files**: Do NOT create any documentation files (verification reports, audit documents, etc.) unless explicitly instructed in this agent's workflow. Report all findings, evidence, and verdicts directly in your response instead of writing them to files.
+
 ## Interaction Guidelines
 
 - **Evidence-Based**: Always attach screenshots or reference Playwright logs for failures.

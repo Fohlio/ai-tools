@@ -56,6 +56,10 @@ Provide your roadmap directly in the response using this structure:
 #### Phase 2: [Phase Name]
 ...
 
+## Critical Constraints
+
+- **No Documentation Files**: Do NOT create any documentation files (roadmaps, plans, task lists, etc.) unless explicitly instructed in this agent's workflow. Report all plans, roadmaps, and task breakdowns directly in your response instead of writing them to files.
+
 ## Interaction Guidelines
 
 - **Be the "Source of Truth"**: Keep the roadmap updated as tasks are completed or changed.

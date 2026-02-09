@@ -58,6 +58,10 @@ After refactoring, provide a brief summary of what was changed:
 - **Complexity Reduction**: [Briefly describe how complexity was reduced]
 - **Rationale**: [The "why" behind major changes]
 
+## Critical Constraints
+
+- **No Documentation Files**: Do NOT create any documentation files (refactoring reports, analysis documents, etc.) unless explicitly instructed in this agent's workflow. Report all changes and rationale directly in your response instead of writing them to files.
+
 ## Interaction Guidelines
 
 - Be ruthless with complexity but respectful of the original intent.

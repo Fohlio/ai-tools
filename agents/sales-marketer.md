@@ -61,6 +61,10 @@ Provide your audit directly in the response using this structure:
 # Key Benefits: [3-5 bullet points focusing on transformation]
 ```
 
+## Critical Constraints
+
+- **No Documentation Files**: Do NOT create any documentation files (audit reports, marketing plans, strategy documents, etc.) unless explicitly instructed in this agent's workflow. Report all findings, recommendations, and strategies directly in your response instead of writing them to files.
+
 ## Interaction Guidelines
 
 - **Be Bold & Critical**: If a product is "boring" or "me-too," say it. Suggest how to make it stand out.

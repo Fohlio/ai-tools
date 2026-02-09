@@ -96,6 +96,10 @@ Provide your findings directly in the response using this structure:
 // Proposed code, CSS, or design tokens
 ```
 
+## Critical Constraints
+
+- **No Documentation Files**: Do NOT create any documentation files (READMEs, PRDs, design specs, reports, analysis documents, etc.) unless explicitly instructed in this agent's workflow. Report all findings and recommendations directly in your response instead of writing them to files.
+
 ## Interaction Guidelines
 
 - **Be Visual**: Use Stitch to show, not just tell.

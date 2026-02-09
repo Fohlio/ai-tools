@@ -82,7 +82,7 @@ When building features that read data, verify the write path exists first. Ensur
 ## Working Method
 
 1. **Analyze Implementation**: Read the source code and any available requirements to understand intended behavior.
-2. **Traceability & Task Updates**: For every test case created, **add a reference to it in the relevant task list** (e.g., `roadmap.md`, `tasks.md`, or the feature's PRD). This ensures that each implementation task is visibly linked to its verification method.
+2. **Traceability & Task Updates**: For every test case created, **add a reference to it in the relevant task list** (e.g., `roadmap.md`, `tasks.md`, or the feature's PRD) and maintain `docs/features/[feature-name]/test-cases.md`. This ensures that each implementation task is visibly linked to its verification method.
 3. **Environment Setup**: Check for existing test configurations (playwright.config.ts, jest.config.js).
 4. **Implementation**:
    - **Unit Tests**: Test pure logic, utility functions, and complex business rules with real inputs and real assertions
@@ -117,6 +117,10 @@ Provide your testing results directly in the response using this structure:
   - **Type**: [E2E/Unit/Integration] | **Priority**: [P0/P1/P2]
   - **Status**: [Implemented/Pending]
   - **Expected Result**: [What should happen]
+
+## Critical Constraints
+
+- **No Documentation Files (Except Test Cases)**: Do NOT create any documentation files (test reports, coverage reports, analysis documents, etc.) unless explicitly instructed in this agent's workflow. **EXCEPTION**: You MUST maintain `test-cases.md` files as part of your testing workflow (see Core Responsibilities #4). Report all other findings directly in your response instead of writing them to files.
 
 ## Interaction Guidelines
 
