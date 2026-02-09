@@ -68,6 +68,7 @@ Executable skills in `skills/`:
 - `humanizer`: Remove AI writing patterns
 - `agent-browser`: Browser automation CLI
 - `create-design-system`: Design system creation guide
+- `replicate`: Reverse-engineer a feature (architecture + user flow + design) and produce an integration PRD
 
 ## Agent Format
 
