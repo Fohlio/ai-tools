@@ -22,6 +22,7 @@ You are orchestrating a Test-Driven Development pipeline. **Tests are written BE
 - Use `TodoWrite` for tracking implementation tasks within phases — not for phases themselves.
 
 **Hard rules:**
+- **ALWAYS ask clarifying questions at the start of Phase 1.** This is non-negotiable — even if the task seems clear. Use `AskQuestion` before creating any plan.
 - **NEVER skip a phase.** Only Phase 5 (UX Review) may be skipped for zero-UI features — state this to the user first.
 - **NEVER do a phase's work yourself.** Spawn the named agent via `Task` tool.
 - **NEVER mark workflow complete** before Phase 7 (Documentation) is done.
@@ -47,7 +48,7 @@ You are orchestrating a Test-Driven Development pipeline. **Tests are written BE
 
 Before creating or executing any implementation plan, the following constraints must be enforced:
 
-1. **Clarify before planning** — If the task is ambiguous, incomplete, or open to interpretation, ask the user clarifying questions BEFORE creating a plan. Use `AskQuestion`. Key questions: What exactly should happen? What edge cases matter? What's in scope vs. deferred? Are there existing constraints or preferences? **Planning with wrong assumptions wastes more time than asking 3 questions upfront.**
+1. **ALWAYS ask clarifying questions first (MANDATORY)** — Ask the user clarifying questions BEFORE creating any plan. This is NOT conditional — do it every time regardless of how clear the task appears. Use `AskQuestion`. Key questions: What exactly should happen? What edge cases matter? What's in scope vs. deferred? Are there existing constraints or preferences? **Planning with wrong assumptions wastes more time than asking 3 questions upfront.**
 2. **Audit before building** — Search the codebase for existing components, utilities, and patterns that solve similar problems. Reuse first.
 3. **Technical Constraints & Edge Cases** — Identify technical limitations (performance, security, API limits) and plan for edge cases (error states, empty data, network failures) from the start.
 3. **No placeholders** — Every requested feature must be fully implemented. Never leave `TODO`, `FIXME`, or stub comments. If scope needs trimming, explicitly ask to defer.
@@ -58,11 +59,15 @@ Before creating or executing any implementation plan, the following constraints 
 7. **POC First** — If the hypothesis is dubious or the technical confidence level is low, prioritize creating a Proof of Concept (POC) using the `poc-hypothesis` skill to validate the approach before full implementation.
 8. **Confidence Check** — For each planning point, explicitly state the confidence level (High/Medium/Low). If the confidence level is not "High", add a step to use the **brainstorming agent** (Researcher with Brainstorming Protocol) to find solutions and propose alternatives before finalizing the plan.
 
+### STEP ZERO — Ask Questions (MANDATORY)
+
+> **Before doing ANYTHING else — before auditing code, before reading files, before creating a plan — you MUST ask the user clarifying questions using `AskQuestion`.** This is the very first action in Phase 1. No exceptions.
+
 ### Planning Tasks
 1. **Spawn plan agent** to:
+   - **Ask clarifying questions FIRST** — Use `AskQuestion` to identify gaps in requirements. Confirm: expected behavior, scope boundaries, edge cases, and priorities. Do NOT skip this even if the task seems clear — there are always assumptions worth validating.
    - Read requirements and gather context.
    - Audit existing codebase for reusable components.
-   - **Ask clarifying questions** — Use `AskQuestion` to identify gaps in requirements. Confirm: expected behavior, scope boundaries, edge cases, and priorities. Do NOT skip this even if the task seems clear — there are always assumptions worth validating.
    - **Create User Journey Map** — Visualize the user's path through the feature:
      - Define user persona and entry point.
      - Map each step/screen the user interacts with.

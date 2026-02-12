@@ -34,6 +34,7 @@ Custom slash commands in `commands/` orchestrate multi-agent workflows:
 | `/implement-feature` | Standard: Plan → Implement → Test → Refactor → Verify |
 | `/implement-tdd-feature` | TDD: Tests first → Implement → Refactor → Verify |
 | `/implement-bdd-feature` | BDD: Gherkin → Tests → Implement → Verify |
+| `/implement-small-feature` | Lightweight: Plan → Implement → Refactor (no full pipeline) |
 | `/test-code` | Write automated tests (Playwright/Jest/Vitest) |
 | `/refactor-code` | Simplify and improve readability |
 | `/prd-creation` | Create Product Requirements Document |

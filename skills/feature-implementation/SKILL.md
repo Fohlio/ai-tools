@@ -11,6 +11,7 @@ description: Orchestrates full feature implementation using Standard, TDD, or BD
 - User wants to use a specific methodology like **TDD** (Tests-First) or **BDD** (Behavior-Driven).
 - User wants a structured, production-ready implementation with full verification.
 - User wants to ensure that all requirements and expert recommendations are tracked and verified.
+- User wants a quick, lightweight implementation without the full pipeline (use **Small** workflow).
 
 ## How It Works
 
@@ -19,6 +20,7 @@ This skill selects and orchestrates one of three specialized pipelines based on 
 1.  **Standard Workflow**: Rapid implementation with tests following the code. (See `workflows/standard.md`)
 2.  **TDD Workflow**: Rigorous unit-testing from the start (Red-Green-Refactor). (See `workflows/tdd.md`)
 3.  **BDD Workflow**: High-level business scenarios (Gherkin) driving the implementation. (See `workflows/bdd.md`)
+4.  **Small Workflow**: Lightweight plan-and-implement only, no full pipeline. (See `workflows/small.md`)
 
 All workflows follow a mandatory **Build Verification** phase using the `build-verificator` agent to ensure 100% completeness.
 
@@ -26,6 +28,7 @@ All workflows follow a mandatory **Build Verification** phase using the `build-v
 
 ### Phase 1: Planning (Shared)
 Follow the planning principles defined in each workflow:
+- **ALWAYS ask clarifying questions first** — This is MANDATORY before any planning. Use `AskQuestion`.
 - **Audit codebase** for reusable patterns.
 - **Identify integration surfaces**.
 - **Gather recommendations** from other agents in the history.
@@ -53,6 +56,12 @@ Follow the stages in `workflows/bdd.md`:
 2.  **Implement**: Write code to satisfy both business and technical specs.
 3.  **Refactor**: Simplify and optimize.
 4.  **Visualize**: Ask user if they want an HTML explanation of the solution.
+
+#### Option D: Small Workflow (Lightweight)
+Follow `workflows/small.md`:
+1.  **Plan**: Ask questions, audit codebase, create concise plan, get approval.
+2.  **Implement**: Write production-ready code following the plan.
+3.  **Refactor**: Review and simplify code while keeping the build green.
 
 ### Phase 3: Quality Gates (Build Verification)
 The `build-verificator` agent performs the final audit as described in each workflow:
@@ -86,3 +95,4 @@ The `build-verificator` agent performs the final audit as described in each work
 - **User**: "Add a login form with validation." -> Use **Standard** or **TDD**.
 - **User**: "Implement the checkout flow described in this Gherkin file." -> Use **BDD**.
 - **User**: "I need a super robust calculation engine for the bank." -> Use **TDD**.
+- **User**: "Add a new field to the settings page." -> Use **Small**.
