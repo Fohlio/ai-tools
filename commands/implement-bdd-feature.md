@@ -1,5 +1,5 @@
 ---
-name: implement-bdd-feature
+name: ai-tools:implement-bdd-feature
 description: BDD+TDD workflow — Gherkin scenarios and unit tests first
 allowed-tools: Task, Read, Glob, Grep, Edit, Write, Bash, AskQuestion, TodoWrite
 ---

@@ -1,5 +1,5 @@
 ---
-name: prd-creation
+name: ai-tools:prd-creation
 description: Create a comprehensive Product Requirements Document (PRD) for a new feature with Project Manager assistance.
 allowed-tools: Task, Read, Glob, Grep, Edit, Write, Bash, AskQuestion, TodoWrite, mcp__stitch__create_project, mcp__stitch__generate_screen_from_text, mcp__stitch__list_screens, mcp__stitch__get_screen, mcp__user-Figma__get_design_context, mcp__user-Figma__get_screenshot, mcp__user-Figma__get_metadata
 ---

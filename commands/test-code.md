@@ -1,5 +1,5 @@
 ---
-name: test-code
+name: ai-tools:test-code
 description: Analyze code for testing gaps, write automated tests (Playwright, Jest, Vitest), and validate business logic
 allowed-tools: Read, Glob, Grep, Edit, Write, Bash, TodoWrite, WebSearch, WebFetch
 ---

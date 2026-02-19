@@ -1,5 +1,5 @@
 ---
-name: feature-implementation
+name: ai-tools:feature-implementation
 description: Orchestrates full feature implementation using Standard, TDD, or BDD workflows with automated quality gates. Use when implementing new features from scratch, when a structured development workflow is needed, or when the user mentions TDD, BDD, or test-driven development.
 ---
 

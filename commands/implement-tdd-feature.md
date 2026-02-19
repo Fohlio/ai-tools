@@ -1,5 +1,5 @@
 ---
-name: implement-tdd-feature
+name: ai-tools:implement-tdd-feature
 description: TDD workflow — Tests first, then implement, refactor, and verify
 allowed-tools: Task, Read, Glob, Grep, Edit, Write, Bash, AskQuestion, TodoWrite
 ---

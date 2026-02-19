@@ -1,5 +1,5 @@
 ---
-name: bug-tracing
+name: ai-tools:bug-tracing
 description: Systematic bug diagnosis through architecture analysis, hypothesis-driven debugging, and instrumented logging. Injects a lightweight debug logger into the codebase, asks the user to reproduce, then analyzes logs to confirm the root cause. Use when a bug is hard to reproduce, the cause is unclear, or printf-debugging would help.
 allowed-tools: Bash(cat *), Bash(> *), Read, Edit, Write, Grep, Glob
 ---

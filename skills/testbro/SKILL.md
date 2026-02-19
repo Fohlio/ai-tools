@@ -1,5 +1,5 @@
 ---
-name: testbro
+name: ai-tools:testbro
 description: Run AI-powered browser tests using TestBro CLI. Guides through setup, test generation, and execution from any project directory. Use when the user mentions "testbro", "browser test", "run tests with testbro", or wants to test a web app with AI.
 ---
 

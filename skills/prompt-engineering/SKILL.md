@@ -1,5 +1,5 @@
 ---
-name: prompt-engineering
+name: ai-tools:prompt-engineering
 description: Creates, edits, reviews, and enhances AI prompts using research-backed techniques. Optimizes prompts for specific models (Claude 4.5, GPT-5.2, Gemini 3, DeepSeek R1, Qwen 3). Use when writing prompts, improving existing prompts, reviewing prompt quality, or adapting prompts between different AI models.
 ---
 

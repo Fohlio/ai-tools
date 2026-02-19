@@ -1,5 +1,5 @@
 ---
-name: brainstorming
+name: ai-tools:brainstorming
 description: Structured ideation using TRIZ contradictions, SCAMPER mutations, and morphological analysis. Turns vague ideas into ranked, testable concepts. Use before any creative work including creating features, building components, adding functionality, or modifying behavior.
 ---
 

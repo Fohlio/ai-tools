@@ -1,5 +1,5 @@
 ---
-name: poc-hypothesis
+name: ai-tools:poc-hypothesis
 description: Creates minimal POC to validate technical hypotheses, reusing existing code or writing new if needed. Use when testing technical feasibility, validating approaches before full implementation, or when the user asks "will this work?" or "can we do X?"
 ---
 

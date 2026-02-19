@@ -1,5 +1,5 @@
 ---
-name: refactor-code
+name: ai-tools:refactor-code
 description: Review, simplify, and improve scalability/readability of code. Focus on reducing complexity while maintaining functionality.
 allowed-tools: Read, Glob, Grep, Edit, Write, Bash, TodoWrite, WebSearch, WebFetch
 ---

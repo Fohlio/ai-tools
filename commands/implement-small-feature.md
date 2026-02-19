@@ -1,5 +1,5 @@
 ---
-name: implement-small-feature
+name: ai-tools:implement-small-feature
 description: Lightweight feature implementation — Plan and Implement only, no full pipeline
 allowed-tools: Task, Read, Glob, Grep, Edit, Write, Bash, AskQuestion, TodoWrite
 ---

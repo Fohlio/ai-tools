@@ -1,5 +1,5 @@
 ---
-name: analyze-architecture
+name: ai-tools:analyze-architecture
 description: Systematic architecture audit for backend/web applications. Analyzes system context, domains, data model, integrations, quality attributes, security, observability, and evolution strategy. Use when reviewing an existing codebase architecture, onboarding to a new project, or before major refactoring.
 allowed-tools: Read, Glob, Grep, Bash(ls *), Bash(wc *), Bash(git log *), Bash(git shortlog *), Task
 ---

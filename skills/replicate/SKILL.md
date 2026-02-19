@@ -1,5 +1,5 @@
 ---
-name: replicate
+name: ai-tools:replicate
 description: Analyzes an existing feature or module from architecture, user flow, and design standpoints (including global styling sets), then produces a PRD for integrating the replicated feature into a new target architecture. Use when replicating a competitor's feature, porting a module between projects, or reverse-engineering a reference implementation for your own codebase.
 allowed-tools: Task, Read, Glob, Grep, Bash(ls *), Bash(wc *), Bash(git log *), Bash(npm *), Bash(npx *), Write, AskUserQuestion, TodoWrite, WebSearch, WebFetch, mcp__Playwright__browser_navigate, mcp__Playwright__browser_snapshot, mcp__Playwright__browser_take_screenshot, mcp__Playwright__browser_click, mcp__Playwright__browser_evaluate, mcp__Figma__get_design_context, mcp__Figma__get_metadata, mcp__Figma__get_screenshot, mcp__Figma__get_variable_defs, mcp__stitch__create_project, mcp__stitch__generate_screen_from_text, mcp__stitch__list_screens, mcp__stitch__get_screen, mcp__context7__resolve-library-id, mcp__context7__query-docs
 ---

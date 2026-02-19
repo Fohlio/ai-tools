@@ -1,5 +1,5 @@
 ---
-name: team-review
+name: ai-tools:team-review
 description: Multi-disciplinary review of a feature, PRD, or code by a specialized "AI Team" (Code Architect, UX, Sales, Developer).
 allowed-tools: Task, Read, Glob, Grep, Edit, Write, Bash, AskUserQuestion, TodoWrite, WebSearch, mcp__cursor-ide-browser__browser_navigate, mcp__cursor-ide-browser__browser_snapshot
 model: sonnet

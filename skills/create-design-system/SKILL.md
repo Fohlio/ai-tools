@@ -1,5 +1,5 @@
 ---
-name: create-design-system
+name: ai-tools:create-design-system
 description: Guides the creation of a robust design system covering goals, foundations, components, documentation, and governance. Use when creating a new design system, establishing UI foundations, defining component libraries, or setting up design tokens.
 ---
 

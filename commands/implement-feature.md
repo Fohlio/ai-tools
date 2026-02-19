@@ -1,5 +1,5 @@
 ---
-name: implement-feature
+name: ai-tools:implement-feature
 description: Standard feature implementation workflow (Plan -> Implement -> Test -> Refactor -> Verify)
 allowed-tools: Task, Read, Glob, Grep, Edit, Write, Bash, AskQuestion, TodoWrite
 ---

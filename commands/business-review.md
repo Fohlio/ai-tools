@@ -1,5 +1,5 @@
 ---
-name: business-review
+name: ai-tools:business-review
 description: Comprehensive product-marketing and business audit for a PRD, feature, or existing product using a structured framework.
 allowed-tools: Task, Read, Glob, Grep, Edit, Write, Bash, AskUserQuestion, TodoWrite, WebSearch, mcp__cursor-ide-browser__browser_navigate, mcp__cursor-ide-browser__browser_snapshot
 model: sonnet
