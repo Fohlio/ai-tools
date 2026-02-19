@@ -42,7 +42,7 @@ This workflow is suitable for general features where rapid development is priori
 
 Before creating or executing any implementation plan, the following constraints must be enforced:
 
-1. **ALWAYS ask clarifying questions first (MANDATORY)** — Ask the user clarifying questions BEFORE creating any plan. This is NOT conditional — do it every time regardless of how clear the task appears. Use `AskQuestion`. Key questions: What exactly should happen? What edge cases matter? What's in scope vs. deferred? Are there existing constraints or preferences? **Planning with wrong assumptions wastes more time than asking 3 questions upfront.**
+1. **ALWAYS ask clarifying questions first (MANDATORY)** — See STEP ZERO below. This is the very first action — before any planning, auditing, or reading.
 2. **Audit before building** — Search the codebase for existing components, utilities, and patterns that solve similar problems. Reuse first.
 3. **No placeholders** — Every requested feature must be fully implemented. Never leave `TODO`, `FIXME`, or stub comments. If scope needs trimming, explicitly ask to defer.
 3. **Minimize invention** — Prefer existing libraries, framework features, and project abstractions over custom solutions. Build only what doesn't exist.
@@ -51,14 +51,14 @@ Before creating or executing any implementation plan, the following constraints 
 6. **Explicit Approval** — Present the plan to the user and wait for explicit approval before proceeding to implementation phases.
 7. **POC First** — If the hypothesis is dubious or the technical confidence level is low, prioritize creating a Proof of Concept (POC) using the `poc-hypothesis` skill to validate the approach before full implementation.
 8. **Confidence Check** — For each planning point, explicitly state the confidence level (High/Medium/Low). If the confidence level is not "High", add a step to use the **brainstorming agent** (Researcher with Brainstorming Protocol) to find solutions and propose alternatives before finalizing the plan.
+9. **Design Validation** — If the feature has UI and no design mockup or Figma link is provided, **suggest the user generate mock designs using HTML/CSS** to validate the visual direction before implementation. Offer to create a quick HTML/CSS prototype for the user to review. Visual validation upfront prevents costly rework later.
 
 ### STEP ZERO — Ask Questions (MANDATORY)
 
-> **Before doing ANYTHING else — before auditing code, before reading files, before creating a plan — you MUST ask the user clarifying questions using `AskQuestion`.** This is the very first action in Phase 1. No exceptions.
+> **Before doing ANYTHING else — before auditing code, before reading files, before creating a plan — you MUST ask the user at least 5 clarifying questions using `AskQuestion`.** This is the very first action in Phase 1. No exceptions. Five questions is the MINIMUM — even if the task seems perfectly clear, there are always hidden assumptions worth surfacing.
 
 ### Planning Tasks
 1. **Spawn plan agent** to:
-   - **Ask clarifying questions FIRST** — Use `AskQuestion` to identify gaps in requirements. Confirm: expected behavior, scope boundaries, edge cases, and priorities. Do NOT skip this even if the task seems clear — there are always assumptions worth validating.
    - Read requirements and gather context.
    - Audit existing codebase for reusable components and patterns.
    - **Create Acceptance Criteria & Verification Checklist** — Save to existing PRD or create new document:

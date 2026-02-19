@@ -27,14 +27,7 @@ This lightweight workflow covers **Planning, Implementation, and Refactoring** �
 
 ### STEP ZERO — Ask Questions (MANDATORY)
 
-> **Before doing ANYTHING else — before auditing code, before reading files, before creating a plan — you MUST ask the user clarifying questions using `AskQuestion`.** This is the very first action in Phase 1. No exceptions.
-
-Questions to cover:
-- What exactly should happen? What is the expected behavior?
-- What is in scope vs. deferred?
-- Are there edge cases that matter?
-- Are there existing constraints, preferences, or design decisions?
-- What does "done" look like for this feature?
+> **Before doing ANYTHING else — before auditing code, before reading files, before creating a plan — you MUST ask the user at least 5 clarifying questions using `AskQuestion`.** This is the very first action in Phase 1. No exceptions. Five questions is the MINIMUM — even if the task seems perfectly clear, there are always hidden assumptions worth surfacing.
 
 **Do NOT proceed to planning until the user has answered.**
 
@@ -45,6 +38,7 @@ Questions to cover:
 3. **Minimize invention** — Prefer existing libraries and project abstractions.
 4. **Map integration surfaces** — Identify how new code connects to existing systems.
 5. **Explicit Approval** — Present the plan and wait for approval before implementing.
+6. **Design Validation** — If the feature has UI and no design mockup or Figma link is provided, **suggest the user generate mock designs using HTML/CSS** to validate the visual direction before implementation. Offer to create a quick HTML/CSS prototype for the user to review.
 
 ### Planning Tasks
 1. **Spawn plan agent** to:
