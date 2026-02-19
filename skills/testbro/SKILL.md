@@ -18,18 +18,84 @@ Run AI-powered Playwright tests from plain English descriptions using the TestBr
 
 ### Phase 1: Pre-flight Checks
 
-Run these checks before anything else:
+Run ALL of these checks before executing any tests. Do NOT skip any.
 
-1. **CLI available**: Run `testbro --version` to verify the CLI is installed.
-   - If missing: tell the user to install it with `npm install -g testbro` (or from the monorepo).
+#### 1. CLI Available
 
-2. **Authentication**: Run `testbro whoami` to verify the user is logged in.
-   - If not authenticated: run `testbro init` for interactive setup (handles auth + project config in one step).
-   - Alternative: `testbro login --token <token>` for direct token auth.
+Run `testbro --version` to verify the CLI is installed.
+- If missing: tell the user to install it with `npm install -g testbro` (or from the monorepo).
 
-3. **Active project**: The `whoami` output shows the active project. If none is set, the user will need to either:
-   - Run `testbro init` to set up project config interactively
-   - Or select one: `testbro projects` to list, then `testbro use-project <id>`
+#### 2. Authentication
+
+Run `testbro whoami` to verify the user is logged in.
+- If not authenticated: run `testbro init` for interactive setup (handles auth + project config in one step).
+- Alternative: `testbro login --token <token>` for direct token auth.
+
+#### 3. Active Project
+
+The `whoami` output shows the active project. If none is set, the user will need to either:
+- Run `testbro init` to set up project config interactively
+- Or select one: `testbro projects` to list, then `testbro use-project <id>`
+
+#### 4. Environment Check
+
+Determine which environment to test against. Read `test-bro.config.json` to check the current `environment` field.
+
+Use `AskUserQuestion` to confirm the target environment:
+
+| Environment | Typical baseUrl |
+|:---|:---|
+| **local** | `http://localhost:3000` |
+| **staging** | `https://staging.myapp.com` |
+| **production** | `https://myapp.com` |
+
+If the config has an `environments` section (see "Multi-Environment Config" below), resolve the correct `baseUrl`, `credentials`, and `auth` from the chosen environment.
+
+If not configured, ask the user and help them set up the `environments` block in the config.
+
+#### 5. Local Dev Server Check (if environment is "local")
+
+If the target environment is "local", verify the dev server is actually running:
+
+```bash
+curl -s -o /dev/null -w "%{http_code}" http://localhost:3000
+```
+
+- If the server is not reachable (connection refused / non-200): warn the user and suggest starting it first (e.g., `pnpm dev`, `npm run dev`).
+- Do NOT proceed with test execution until the server is confirmed running.
+
+#### 6. Test ID Coverage
+
+Before running tests, check whether the features/pages under test have `data-testid` attributes on key interactive elements (buttons, inputs, links, forms).
+
+**How to check:**
+- Read the relevant component/page files that the test will interact with
+- Search for `data-testid` on interactive elements (buttons, inputs, links, forms, dialogs)
+
+**If testIds are missing:**
+- Warn the user: "The components under test are missing `data-testid` attributes. This makes tests fragile — they'll rely on AI vision or CSS selectors that break on UI changes."
+- Offer to add `data-testid` attributes to key interactive elements before running tests.
+- Follow the project's naming convention: `data-testid="section-action-element"` (e.g., `data-testid="login-submit-button"`, `data-testid="project-name-input"`).
+- Only add testIds to elements the test will interact with — don't blanket every element.
+
+#### 7. Test Credentials & Seed Data
+
+If the test requires authentication (i.e., the config has an `auth` section or the test navigates to protected pages):
+
+**Check credentials exist:**
+- Read `test-bro.config.json` — verify the `credentials` block has an entry matching the auth config
+- If missing, ask the user for test credentials and add them to the config
+
+**Check the user is seeded in the database:**
+- For local environment: verify the test user exists by checking if the seed script has been run. Suggest `pnpm --filter @testbro/db db:seed` if needed.
+- For staging/production: ask the user to confirm the test account exists on that environment
+- Default seed credentials: `test@testbro.dev` / `Test123456`
+
+**Check auth config completeness:**
+- `loginUrl` is set
+- `steps` array covers fill email, fill password, click submit
+- `waitForUrl` is set (for redirect-based auth like NextAuth) — e.g., `"**/dashboard"`
+- Credential template variables (`{{email}}`, `{{password}}`) resolve correctly
 
 ### Phase 2: Determine Intent
 
@@ -161,13 +227,13 @@ This creates `test-bro.config.json`. Edit it to set project-specific values:
   },
   "auth": {
     "loginUrl": "/login",
-    "credentials": "default",
-    "fields": {
-      "email": "input[name=\"email\"]",
-      "password": "input[name=\"password\"]"
-    },
-    "submitButton": "button[type=\"submit\"]",
-    "successIndicator": { "url": "/dashboard" }
+    "steps": [
+      { "action": "fill", "selector": "[data-testid='login-email-input']", "value": "{{email}}" },
+      { "action": "fill", "selector": "[data-testid='login-password-input']", "value": "{{password}}" },
+      { "action": "click", "selector": "[data-testid='login-submit-button']" }
+    ],
+    "credentials": { "email": "test@example.com", "password": "TestPassword123" },
+    "waitForUrl": "**/dashboard"
   },
   "deduplication": {
     "enabled": true,
@@ -182,6 +248,7 @@ Key fields:
 - `projectId`: Links this directory to a TestBro project
 - `credentials`: Login credentials for authenticated testing
 - `auth`: Auto-login configuration. When set, the agent logs in before tests and strips login steps from test cases. Uses Playwright storage state (`auth-state.json`) so login only happens once per session.
+- `auth.waitForUrl`: URL pattern to wait for after login completes — critical for redirect-based auth flows (NextAuth, OAuth). Example: `"**/dashboard"`.
 - `deduplication`: Controls how duplicate test cases are handled during generation
 
 After setting the `projectId`, activate it:
@@ -190,7 +257,94 @@ After setting the `projectId`, activate it:
 testbro use-project <project-id>
 ```
 
-#### F. Full Flow (Generate + Run)
+#### F. Multi-Environment Config
+
+For projects that need to test across multiple environments (local, staging, production), set up the `environments` block in `test-bro.config.json`:
+
+```json
+{
+  "$schema": "https://testbro.dev/schema/config.json",
+  "projectId": "<your-project-id>",
+  "mode": "hybrid",
+  "timeout": 30000,
+  "environment": "local",
+  "environments": {
+    "local": {
+      "baseUrl": "http://localhost:3000",
+      "credentials": {
+        "default": {
+          "email": "test@testbro.dev",
+          "password": "Test123456"
+        }
+      },
+      "auth": {
+        "loginUrl": "/login",
+        "steps": [
+          { "action": "fill", "selector": "[data-testid='login-email-input']", "value": "{{email}}" },
+          { "action": "fill", "selector": "[data-testid='login-password-input']", "value": "{{password}}" },
+          { "action": "click", "selector": "[data-testid='login-submit-button']" }
+        ],
+        "credentials": { "email": "test@testbro.dev", "password": "Test123456" },
+        "waitForUrl": "**/dashboard"
+      },
+      "seed": "pnpm --filter @testbro/db db:seed"
+    },
+    "staging": {
+      "baseUrl": "https://staging.testbro.dev",
+      "credentials": {
+        "default": {
+          "email": "staging-test@testbro.dev",
+          "password": "StagingPass123"
+        }
+      },
+      "auth": {
+        "loginUrl": "/login",
+        "steps": [
+          { "action": "fill", "selector": "[data-testid='login-email-input']", "value": "{{email}}" },
+          { "action": "fill", "selector": "[data-testid='login-password-input']", "value": "{{password}}" },
+          { "action": "click", "selector": "[data-testid='login-submit-button']" }
+        ],
+        "credentials": { "email": "staging-test@testbro.dev", "password": "StagingPass123" },
+        "waitForUrl": "**/dashboard"
+      }
+    },
+    "production": {
+      "baseUrl": "https://testbro.dev",
+      "credentials": {
+        "default": {
+          "email": "smoke-test@testbro.dev",
+          "password": "ProdSmokePass123"
+        }
+      },
+      "auth": {
+        "loginUrl": "/login",
+        "steps": [
+          { "action": "fill", "selector": "[data-testid='login-email-input']", "value": "{{email}}" },
+          { "action": "fill", "selector": "[data-testid='login-password-input']", "value": "{{password}}" },
+          { "action": "click", "selector": "[data-testid='login-submit-button']" }
+        ],
+        "credentials": { "email": "smoke-test@testbro.dev", "password": "ProdSmokePass123" },
+        "waitForUrl": "**/dashboard"
+      }
+    }
+  }
+}
+```
+
+**How environment resolution works:**
+1. The top-level `environment` field selects which environment is active by default
+2. When running tests, read `environments[activeEnv]` to get `baseUrl`, `credentials`, and `auth`
+3. These override the top-level fields for that environment
+4. The `--url` CLI flag always takes highest priority
+
+**When helping users set this up:**
+- Ask which environments they deploy to
+- Get the baseUrl for each
+- Get (or help create) test credentials for each environment
+- Set up auth steps — prefer `data-testid` selectors for stability
+- For local, include a `seed` command hint so the pre-flight check can suggest it
+
+#### G. Full Flow (Generate + Run)
 
 1. Generate test cases from requirements:
    ```bash
@@ -261,5 +415,8 @@ After a test run completes:
 | `baseUrl` not set | Add to `test-bro.config.json` or pass `--url` explicitly |
 | Selectors not found | Use `--mode ai` or `--mode hybrid` instead of `--mode selector` |
 | Duplicate test cases | Use `--no-dedup` to skip deduplication, or `--auto-merge` to auto-merge |
-| Login required but not handled | Add `auth` section to `test-bro.config.json` with login URL, credentials ref, and selectors |
+| Login required but not handled | Add `auth` section to `test-bro.config.json` with login steps and `waitForUrl` |
+| Session cookie not captured | Add `waitForUrl` to auth config (e.g., `"**/dashboard"`) — needed for redirect-based auth (NextAuth) |
 | Steps skipped after failure | This is legacy behavior — adaptive agent now continues on failure by default |
+| Local server not running | Start with `pnpm dev` / `npm run dev` before running tests |
+| Test user not seeded | Run `pnpm --filter @testbro/db db:seed` for local environment |
