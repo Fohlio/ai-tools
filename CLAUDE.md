@@ -70,6 +70,7 @@ Executable skills in `skills/`:
 - `agent-browser`: Browser automation CLI
 - `create-design-system`: Design system creation guide
 - `replicate`: Reverse-engineer a feature (architecture + user flow + design) and produce an integration PRD
+- `visual-poc`: Generate standalone HTML/CSS/JS visual POC from documentation, AC, or PRD
 
 ## Agent Format
 
