@@ -17,14 +17,14 @@ Slash commands in `commands/` orchestrate multi-agent workflows:
 
 | Command | Description |
 |---------|-------------|
-| `/implement-feature` | Standard workflow: Plan → Implement → Test → Refactor → Verify |
-| `/implement-tdd-feature` | TDD workflow: Tests first → Implement → Refactor → Verify |
-| `/implement-bdd-feature` | BDD workflow: Gherkin scenarios → Tests → Implement → Verify |
-| `/test-code` | Analyze code, write automated tests (Playwright/Jest/Vitest) |
-| `/refactor-code` | Simplify and improve code readability and scalability |
-| `/prd-creation` | Create a comprehensive Product Requirements Document |
-| `/team-review` | Multi-agent review (Architect, UX, Sales, PM, Refactorer) |
-| `/business-review` | Product-marketing audit using 5C/SWOT framework |
+| `/ai-tools:implement-feature` | Standard workflow: Plan → Implement → Test → Refactor → Verify |
+| `/ai-tools:implement-tdd-feature` | TDD workflow: Tests first → Implement → Refactor → Verify |
+| `/ai-tools:implement-bdd-feature` | BDD workflow: Gherkin scenarios → Tests → Implement → Verify |
+| `/ai-tools:test-code` | Analyze code, write automated tests (Playwright/Jest/Vitest) |
+| `/ai-tools:refactor-code` | Simplify and improve code readability and scalability |
+| `/ai-tools:prd-creation` | Create a comprehensive Product Requirements Document |
+| `/ai-tools:team-review` | Multi-agent review (Architect, UX, Sales, PM, Refactorer) |
+| `/ai-tools:business-review` | Product-marketing audit using 5C/SWOT framework |
 ---
 
 ## Agents

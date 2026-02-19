@@ -31,15 +31,15 @@ Custom slash commands in `commands/` orchestrate multi-agent workflows:
 
 | Command | Description |
 |---------|-------------|
-| `/implement-feature` | Standard: Plan → Implement → Test → Refactor → Verify |
-| `/implement-tdd-feature` | TDD: Tests first → Implement → Refactor → Verify |
-| `/implement-bdd-feature` | BDD: Gherkin → Tests → Implement → Verify |
-| `/implement-small-feature` | Lightweight: Plan → Implement → Refactor (no full pipeline) |
-| `/test-code` | Write automated tests (Playwright/Jest/Vitest) |
-| `/refactor-code` | Simplify and improve readability |
-| `/prd-creation` | Create Product Requirements Document |
-| `/team-review` | Multi-agent review (Architect, UX, Sales, PM, Refactorer) |
-| `/business-review` | Product-marketing audit (5C/SWOT framework) |
+| `/ai-tools:implement-feature` | Standard: Plan → Implement → Test → Refactor → Verify |
+| `/ai-tools:implement-tdd-feature` | TDD: Tests first → Implement → Refactor → Verify |
+| `/ai-tools:implement-bdd-feature` | BDD: Gherkin → Tests → Implement → Verify |
+| `/ai-tools:implement-small-feature` | Lightweight: Plan → Implement → Refactor (no full pipeline) |
+| `/ai-tools:test-code` | Write automated tests (Playwright/Jest/Vitest) |
+| `/ai-tools:refactor-code` | Simplify and improve readability |
+| `/ai-tools:prd-creation` | Create Product Requirements Document |
+| `/ai-tools:team-review` | Multi-agent review (Architect, UX, Sales, PM, Refactorer) |
+| `/ai-tools:business-review` | Product-marketing audit (5C/SWOT framework) |
 
 ## Agents
 

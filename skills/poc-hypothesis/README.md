@@ -123,7 +123,7 @@ Claude:
 
 ## When NOT to Use
 
-- For production features (use `/implement-feature` instead)
+- For production features (use `/ai-tools:implement-feature` instead)
 - When you already know the answer
 - For trivial questions answerable by documentation
 - When the "POC" would be as complex as the full feature

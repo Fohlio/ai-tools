@@ -69,4 +69,4 @@ You are orchestrating the creation of a Product Requirements Document (PRD). You
 
 3. **Completion**:
    - Save the PRD (typically to `docs/features/[feature-name]/prd.md`).
-   - Offer to start the implementation using the `/implement-feature` command. **Use the `AskQuestion` tool to let the user choose the next step.**
+   - Offer to start the implementation using the `/ai-tools:implement-feature` command. **Use the `AskQuestion` tool to let the user choose the next step.**
