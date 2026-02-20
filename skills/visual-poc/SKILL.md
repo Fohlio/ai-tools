@@ -70,6 +70,7 @@ Rules:
 - Responsive — mobile-first unless the AC specifies desktop-only
 - Accessible basics — proper contrast, focus states, aria-labels on interactive elements
 - Visual polish — subtle shadows, transitions, consistent spacing, readable typography
+- Explanatory tooltips — Add `title` attribute tooltips to key UI elements explaining HOW they work using metaphors and reasoning. Example: a progress bar tooltip might say "Think of this like a fuel gauge — it reads from the usage API and fills proportionally to the quota limit." Tooltips should help stakeholders understand the logic behind the UI, not just label it.
 ```
 
 ```
@@ -209,3 +210,4 @@ Go through each acceptance criterion from the input and check:
 - **AC is the source of truth** — Cover every visual/interaction AC. Flag non-visual AC as limitations
 - **Fast delivery** — This is a POC, not production. Optimize for speed of creation, not perfection
 - **Clean up assumptions** — Clearly separate what was specified from what was inferred
+- **Explanatory tooltips** — Every key UI element must have a `title` tooltip with a metaphor-based explanation of how it works and why it's there. This turns the POC into a self-documenting artifact that stakeholders can explore without a walkthrough

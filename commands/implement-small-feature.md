@@ -44,7 +44,7 @@ You are orchestrating a lightweight feature implementation. This workflow is for
 3. **Minimize invention** — Prefer existing libraries, framework features, and project abstractions over custom solutions.
 4. **Map integration surfaces** — Identify how new code connects to existing systems.
 5. **Explicit Approval** — Present the plan to the user and wait for explicit approval before proceeding to implementation.
-6. **Design Validation** — If the feature has UI and no design mockup or Figma link is provided, **suggest the user generate mock designs using HTML/CSS** to validate the visual direction before implementation. Offer to create a quick HTML/CSS prototype for the user to review.
+6. **Design Validation** — If the feature has UI and no design mockup or Figma link is provided, **suggest the user generate mock designs using HTML/CSS** to validate the visual direction before implementation. Offer to create a quick HTML/CSS prototype for the user to review. **Add `title` tooltips to key elements** with metaphor-based explanations of how they work and why they exist — making the prototype self-documenting.
 
 ### Planning Tasks
 1. **Spawn plan agent** to:
@@ -60,6 +60,9 @@ You are orchestrating a lightweight feature implementation. This workflow is for
    - Write clean, production-ready code.
    - Adhere to existing patterns in the codebase.
    - Run the build to confirm it passes.
+
+2. **Ask the user** if they want a visualization or explanation of the coding solution.
+   - If yes, create a simple, beautiful HTML file (`docs/features/[feature-name]/code-explanation.html`) explaining how the solution works.
 
 ## Phase 3: Refactoring & Quality
 
