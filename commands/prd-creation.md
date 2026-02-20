@@ -22,8 +22,9 @@ You are orchestrating the creation of a Product Requirements Document (PRD). You
 ## Phase 2: Requirements Gathering
 
 1. **Spawn project-manager agent** to:
-   - Interview the user with targeted questions based on the feature idea and technical context. **Use the `AskQuestion` tool for structured feedback.**
-   - Topics to cover: Target audience, core user stories (JTBD), functional requirements, non-functional requirements (performance, security), and success metrics.
+   - Interview the user with a minimum of **5 targeted questions** based on the feature idea and technical context. **Use the `AskQuestion` tool for structured feedback.**
+   - Derive the questions organically from the specific feature — do NOT use a fixed checklist. Each question must be tailored to uncover unknowns, risks, and priorities unique to this particular feature.
+   - Continue asking follow-up questions until there are no critical ambiguities left (5 is the minimum, not the ceiling).
    - Identify potential edge cases and out-of-scope items.
 
 2. **Design Resource Check**:
@@ -52,8 +53,13 @@ You are orchestrating the creation of a Product Requirements Document (PRD). You
    - **Phasing & MVP**: What goes into the first release vs. later.
    - **Success Metrics**: How will we know it's working?
 
-2. **Review & Refine**:
-   - Show the draft to the user for feedback. **Use the `AskQuestion` tool to confirm approval or gather specific refinements.**
+2. **Visual POC (Suggested)**:
+   - After drafting, suggest creating a standalone **Visual POC** (HTML/CSS/JS) that illustrates the feature's key functions.
+   - Each function/interaction in the POC should include a **help tooltip** explaining what it does and why — so stakeholders can review the feature interactively without reading the full PRD.
+   - Use the `/ai-tools:visual-poc` skill or generate inline. The POC is disposable — its only purpose is to validate understanding before implementation.
+
+3. **Review & Refine**:
+   - Show the draft (and the Visual POC if created) to the user for feedback. **Use the `AskQuestion` tool to confirm approval or gather specific refinements.**
    - Refine the document based on user input.
 
 ## Phase 4: Finalization & Handoff
