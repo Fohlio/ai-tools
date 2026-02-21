@@ -23,7 +23,7 @@ You are orchestrating a complete feature implementation pipeline. This workflow 
 
 **Hard rules:**
 - **ALWAYS ask clarifying questions at the start of Phase 1.** This is non-negotiable — even if the task seems clear. Use `AskQuestion` before creating any plan.
-- **NEVER skip a phase.** Only Phase 5 (UX Review) may be skipped for zero-UI features — state this to the user first.
+- **NEVER skip a phase** unless explicitly disabled in the pre-flight `workflow.md`. Only Phase 3 (Testing) and Phase 5 (UX Review) can be disabled via pre-flight — state skipped phases to the user.
 - **NEVER do a phase's work yourself.** Spawn the named agent via `Task` tool.
 - **NEVER mark workflow complete** before Phase 7 (Documentation) is done.
 - **If unsure, ask the user.** Do not assume any phase is unnecessary.
@@ -32,6 +32,7 @@ You are orchestrating a complete feature implementation pipeline. This workflow 
 
 | Gate | Agent to spawn | Confirm before proceeding |
 |------|---------------|--------------------------|
+| Phase 0: Pre-flight | orchestrator | Pre-flight questions answered. `workflow.md` created. POCs completed (if requested). |
 | Phase 1: Planning | `plan` | User Journey Map, AC document, roadmap created. **User approved.** |
 | Phase 2: Implementation | `code-architect` | Implementation complete. User asked about visualization. |
 | Phase 3: Testing | `code-tester` | Tests written per AC. All pass. AC doc updated. |
@@ -39,6 +40,64 @@ You are orchestrating a complete feature implementation pipeline. This workflow 
 | Phase 5: UX Review | `ux-designer` | User flows validated, UI consistency checked — or skipped (zero-UI, stated to user). |
 | Phase 6: Verification | `build-verificator` | AC verified. Full suite passes. |
 | Phase 7: Documentation | `librarian` | Docs, CHANGELOG updated. |
+
+---
+
+## Phase 0: Pre-flight Check
+
+> **This phase runs BEFORE any planning or discovery. It configures the workflow for this specific feature.**
+
+### Pre-flight Questions (MANDATORY)
+
+Use `AskQuestion` to gather the following decisions from the user:
+
+1. **Design availability**: "Do you have a design for this feature (Figma link, mockup, wireframe)?"
+   - Options: `Yes, I have a design` / `No design available` / `Backend-only, no UI needed`
+
+2. **Visual POC** *(ask only if Q1 answer is "No design available")*: "Should we generate a visual POC (standalone HTML/CSS/JS) to validate the UI direction before implementation?"
+   - Options: `Yes, generate visual POC first` / `No, proceed without visual validation`
+
+3. **Technical risk / POC**: "Does this feature involve risky or unproven technology (AI agents, novel integrations, unfamiliar APIs)? Should we build a technical POC to validate the approach first?"
+   - Options: `Yes, build technical POC first` / `No, confident in the approach`
+
+4. **Workflow phases** *(multi-select)*: "Which optional workflow phases do you need for this feature?"
+   - `Test phase (automated tests)`
+   - `Design/UX review phase`
+   - `Testing guide (manual testing instructions)`
+   - `Test cases document (positive base cases from AC)`
+
+### Create Workflow Document
+
+After collecting all pre-flight answers, create the feature documentation folder and workflow document at `docs/features/[feature-name]/workflow.md`:
+
+    # Workflow Configuration: [Feature Name]
+
+    ## Pre-flight Decisions
+    - **Design**: [Figma link / No design / Backend-only]
+    - **Visual POC**: [Yes — generate before Phase 1 / No / N/A]
+    - **Technical POC**: [Yes — validate before Phase 1 / No]
+    - **Test phase**: [Enabled / Disabled]
+    - **Design/UX review**: [Enabled / Disabled]
+    - **Testing guide**: [Required / Not required]
+    - **Test cases document**: [Required / Not required]
+
+    ## Active Phases
+    - [x] Phase 0: Pre-flight Check
+    - [ ] Phase 1: Discovery & Planning
+    - [ ] Phase 2: Implementation
+    - [ ] Phase 3: Testing *(if enabled)*
+    - [ ] Phase 4: Refactoring
+    - [ ] Phase 5: UX Review *(if enabled)*
+    - [ ] Phase 6: Build Verification
+    - [ ] Phase 7: Documentation & Archiving
+
+    ## Notes
+    [Any additional context from pre-flight decisions]
+
+### Execute POCs (if requested)
+
+- **If Visual POC was selected**: Use the `visual-poc` skill to generate a standalone HTML/CSS/JS prototype. Save to `docs/features/[feature-name]/visual-poc.html`. Present to user for approval before proceeding.
+- **If Technical POC was selected**: Use the `poc-hypothesis` skill to validate the technical approach. Present findings to user. Proceed only after the approach is validated.
 
 ---
 
@@ -103,12 +162,19 @@ Before creating or executing any implementation plan, the following constraints 
 
 ## Phase 3: Testing
 
+> **Skip this phase if "Test phase" was disabled in pre-flight `workflow.md`. State this to the user.**
+
 1. **Spawn code-tester agent** to:
    - **Read AC document** created in Phase 1 — use Acceptance Criteria as test case source.
-   - Write tests that validate each AC item.
+   - **Create positive base case test document** at `docs/features/[feature-name]/test-cases.md` *(if "Test cases document" was enabled in pre-flight)*:
+     - Derive one positive (happy-path) test case per AC item.
+     - Format: `TC-1: [AC reference] — Given [precondition], When [action], Then [expected positive outcome]`.
+     - This document serves as the test plan and is referenced during verification.
+   - Write automated tests that validate each AC item.
    - Add unit tests for new code.
    - Run all tests and fix any failures.
    - **Update AC document**: Mark tested criteria with test file references.
+   - **If "Testing guide" was enabled in pre-flight**: Create `docs/features/[feature-name]/testing-guide.md` with manual testing instructions, prerequisites, and test credentials (if applicable).
 
 ## Phase 4: Refactoring & Quality
 
@@ -149,12 +215,13 @@ Skip if backend-only.
    - Ensure best practices for IT documentation are followed.
 
 ## Completion
-1. **Phase Compliance Self-Check** — Before writing the summary, verify ALL 7 phases were executed by reviewing the Phase Gates table. If any phase was not executed, **STOP and go execute it now.** Specifically confirm:
+1. **Phase Compliance Self-Check** — Before writing the summary, verify ALL phases were executed by reviewing the Phase Gates table and `workflow.md`. If any enabled phase was not executed, **STOP and go execute it now.** Specifically confirm:
+   - [ ] Phase 0: Pre-flight questions answered, `workflow.md` created, POCs completed (if requested)
    - [ ] Phase 1: Plan agent spawned, User Journey Map + AC doc created, user approved
    - [ ] Phase 2: Code-architect spawned, implementation complete
-   - [ ] Phase 3: Code-tester spawned, tests written and passing
+   - [ ] Phase 3: Code-tester spawned, tests written and passing (or disabled in pre-flight)
    - [ ] Phase 4: Code-refactorer spawned, code reviewed
-   - [ ] Phase 5: UX-designer spawned (or explicitly skipped for backend-only)
+   - [ ] Phase 5: UX-designer spawned (or disabled in pre-flight / backend-only)
    - [ ] Phase 6: Build-verificator spawned, AC verified
    - [ ] Phase 7: Librarian spawned, docs updated
 2. **Session Analysis**: Perform a brief retrospective of the session:

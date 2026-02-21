@@ -26,6 +26,12 @@ All workflows follow a mandatory **Build Verification** phase using the `build-v
 
 ## Procedure
 
+### Phase 0: Pre-flight Check (Shared — all workflows)
+Before any planning, run the pre-flight check to configure the workflow:
+- **Ask design/POC/phase questions** using `AskQuestion` — design availability, visual POC need, technical risk POC, optional phases (tests, UX review, testing guide, test cases document).
+- **Create `docs/features/[feature-name]/workflow.md`** — captures all pre-flight decisions and the active phases list.
+- **Execute POCs if requested** — visual POC via `visual-poc` skill, technical POC via `poc-hypothesis` skill.
+
 ### Phase 1: Planning (Shared)
 Follow the planning principles defined in each workflow:
 - **ALWAYS ask clarifying questions first** — This is MANDATORY before any planning. Use `AskQuestion`.
@@ -81,7 +87,7 @@ The `build-verificator` agent performs the final audit as described in each work
 |---|------|--------|
 | 1 | **Track phases** | Review Phase Gates table before starting. Report deliverables to user after each phase. Use `TodoWrite` for implementation tasks, not phase tracking. |
 | 2 | **Spawn agents** | Each phase names a specific agent. Use the `Task` tool. **Never self-perform.** |
-| 3 | **No skipping** | Only UX Review may be skipped (zero-UI features, stated to user). All other phases are mandatory — including Refactoring, Build Verification, and Documentation. |
+| 3 | **No skipping** | Only phases explicitly disabled in pre-flight `workflow.md` may be skipped (Testing, UX Review). All other phases are mandatory — including Refactoring, Build Verification, and Documentation. |
 | 4 | **Phase gates** | After each phase, report deliverables to the user before proceeding. |
 | 5 | **Complete ALL phases** | Workflow ends after Documentation (Phase 7), not before. |
 | 6 | **No placeholders** | Never leave `TODO` or `FIXME`. |
